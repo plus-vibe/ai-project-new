@@ -93,6 +93,8 @@ class AppChecks(unittest.TestCase):
         flat_selection = self.store.upload(archive_bytes('![[attachments/a.png]]'))
         self.assertEqual(flat_selection['missing_images'], [])
         self.assertTrue(flat_selection['blocks'][0]['image'].endswith('/a.png'))
+        unicode_selection = self.store.upload(archive_bytes('![[cafe\u0301.png]]', extra={'lesson/caf\u00e9.png': b'image'}))
+        self.assertEqual(unicode_selection['missing_images'], [])
 
     def test_bounded_zip_no_extraction_and_warning_for_remote(self):
         for extra in ({'../escape.txt': 'bad'}, {'/absolute.txt': 'bad'}):

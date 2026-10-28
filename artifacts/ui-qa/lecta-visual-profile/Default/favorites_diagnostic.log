@@ -1,0 +1,19 @@
+2026-10-28 18:41:22.856: [INFO] CurrentProfilePath: C:\ai-project-new\artifacts\ui-qa\lecta-visual-profile\Default
+2026-10-28 18:41:22.856: [INFO] Profiles total count: 1
+2026-10-28 18:41:22.856: [INFO] Profile: name=Профиль 1 path=C:\ai-project-new\artifacts\ui-qa\lecta-visual-profile\Default lastActive=null
+2026-10-28 18:41:22.856: [INFO] LastUsedProfileDir: C:\ai-project-new\artifacts\ui-qa\lecta-visual-profile\Default
+2026-10-28 18:41:22.856: [INFO] VisibilityChanged: 0
+2026-10-28 18:41:22.886: [INFO] OnDoneLoading sync enabled: 0
+2026-10-28 18:41:22.886: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-28 18:41:22.886: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-28 18:41:22.886: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-28 18:41:22.945: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-28 18:41:23.734: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-28 18:41:23.736: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-28 18:41:23.738: [INFO] Primary account changed.
+2026-10-28 18:41:23.738: [INFO] OnPrimaryAccountChanged PrimaryAccountChangeEvent::Type::kSet
+2026-10-28 18:41:23.747: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-28 18:41:23.760: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-28 18:41:25.543: [INFO] BookmarkBarPrefChanged showBar=0 showBarNTP=1
+2026-10-28 18:41:26.034: [INFO] Sync initialization duration: 2217ms
+2026-10-28 18:41:56.553: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1

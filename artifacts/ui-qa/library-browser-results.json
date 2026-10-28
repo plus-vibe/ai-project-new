@@ -1,0 +1,5 @@
+{
+  "status": "passed",
+  "exceptions": [],
+  "picker": "substituted with real OPFS handle; IndexedDB and file reads native"
+}

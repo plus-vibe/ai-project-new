@@ -9,6 +9,7 @@ import re
 import stat
 import threading
 import time
+import unicodedata
 from urllib.parse import unquote
 import uuid
 import zipfile
@@ -40,7 +41,7 @@ def parse_lecture(path):
             block = {'id': f'b{len(blocks) + 1:03d}', 'line_start': line, 'line_end': line,
                      'text': '', 'image': None, 'note': note}
             if target:
-                target = unquote(target.split('|', 1)[0].split('#', 1)[0].strip())
+                target = unicodedata.normalize('NFC', unquote(target.split('|', 1)[0].split('#', 1)[0].strip()))
                 block['attachment_target'] = target
                 candidate = PurePosixPath(target)
                 if (candidate.is_absolute() or '..' in candidate.parts or '\\' in target
@@ -48,11 +49,11 @@ def parse_lecture(path):
                     warnings.append(f'Строка {line}: внешнее или небезопасное вложение пропущено.')
                 else:
                     local = str(PurePosixPath(note).parent / candidate)
-                    matches = [n for n in images if n == local]
+                    matches = [n for n in images if unicodedata.normalize('NFC', n) == unicodedata.normalize('NFC', local)]
                     if not matches:
-                        matches = [n for n in images if n == target]
+                        matches = [n for n in images if unicodedata.normalize('NFC', n) == target]
                     if not matches:
-                        matches = [n for n in images if PurePosixPath(n).name == candidate.name]
+                        matches = [n for n in images if unicodedata.normalize('NFC', PurePosixPath(n).name) == candidate.name]
                     if len(matches) == 1:
                         block['image'] = matches[0]
                         used.add(matches[0])

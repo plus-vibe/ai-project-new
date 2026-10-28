@@ -1,0 +1,1543 @@
+{
+  "title": "Лекция 7. Преобразование запросов",
+  "note": "Лекция 7. Преобразование запросов.md",
+  "blocks": [
+    {
+      "id": "b001",
+      "line_start": 3,
+      "line_end": 10,
+      "text": "- до этого мы рассмотрели способы подготовки документов\n- есть один важный фактор, влияющий на качество - сам запрос пользователя\n- они не всегда качественно формулируют запросы\n- \"почему я не могу войти в систему?\" а нужная инфа вообще в другом месте лежит",
+      "image": "Pasted image 20261017120502.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017120502.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b002",
+      "line_start": 11,
+      "line_end": 18,
+      "text": "- суть - хотим восстановить контекст недостающий, не меняя изначальный смысл\n- переписать вопрос, чтобы не потерялся контекст\n- сохраняем вопрос и проверяем, не изменился ли смысл",
+      "image": "Pasted image 20261017120705.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017120705.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b003",
+      "line_start": 19,
+      "line_end": 25,
+      "text": "- проблема: один и тот же смысл можно выразить разными словами (перебор паролей, брутфорс, неудачные входы)\n- можно попробовать по-разному выразить один и тот же вопрос, чтобы найти что-то в нашей БД\n- каждый передадим в поиск, получим документы, удалим дубликаты и можем применить RRF и рерангинг, чтобы убрать лишнее - чистые документы на вход\n- самое дорогое - генерация",
+      "image": "Pasted image 20261017121001.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017121001.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b004",
+      "line_start": 26,
+      "line_end": 31,
+      "text": "- для объединения рангов используется RRF \n- тот же multi-querry, у которого ранги объединяются RRF-омЫ",
+      "image": "Pasted image 20261017121229.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017121229.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b005",
+      "line_start": 32,
+      "line_end": 37,
+      "text": "- путем создания гипотетического ответа на вопрос\n- просим LLM ответить на вопрос, но этот ответ будет содержать маркеры и токены, похожие на ответ",
+      "image": "Pasted image 20261017121311.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017121311.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b006",
+      "line_start": 38,
+      "line_end": 42,
+      "text": "- идея: прежде, чем ответить на вопрос, нужно сделать шаг назад и сформулировать вопрос, который поможет понять принцип",
+      "image": "Pasted image 20261017121517.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017121517.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b007",
+      "line_start": 43,
+      "line_end": 47,
+      "text": "- если вопрос сложный, требующий маршрута (переходы между темами)\n- тут декомпозируем вопрос на несколько простых",
+      "image": "Pasted image 20261017121643.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017121643.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b008",
+      "line_start": 48,
+      "line_end": 58,
+      "text": "- бывают ситуации, когда невозможно определить все поисковые запросы\n- следующий шаг может зависеть от предыдущего \n- идея: чередовать поиск информации и промежуточные шаги LLM\n- итеративный способ, когда подключаем поиск на промежуточных шагах\n- GPT-chat тоже его использует\n- хорош для вопросов, когда нужно объединение источников\n- нужно давать подсказки",
+      "image": "Pasted image 20261017121803.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017121803.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b009",
+      "line_start": 59,
+      "line_end": 69,
+      "text": "- нужно ли применять все техники к пользовательскому запросу?\n- если что-то простое и быстрое (точный ID, конкретный код ошибки), здесь хватает лексического и точного поиска \n- появляется идея: нужно определить тип поиска, а потом применить оптимальный способ\n- тут рассматриваем элементы агентного RAG\n- можем построить с помощью точных правил\n- RAG из фиксированного конвейера в алгоритмизированную систему",
+      "image": "Pasted image 20261017122029.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017122029.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b010",
+      "line_start": 70,
+      "line_end": 74,
+      "text": "- заключительный этап формирования RAG\n- задачи: сбор контекста (набор источников, содержащий сведения для ответа), управление контекстным окном (не всегда эффективно отдавать модели всё), обоснованность ответа (с упором на источники, механизмы цитирования)",
+      "image": "Pasted image 20261017122323.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017122323.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b011",
+      "line_start": 75,
+      "line_end": 86,
+      "text": "- у каждой модели есть ограничение\n- используется и для системных инструкций\n- всё зависит от сферы\n- не можем всё окно отдать под документы, ведь нужна еще история, ответ итд\n- задача: как уместить доки в контекстное окно\n- нужно сохранить важную информацию для интерпретации и важные фрагменты\n- если железо ограничено, то будем уменьшать контекстное окно\n- идея: качество контекста важнее объема!",
+      "image": "Pasted image 20261017122546.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017122546.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b012",
+      "line_start": 87,
+      "line_end": 96,
+      "text": "- контекстное сжатие\n- идея: после поиска не весь фрагмент, а только необходимую инфу\n- два подхода:\n\t- экстрактивное сжатие\n\t- абстрактивное сжатие\n- зависит от важности дела и задачи (для нормативки нужен экстракт)",
+      "image": "Pasted image 20261017122854.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017122854.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b013",
+      "line_start": 97,
+      "line_end": 111,
+      "text": "- про порядок документов\n- многие модели лучше используют инфу в начале и конце контекста, хуже для информации в середине\n- для RAG это очень важно\n- нужно экспериментировать с порядком документов\n- просто помним, что при разных моделях и их окнах, разная работа с доками\n- Ground gen - генерация с опором на надежные источники \n- в промпте задаем, что нужно искать здесь, если нету - нужно сообщить\n- модель будет говорить, на какие доки она опирается с разделением фактов (что из источников, а что - из размышлений модели)\n- не гарантирует достоверность\n- в более надежных системах есть доп.проверка (действиетльно ли подтверждается источником)\n- есть модели модели текстового вывода (NLI) - следует ли утверждение из представленного фрагмента\n- подход про требование содержательностью связи между размышлениями и источниками",
+      "image": "Pasted image 20261017123008.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017123008.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b014",
+      "line_start": 112,
+      "line_end": 117,
+      "text": "- проверим, на основании каких источников ответ\n- должны быть у дока метаданные\n- нужно проверить ссылку (был ли источник) и что источник на конкретный фрагмент, релевантный ли источник (можно NLI)",
+      "image": "Pasted image 20261017123452.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017123452.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b015",
+      "line_start": 118,
+      "line_end": 129,
+      "text": "- релевантные доки не гарантируют точность, могут быть разногласия в документах\n- нужно определить, почему противоречие \n- нужно учитывать дату, статус и прочие моменты\n- нужно понимать, что система может запрашивать уточнения\n- есть механизм сообщения о недостаточности информации для ответа, потому что не нашел \n- такие системы похожи на GIT из-за новых версий документов - тут хороши графовые базы данных с индексами по времени",
+      "image": "Pasted image 20261017123642.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017123642.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b016",
+      "line_start": 130,
+      "line_end": 136,
+      "text": "- классическая архитектура неидеальна\n- следующий этап - процесс поиска адаптивный",
+      "image": "Pasted image 20261017124142.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017124142.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b017",
+      "line_start": 137,
+      "line_end": 143,
+      "text": "- стратегия поиска выбирается в зависимости от сложности пользовательского вопроса \n-  сначала классификатор сложности -> определяет, какой порядок выбрать (на простой вопрос сами отвечаем, а для задачи связи между фактами - пошаговая архитектура)",
+      "image": "Pasted image 20261017124224.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017124224.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b018",
+      "line_start": 144,
+      "line_end": 150,
+      "text": "- стратегия выбирается так же, но пытаемся исправить ситуацию, когда первоначальный поиск был неудачным\n- оцениваем, насколько доки соответствуют запросу \n- для локальных моделей нужно же фильтровать контекст",
+      "image": "Pasted image 20261017124431.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017124431.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b019",
+      "line_start": 151,
+      "line_end": 158,
+      "text": "- идея: нужно научить модель саму определять, нужен ли поиск, релевантность и качество ответов\n- модель отвечает на вопрос, но генерирует доп.токены с запросом на проверку итд\n- токены берутся из-за двух моделей: критик (для разметки этими токенами), основная модель будет обучаться на размеченных данных из-за этих токенов\n- модель самостоятельно оценивает, что нужно делать\n- модель может ошибаться",
+      "image": "Pasted image 20261017124741.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017124741.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b020",
+      "line_start": 159,
+      "line_end": 164,
+      "text": "- Forward Looking Active Retrieval\n- если сравнивать с классическим: тут способ предлагает искать в процессе генерации, если не хватает для ответа",
+      "image": "Pasted image 20261017125056.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017125056.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b021",
+      "line_start": 165,
+      "line_end": 175,
+      "text": "- языковая модель не просто получает документы, а сама управляет процессом поиска\n- большая группа подходов\n- в основе лежит агент, которому доступны инструменты и источникик\n- пользователь спрашивает вопрос о брутфорсе, агент может обратиться к нашей базе логов, сравнить данные, сделать выборку и анализ\n- следующие действия на основе предыдущих, смена инструментов\n- планирование -> действие -> наблюдение\n- от поискового конвейера к последовательности получения и проверки знания",
+      "image": "Pasted image 20261017125237.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017125237.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b022",
+      "line_start": 176,
+      "line_end": 183,
+      "text": "- как понять, когда хватит? он же может бесконечно быть в цикле\n- первый критерий - достаточность доказательств \n- второй - ограничение ресурсов \n- третий - контроль повторов",
+      "image": "Pasted image 20261017125515.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017125515.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b023",
+      "line_start": 184,
+      "line_end": 190,
+      "text": "- а можем ли мы не просто описать поведение в промпте, а научить модель пользоватсья поиском?\n- про обучение с подкреплением",
+      "image": "Pasted image 20261017125721.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017125721.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b024",
+      "line_start": 191,
+      "line_end": 196,
+      "text": "- не вся инфа представляется в виде чанков текста\n- если разобьем, то потеряем нить смысла",
+      "image": "Pasted image 20261017125825.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017125825.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b025",
+      "line_start": 197,
+      "line_end": 203,
+      "text": "- графовая структура\n- дорогой подход\n- качество",
+      "image": "Pasted image 20261017125921.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017125921.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b026",
+      "line_start": 204,
+      "line_end": 210,
+      "text": "- граф не только для поиска связей, но и для поиска сходств\n- используются сводки сообществ\n- поиск векторный по сводкам",
+      "image": "Pasted image 20261017130134.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017130134.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b027",
+      "line_start": 211,
+      "line_end": 215,
+      "text": "- сочетает граф с векторным поиском",
+      "image": "Pasted image 20261017130430.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017130430.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b028",
+      "line_start": 216,
+      "line_end": 221,
+      "text": "- многоуровневая кластеризация",
+      "image": "Pasted image 20261017130639.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017130639.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b029",
+      "line_start": 222,
+      "line_end": 227,
+      "text": "- в каких ситуациях полезны?",
+      "image": "Pasted image 20261017130803.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017130803.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b030",
+      "line_start": 228,
+      "line_end": 234,
+      "text": "- RAG использовали для поиска доков в текстах\n- а что если у нас есть реляционная БД",
+      "image": "Pasted image 20261017130932.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017130932.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b031",
+      "line_start": 235,
+      "line_end": 240,
+      "text": "- инфа содержится и в текстах, и в изображениях \n- есть подходы, связанные с плейбуками",
+      "image": "Pasted image 20261017131128.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017131128.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b032",
+      "line_start": 241,
+      "line_end": 243,
+      "text": "",
+      "image": "Pasted image 20261017131441.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017131441.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b033",
+      "line_start": 244,
+      "line_end": 245,
+      "text": "",
+      "image": "Pasted image 20261017131623.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017131623.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b034",
+      "line_start": 246,
+      "line_end": 248,
+      "text": "",
+      "image": "Pasted image 20261017131641.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017131641.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b035",
+      "line_start": 249,
+      "line_end": 251,
+      "text": "",
+      "image": "Pasted image 20261017131918.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017131918.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b036",
+      "line_start": 252,
+      "line_end": 254,
+      "text": "",
+      "image": "Pasted image 20261017132042.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017132042.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b037",
+      "line_start": 255,
+      "line_end": 256,
+      "text": "",
+      "image": "Pasted image 20261017132310.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017132310.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b038",
+      "line_start": 257,
+      "line_end": 262,
+      "text": "- RAG сложнее, чем оценка LLM",
+      "image": "Pasted image 20261017132322.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017132322.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b039",
+      "line_start": 263,
+      "line_end": 269,
+      "text": "- нужен свой датасет для оценки\n- должны быть вопросы, доказательства (исходные отрывки, разметка по чанкам)\n- датасет запрашиваем у заказчика",
+      "image": "Pasted image 20261017132642.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017132642.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b040",
+      "line_start": 270,
+      "line_end": 272,
+      "text": "",
+      "image": "Pasted image 20261017132831.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017132831.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b041",
+      "line_start": 273,
+      "line_end": 275,
+      "text": "",
+      "image": "Pasted image 20261017133028.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017133028.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b042",
+      "line_start": 276,
+      "line_end": 278,
+      "text": "",
+      "image": "Pasted image 20261017133132.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017133132.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b043",
+      "line_start": 279,
+      "line_end": 279,
+      "text": "",
+      "image": "Pasted image 20261017133256.png",
+      "note": "Лекция 7. Преобразование запросов.md",
+      "attachment_target": "Pasted image 20261017133256.png",
+      "attachment_requested": true
+    }
+  ],
+  "image_count": 43,
+  "total_images": 43,
+  "warnings": [],
+  "missing_images": [],
+  "requested_images": 43,
+  "id": "723616a054c346ccaf377f26d93c9427",
+  "created_at": "2026-10-28T18:59:22.796871+00:00",
+  "status": "done",
+  "progress": 43,
+  "total": 43,
+  "sections": [
+    {
+      "title": "Преобразование запросов в RAG",
+      "summary": "Преобразование запросов — ключевой этап, где исходный вопрос адаптируется для повышения точности поиска. Используются методы: query rewriting (с сохранением смысла), multi-query (генерация нескольких формулировок), step-back prompting (обобщение для выявления принципов), декомпозиция сложных вопросов. Multi-query и RAG-Fusion объединяют результаты поиска с помощью RRF, а NuDE создает гипотетический документ для поиска. IRCoT — итеративный подход, где поиск и LLM-анализ чередуются. Все методы направлены на расширение контекста, сохранение смысла и повышение качества ответов, не теряя ключевых деталей, таких как даты, отрицания или ID.",
+      "source_ids": [
+        "b001",
+        "b002",
+        "b003",
+        "b004",
+        "b005",
+        "b006",
+        "b007",
+        "b008"
+      ]
+    },
+    {
+      "title": "Маршрутизация запросов и управление контекстом в RAG",
+      "summary": "Маршрутизация запросов определяется типом задачи: точный ID — лексический поиск, сравнение — декомпозиция, числовая агрегация — SQL-инструменты, неясный вопрос — уточнение. Контекст формируется через бюджет токенов, распределяемый между инструкциями, историей, документами и ответом. Контекстное сжатие — экстрактивное или абстрактивное — сохраняет ссылки на оригиналы. Grounded generation требует разметки документов и разделения фактов/выводов. Цитирование по утверждениям проверяет наличие и смысл ссылок. Противоречия устраняются через версионность и даты. Управление retrieval включает адаптивные архитектуры, где выбор источников зависит от контекста и требований к ответу.",
+      "source_ids": [
+        "b009",
+        "b010",
+        "b011",
+        "b012",
+        "b013",
+        "b014",
+        "b015",
+        "b016"
+      ]
+    },
+    {
+      "title": "Адаптивные и обучаемые подходы к RAG",
+      "summary": "Adaptive-RAG классифицирует сложность вопроса для выбора стратегии поиска — от нулевого до итеративного. CRAG корректирует результаты поиска, добавляя веб-поиск или очищая контекст при низкой релевантности. Self-RAG обучает модель самостоятельно решать, нужен ли поиск, с помощью специальных токенов и критиков. FLARE активно ищет в ходе генерации, используя сигналы низкой уверенности. Agentic RAG — это управляемый цикл: планирование, действие, наблюдение, ответ. Остановка определяется достаточностью доказательств, бюджетом ресурсов, повторами запросов. Search-R1 обучает модель через RL, чередуя рассуждения и поиск, делая его действием в обучении. Все подходы направлены на повышение адаптивности, качества и эффективности поиска.",
+      "source_ids": [
+        "b017",
+        "b018",
+        "b019",
+        "b020",
+        "b021",
+        "b022",
+        "b023"
+      ]
+    },
+    {
+      "title": "Структура и модальности RAG",
+      "summary": "В RAG используются не только текстовые чанки, но и графовые структуры, векторные представления, SQL-запросы и мультимодальные данные. GraphRAG строит связи между сущностями и сообществами, а RAPTOR — многоуровневую кластеризацию для обобщения текста. LightRAG сочетает граф и векторный поиск, обеспечивая два уровня retrieval. Таблицы и Text-to-SQL позволяют выполнять агрегацию над структурными данными. Мультимодальный RAG индексирует изображения и текст, генерируя контекст для мультимодальных моделей. Выбор структуры зависит от цели: локальные детали — Parent-child, обобщение — RAPTOR, связи — GraphRAG, поиск сущностей — LightRAG. Визуальные документы требуют OCR, описаний и визуального retrieval.",
+      "source_ids": [
+        "b024",
+        "b025",
+        "b026",
+        "b027",
+        "b028",
+        "b029",
+        "b030",
+        "b031"
+      ]
+    },
+    {
+      "title": "Обучение компонентов RAG и исследовательские архитектуры",
+      "summary": "В RAG можно обучать retriever, reranker, generator и router на основе пар вопрос–доказательство и трудных отрицательных примеров. RAFT обучает генератор использовать только релевантные документы, игнорируя дезориентирующие. Исследовательские архитектуры включают REALM (retrieval в pre-training), RAG 2020 (обучаемая связь retriever и seq2seq), FiD (отдельное кодирование passages), RETRO (retrieval встроено в LM), REPLUG (retrieval для black-box LM). Коллекции документов, включая изображения (ColPali), используют визуальные embeddings и layout для retrieval. Важно, что обучаемые компоненты должны соответствовать метрикам ошибок, подтверждённым экспериментами.",
+      "source_ids": [
+        "b032",
+        "b033",
+        "b034",
+        "b035",
+        "b036"
+      ]
+    },
+    {
+      "title": "Оценка и эксплуатация RAG-систем",
+      "summary": "Оценка RAG-систем требует раздельной оценки этапов: индексирования, retrieval, контекста и ответа. Для этого используются датасеты с реальными вопросами, доказательствами (отрывки, страницы, разметка по чанкам) и сложными случаями — multi-hop, конфликты, недостающие сведения. Метрики retrieval: Recall@k, Precision@k, MRR, nDCG@k, где для multi-hop важна полнота. Пример: Recall@5 = 2/3, RR = 0.50. Метрики ответа: Correctness, Faithfulness, Answer relevance, Citation quality, Abstention. Для оценки используют LLM-as-a-judge (Ragas, ARES), но с рисками — bias, чувствительность к промпту. Автоматические оценки ускоряют цикл, но требуют калибровки с экспертами.",
+      "source_ids": [
+        "b037",
+        "b038",
+        "b039",
+        "b040",
+        "b041",
+        "b042",
+        "b043"
+      ]
+    }
+  ],
+  "base_warnings": [],
+  "model": "qwen3-vl:4b-instruct",
+  "error": null,
+  "archive_sha256": "9ad20b4df6409a4e6af5f049b7240e9b6d69bb2dfcf2a3878793970f70dc7152",
+  "events": [
+    {
+      "cached": false,
+      "duration": 3.966,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b001",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.335,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b002",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.289,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b003",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.641,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b004",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.893,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b005",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.827,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b006",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.04,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b007",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.975,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b008",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.259,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b009",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 1.816,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b010",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.765,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b011",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.63,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b012",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.812,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b013",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.737,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b014",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.062,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b015",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 1.959,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b016",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.629,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b017",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.963,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b018",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.016,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b019",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.902,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b020",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.845,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b021",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.028,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b022",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.945,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b023",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.021,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b024",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.87,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b025",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.871,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b026",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.958,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b027",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.662,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b028",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.474,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b029",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.951,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b030",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.806,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b031",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.641,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b032",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.041,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b033",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.013,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b034",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.132,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b035",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.334,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b036",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 1.908,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b037",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.943,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b038",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.94,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b039",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.985,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b040",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.976,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b041",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.913,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b042",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.035,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b043",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 6.849,
+      "prompt_sha256": "9ac02ace8a937b317b316600ae0484848403fcab2beb41d920a3549bea108e63",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b001",
+        "b002",
+        "b003",
+        "b004",
+        "b005",
+        "b006",
+        "b007",
+        "b008"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 3.071,
+      "prompt_sha256": "9ac02ace8a937b317b316600ae0484848403fcab2beb41d920a3549bea108e63",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b009",
+        "b010",
+        "b011",
+        "b012",
+        "b013",
+        "b014",
+        "b015",
+        "b016"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 3.602,
+      "prompt_sha256": "9ac02ace8a937b317b316600ae0484848403fcab2beb41d920a3549bea108e63",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b017",
+        "b018",
+        "b019",
+        "b020",
+        "b021",
+        "b022",
+        "b023"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 3.275,
+      "prompt_sha256": "9ac02ace8a937b317b316600ae0484848403fcab2beb41d920a3549bea108e63",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b024",
+        "b025",
+        "b026",
+        "b027",
+        "b028",
+        "b029",
+        "b030",
+        "b031"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 3.033,
+      "prompt_sha256": "9ac02ace8a937b317b316600ae0484848403fcab2beb41d920a3549bea108e63",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b032",
+        "b033",
+        "b034",
+        "b035",
+        "b036"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 3.54,
+      "prompt_sha256": "9ac02ace8a937b317b316600ae0484848403fcab2beb41d920a3549bea108e63",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b037",
+        "b038",
+        "b039",
+        "b040",
+        "b041",
+        "b042",
+        "b043"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 2.422,
+      "prompt_sha256": "d91ae15a818a1bca876097c8650e3ff2fba2fc6af791e783b774d0a6db72700b",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 600
+      },
+      "phase": "synthesis"
+    }
+  ],
+  "duration_seconds": 147.0,
+  "detail": "brief",
+  "overview": "Лекция посвящена комплексному анализу RAG-систем, охватывая преобразование запросов, маршрутизацию и управление контекстом, адаптивные подходы, структуры данных, обучение компонентов и оценку. Все темы связаны через цель — повышение точности, адаптивности и качества ответов без потери ключевых деталей. Главное — понимание, как интегрировать поиск, генерацию и контекстное управление, чтобы обеспечить надежность, эффективность и соответствие метрикам в реальных условиях.",
+  "extractions": [
+    {
+      "title": "Преобразование запросов",
+      "content": "04\n\nRewrite, Multi-query, HyDE и многoshаговый поиск\n\n31",
+      "warnings": [],
+      "source_id": "b001",
+      "image_sha256": "bfbff6fbae8b2de7fd35763a597332207c667a3c02ecaa9ceda7ded08ed62ce5"
+    },
+    {
+      "title": "Query rewriting и история диалога",
+      "content": "Исходный вопрос\n«А для Linux это тоже работает?»\n\nКонтекст\nВ предыдущем вопросе обсуждали ротацию журналов\n\nRewrite\n«Как настроить ротацию журналов в Linux?»\n\nКонтроль\nСохраняем исходный вопрос и проверяем, что смысл не изменился\n\nИстория помогает раскрыть ссылки, но может увести поиск в другую тему",
+      "warnings": [],
+      "source_id": "b002",
+      "image_sha256": "a490b7765797ffb1965bfb24b32c1b4e496972abe4ed8fcaa17980aaad5b0be0"
+    },
+    {
+      "title": "Multi-query retrieval",
+      "content": "Один смысл\nГенерируем несколько формулировок одного вопроса\n\nПоиск\nВыполняем retrieval для каждого варианта\n\nОбъединение\nСобираем уникальные кандидаты из разных списков\n\nОграничение\nПерефразирование может потерять дату, отрицание или ID\n\nРазные формулировки повышают шанс найти нужный фрагмент",
+      "warnings": [],
+      "source_id": "b003",
+      "image_sha256": "b63e95c963fde24418e725aea6650326f7322f8154b50f6fb76b6fe8d6638f10"
+    },
+    {
+      "title": "RAG-Fusion",
+      "content": "Варианты: Создаём несколько поисковых запросов\nСписки: Получаем отдельное ранжирование для каждого\nFusion: Объединяем ранги, например методом RRF\nГенерация: Отбираем итоговый контекст и формируем ответ\nMulti-query создаёт варианты, fusion задаёт правило объединения",
+      "warnings": [],
+      "source_id": "b004",
+      "image_sha256": "a1d75bdc3b6185d5f38c5decd78115ba3cd02dc6ed93e6f885a9a38ec1783ab6"
+    },
+    {
+      "title": "НуDE: гипотетический документ",
+      "content": "Вопрос: Короткий или недостаточно похожий на язык корпуса\nЧерновик: LLM создаёт гипотетический текст ответа или документа\nВектор: Encoder кодирует этот текст для dense retrieval\nДоказательства: Используем только реальные найденные документы\nГипотетический текст служит поисковым ключом\nGao et al., 2022/2023",
+      "warnings": [],
+      "source_id": "b005",
+      "image_sha256": "d59a9f1aabdf501dee1090b5d648760c40edc2d1fbfd873eb5d0622b3830c30c"
+    },
+    {
+      "title": "Step-back prompting",
+      "content": "Конкретика\n«Почему запрос доступа отклонили после смены роли?»\nАбстракция\n«Какие принципы определяют выдачу прав доступа?»\nПоиск\nИщем общие правила и сведения по исходному вопросу\nОтвет\nВозвращаемся к конкретным условиям пользователя\nОбобщение может найти принцип, скрытый за частным случаем",
+      "warnings": [],
+      "source_id": "b006",
+      "image_sha256": "40d5f22fb67e167e225feb066102e2fccfb78a077fb84e581b41ceb2121c8882"
+    },
+    {
+      "title": "Декомпозиция сложного вопроса",
+      "content": "Вопрос\n«Сравните правила удалённого доступа сотрудников и подрядчиков»\n\nПодвопросы\nПравила для сотрудников, правила для подрядчиков, исключения\n\nПоиск\nСобираем доказательства отдельно для каждой части\n\nСинтез\nСравниваем по одним критериям, отмечаем пробелы\n\nНабор доказательств должен покрывать все части вопроса",
+      "warnings": [],
+      "source_id": "b007",
+      "image_sha256": "348aa67f05ef6429d05a0d5da03f69a5713b5cbbe5ba1d6fea4f12375ef25730"
+    },
+    {
+      "title": "Итеративный retrieval: IRCoT",
+      "content": "Первый поиск\nНаходим сведения для начального шага\n\nПромежуточный результат\nПолучаем сущность или связь, которой не было в вопросе\n\nСледующий поиск\nИспользуем новые сведения для следующего запроса\n\nЗавершение\nОстанавливаемся, когда собрали необходимые доказательства\n\nСледующий запрос может зависеть от предыдущего результата",
+      "warnings": [],
+      "source_id": "b008",
+      "image_sha256": "a90a22196dc356d4f8623a436fc66ea6a6ceb8e029929fb4640d5c41258dd952"
+    },
+    {
+      "title": "Маршрутизация запросов",
+      "content": "Сигнал\tМаршрут\tПроверка\nТочный ID\tЛексический и точный поиск\tИдентификатор сохранён\nСравнение\tДекомпозиция и несколько поисков\tВсе критерии покрыты\nЧисловая агрегация\tSQL или вычислительный инструмент\tЗапрос и результат проверены\nНеясный вопрос\tУточнение у пользователя\tНет выдуманной предпосылки\n\nМаршрут выбираем по задаче и требованиям к ответу",
+      "warnings": [],
+      "source_id": "b009",
+      "image_sha256": "00c083d58aa38f5a1c55e235ed2cd699ce9b07c11f30b1a38194f891b1fffc0a"
+    },
+    {
+      "title": "05 Контекст и ответ",
+      "content": "Сбор доказательств, компрессия, цитирование и отказ",
+      "warnings": [],
+      "source_id": "b010",
+      "image_sha256": "7ba69e843c8eb1ab4c9490ad3ab3b48bd3753c95a9f767717e321e1fd75d6d7a"
+    },
+    {
+      "title": "Контекстный бюджет",
+      "content": "Окно модели\nДелим между инструкциями, историей, документами и ответом\nОграничение\nБюджет документов задаём в токенах, а не в числе chunk\nОтбор\nПриоритет у фрагментов с необходимыми доказательствами\nРасширение\nДобавляем определения и исключения, если без них меняется смысл\nБольше документов может означать больше шума",
+      "warnings": [],
+      "source_id": "b011",
+      "image_sha256": "1e6fd1f11006da84ecc612b890a4b5c70827e3f9c374645dc1e48005691eaba3"
+    },
+    {
+      "title": "Contextual compression",
+      "content": "Extractive\nВыбираем точные предложения и фрагменты оригинала\nAbstractive\nСоздаём более краткое изложение найденного текста\nРиски\nМожно потерять отрицание, условие, исключение или единицу\nСвязь\nСохраняем ссылку на оригинал для каждого сжатого фрагмента\nКомпрессия экономит токены, но требует проверки сохранения смысла",
+      "warnings": [],
+      "source_id": "b012",
+      "image_sha256": "063f806a59d4858ab6042337136ec9a2cb917b962335e599fb91e13828bb951b"
+    },
+    {
+      "title": "Grounded generation",
+      "content": "Инструкция\nОтветить по источникам и обозначить недостаток данных\n\nРазметка\nКаждому документу присваиваем стабильный source_id\n\nПоведение\nРазделяем подтверждённые факты и выводы\n\nКонтроль\nПроверяем, поддерживают ли источники конкретные утверждения\n\nПромпт задаёт поведение, отдельная проверка оценивает результат",
+      "warnings": [],
+      "source_id": "b013",
+      "image_sha256": "106f5570525ff1638494f298a253c8fb46078856f13eceaf5b7b537ba721c36e"
+    },
+    {
+      "title": "Цитирование по утверждениям",
+      "content": "Ответ\n«Заявку согласует руководитель подразделения [S1]»\nИсточник\nS1 связан с конкретным разделом и версией документа\nПроверка ссылки\nТакой source_id действительно присутствовал в контексте\nПроверка смысла\nТекст источника подтверждает именно это утверждение\nНаличие ссылки ещё не означает наличие доказательства",
+      "warnings": [],
+      "source_id": "b014",
+      "image_sha256": "7be719bc821798df1395a78150f5228fe3e01c29aeff29fa11f4bb30cf244789"
+    },
+    {
+      "title": "Противоречия и отсутствие ответа",
+      "content": "Конфликт\nДва источника задают разные правила для одной ситуации\n\nВерсия\nПроверяем дату, область действия и статус документа\n\nПробел\nСообщаем, какие сведения не удалось подтвердить\n\nУточнение\nЗапрашиваем роль, организацию или период, если они меняют ответ\n\nУправляемый отказ лучше неподтверждённого решения",
+      "warnings": [],
+      "source_id": "b015",
+      "image_sha256": "1da54abed725e1b026ea86209a55cd4d5d2e14e4a9ac39bb4c1a3fb0de2901c1"
+    },
+    {
+      "title": "Управление retrieval",
+      "content": "06\nАдаптивные, корректирующие и агентные архитектуры",
+      "warnings": [],
+      "source_id": "b016",
+      "image_sha256": "e058bbe8457f8239c07504ae6562388e8da738f41fd3efc371975dc2c6e50cbc"
+    },
+    {
+      "title": "Adaptive-RAG",
+      "content": "Классификация\nОцениваем сложность входного вопроса\n\nВыбор\nБез retrieval, один поиск или итеративная процедура\n\nОбучение\nВ оригинальной работе маршрутизатор учится на собранных метках\n\nРиск\nОшибочная классификация отправляет вопрос в слабый маршрут\n\nСтратегия retrieval может зависеть от сложности задачи",
+      "warnings": [],
+      "source_id": "b017",
+      "image_sha256": "02f2ea9f135bcbe4b3b80de543491face2463af675531521feadfb4dda63ee09"
+    },
+    {
+      "title": "Corrective RAG: CRAG",
+      "content": "Оценка\nПроверяем качество найденных документов\nКоррекция\nВыбираем действие в зависимости от результата оценки\nДополнение\nВ оригинальной работе используем web search при необходимости\nОчистка\nВыделяем полезные части и фильтруем нерелевантное\nПлохой retrieval запускает корректирующий шаг",
+      "warnings": [],
+      "source_id": "b018",
+      "image_sha256": "a0065abf3a1aa767787a0ad0afc684008f251e03ffd92c3e411fb7668f32328b"
+    },
+    {
+      "title": "Self-RAG",
+      "content": "Retrieval\nМодель определяет, когда нужно получить документы\n\nReflection tokens\nСпециальные токены помогают оценивать документы и генерацию\n\nОбучение\nОригинальный метод требует обучения этому поведению\n\nРазличие\nОбычный промпт «проверь ответ» не воспроизводит Self-RAG\n\nСамооценка в Self-RAG является частью обученной процедуры",
+      "warnings": [],
+      "source_id": "b019",
+      "image_sha256": "3ec72f3dab46ccb452a3c16c08a473d7a0bd803d4ccaf424f88ff488563e0904"
+    },
+    {
+      "title": "FLARE: поиск в ходе генерации",
+      "content": "Прогноз\nМодель формирует черновик следующего предложения\n\nСигнал\nТокены с низкой уверенностью указывают на необходимость поиска\n\nЗапрос\nИспользуем предполагаемое содержание для retrieval\n\nПовтор\nГенерируем предложение заново с полученными сведениями\n\nДлинный ответ может потребовать новых источников по ходу работы",
+      "warnings": [],
+      "source_id": "b020",
+      "image_sha256": "f4000d77899d6ecc35181fcb2b8b1ea28290807bcab59d075a38edc1d0ea1296"
+    },
+    {
+      "title": "Agentic RAG",
+      "content": "План\nМодель решает, какие сведения нужны для ответа\n\nИнструмент\nВыбирает поиск, базу, фильтр или вычисление\n\nНаблюдение\nПроверяет результат и при необходимости делает новый шаг\n\nОтвет\nФормирует итог после накопления доказательств\n\nAgentic RAG обозначает семейство систем с управляемым циклом",
+      "warnings": [],
+      "source_id": "b021",
+      "image_sha256": "9c1898ee876c3fb4f3cecda748f3216b8276ce951cd5d529d7f780ca42be90e2"
+    },
+    {
+      "title": "Остановка и бюджет агентного поиска",
+      "content": "Критерий: Доказательства покрывают обязательные части вопроса\nЛимиты: Число шагов, время, токены и стоимость\nПовторы: Обнаруживаем одинаковые запросы и отсутствие новых сведений\nЗавершение: При исчерпании бюджета показываем подтверждённое и пробелы\nДополнительные шаги полезны только при приросте доказательств",
+      "warnings": [],
+      "source_id": "b022",
+      "image_sha256": "de93f3de3c95ee93587b7b3f2889b9cb39eca44adb2b44b7ac4cfaa1b662a3ef"
+    },
+    {
+      "title": "Обучаемый поиск: Search-R1",
+      "content": "Идея\nОбучаем модель чередовать рассуждение и обращения к поиску\n\nСигнал\nReinforcement learning оптимизирует траектории взаимодействия\n\nМеханизм\nRetrieval становится действием, которому модель учится\n\nГраница\nРезультат статьи зависит от её моделей, данных и настроек\n\nУмение пользоваться поиском можно улучшать обучением",
+      "warnings": [],
+      "source_id": "b023",
+      "image_sha256": "eef8aef792af87a4f7539b2a7dc0cd59ae8d56ce3b6dae65e6c024a29a496d91"
+    },
+    {
+      "title": "07 Структура и модальности",
+      "content": "GraphRAG, RAPTOR, SQL и визуальные документы",
+      "warnings": [],
+      "source_id": "b024",
+      "image_sha256": "2ad9c4cc6592783c017e5edd10d4faba3eaa37fe330f707e428570aeda88817e"
+    },
+    {
+      "title": "Граф в RAG",
+      "content": "Узлы\nСущности: системы, люди, подразделения или понятия\nРёбра\nСвязи: владеет, зависит, согласует, входит в состав\nПоиск\nСобираем связанные сущности и подтверждающие тексты\nРиск\nОшибочная извлечённая связь создаёт ложную цепочку\nГраф помогает явно представить связи между знаниями",
+      "warnings": [],
+      "source_id": "b025",
+      "image_sha256": "a4660086b6869ab15a944d2ef3159209dd6176915e634011f565f0a43807ec63"
+    },
+    {
+      "title": "GraphRAG: local и global",
+      "content": "Режим\tКакой вопрос\tЧто используем\nLocal\t«С чем связана система X?»\tСущности, связи и исходные фрагменты\nGlobal\t«Какие основные проблемы во всём корпусе?»\tСводки сообществ и агрегацию ответов\n\nГлобальные вопросы требуют покрытия корпуса",
+      "warnings": [],
+      "source_id": "b026",
+      "image_sha256": "a9b837a699f9c178abfae0bde352feb1f5d8113edb372dac85e5826911e3dbc4"
+    },
+    {
+      "title": "LightRAG",
+      "content": "Индекс\nСочетаем графовую структуру и векторные представления\n\nДва уровня\nИщем конкретные сущности и более общие связи или темы\n\nОбновления\nОригинальная работа включает инкрементальное добавление данных\n\nВыбор\nСравниваем на нужном классе вопросов и собственном корпусе\n\nLightRAG предлагает другой способ графового retrieval\n\nGuo et al., 2024/2025",
+      "warnings": [],
+      "source_id": "b027",
+      "image_sha256": "47554295e42bb7719899ea938f67c1349802037e3dbeca09ac579370e4be9841"
+    },
+    {
+      "title": "RAPTOR: дерево резюме",
+      "content": "Листья\nИсходные фрагменты документа\nГруппы\nКластеризуем близкие представления\nРезюме\nСоздаём сводки и повторяем процесс рекурсивно\nПоиск\nПолучаем сведения на разных уровнях обобщения\nДерево связывает локальные детали и общий смысл",
+      "warnings": [],
+      "source_id": "b028",
+      "image_sha256": "562b85b1b5c5e85dbd4908ae5fd9e7934415b2eed24cdc01e8c64e1aeb0c0b3a"
+    },
+    {
+      "title": "Иерархия и граф: разные связи",
+      "content": "|\n|---\n|Подход|Что связывает|Сильный сценарий|\n|---\n|Parent-child|Фрагмент и исходный раздел|Локальная деталь с условиями|\n|RAPTOR|Фрагменты и рекурсивные резюме|Обобщение длинного текста|\n|GraphRAG|Сущности, отношения и сообщества|Связи и обзор корпуса|\n|LightRAG|Граф и два уровня retrieval|Поиск сущностей и общих отношений|\n\nСтруктуру выбираем по тому, какую связь нужно сохранить",
+      "warnings": [],
+      "source_id": "b029",
+      "image_sha256": "44245012d90afc5446199e82afa60f0de8575e6d672f002d7dc35236c4dbe4b4"
+    },
+    {
+      "title": "Таблицы и Text-to-SQL",
+      "content": "Текстовый RAG: Находит определения показателей и описание схемы\nSQL: Вычисляет фильтры, группировки и агрегаты по данным\nВалидация: Проверяет права, допустимые таблицы и ограничения запроса\nОтвет: Связывает числа с результатом вычисления и выбранным периодом\nЧисловую агрегацию лучше выполнять над структурными данными",
+      "warnings": [],
+      "source_id": "b030",
+      "image_sha256": "a2a995d65da0f38938d610eb7e0f9595842d559edc82cfc24e6c856cfbd9db1e"
+    },
+    {
+      "title": "Мультимодальный RAG",
+      "content": "OCR и текст\nИзвлекаем текст и ищем по нему\nОписания\nСоздаём текстовые представления изображений и схем\nВизуальный retrieval\nИндексируем изображения страниц или их части\nГенерация\nПередаём выбранные страницы мультимодальной модели\nМодальность индекса и модальность контекста могут различаться",
+      "warnings": [],
+      "source_id": "b031",
+      "image_sha256": "9bdb5ac207e53d6a6e57112cabf55855a5715d14082a171d5538ad705caaf394"
+    },
+    {
+      "title": "ColPali: поиск по изображению страницы",
+      "content": "Вход: Страница документа как изображение\nПредставление: Vision-language модель создаёт multi-vector embeddings\nПоиск: Late interaction сопоставляет вопрос со страницей\nСледующий шаг: Генератор читает найденную страницу и формирует ответ\nТаблица и layout могут участвовать в retrieval напрямую",
+      "warnings": [],
+      "source_id": "b032",
+      "image_sha256": "510151031c25170e5f1cbc36e6eddfefdc71dc743fffc2b57aa054cd347e68e9"
+    },
+    {
+      "title": "08 Обучение компонентов",
+      "content": "Адаптация retriever и генератора к внешним знаниям",
+      "warnings": [],
+      "source_id": "b033",
+      "image_sha256": "73381adfec28688f17ea40f9ff42c06aa36d10c9b65b975ace3c1fb3fe873b75"
+    },
+    {
+      "title": "Что можно обучать в RAG",
+      "content": "Retriever\nПары вопрос–доказательство и трудные отрицательные примеры\nReranker\nРазличение полезных и похожих, но неверных фрагментов\nGenerator\nРабота с контекстом, цитирование и отказ при пробелах\nRouter\nВыбор маршрута и необходимость дополнительных шагов\nОбучаем компонент, чью ошибку подтвердили измерением",
+      "warnings": [],
+      "source_id": "b034",
+      "image_sha256": "92a7c89ce09435bbaa8d0ad72ee7a2d7507d0e11d07c897489e09f95a40fe0da"
+    },
+    {
+      "title": "RAFT: обучение ответам с документами",
+      "content": "Обучающий пример: Вопрос, полезные документы и distractor documents\nЦель: Модель использует доказательства и игнорирует нерелевантное\nОпора: Оригинальный рецепт включает цитаты из релевантного документа\nПрименение: Адаптация поведения в доменном режиме «с открытой книгой»\nRAFT учит пользоваться контекстом, актуальные источники всё равно нужны",
+      "warnings": [],
+      "source_id": "b035",
+      "image_sha256": "2dda171fc2fc00fb3e73ceddf1c718e79f528240c0ae835423bf9de6f04886bb"
+    },
+    {
+      "title": "Исследовательские архитектуры",
+      "content": "Метод\tМесто retrieval\nREALM\tRetrieval участвует в pre-training\nRAG 2020\tОбучаемая связь retriever и seq2seq-генератора\nFiD\tPassages кодируются отдельно, decoder объединяет сведения\nRETRO\tRetrieval встроен в архитектуру языковой модели\nREPLUG\tRetrieval для black-box LM с обучением retriever\nRAG охватывает и прикладные конвейеры, и модельные архитектуры",
+      "warnings": [],
+      "source_id": "b036",
+      "image_sha256": "0028eeaad2baaf5aafa4987e2e230533e780e835758c92e949c0a5997598166c"
+    },
+    {
+      "title": "09 Оценка и эксплуатация",
+      "content": "Датасет, метрики, эксперименты и защита источников",
+      "warnings": [],
+      "source_id": "b037",
+      "image_sha256": "d1e2c1826e62f7c496a8e43ffc57c2163f70ec9da20039f4122df3cfc4fe4872"
+    },
+    {
+      "title": "Раздельная оценка этапов",
+      "content": "Индекс\nНужные сведения присутствуют и правильно извлечены\nRetrieval\nРелевантные доказательства вошли в кандидаты\nКонтекст\nПосле отбора сохранились все необходимые доказательства\nОтвет\nФакты верны, источники подтверждают утверждения\nОбщая оценка ответа должна дополняться диагностикой компонентов",
+      "warnings": [],
+      "source_id": "b038",
+      "image_sha256": "57efae24a9747138314d78da3e6a594cac59291d1eb93f2ae46406dc9f12eebc"
+    },
+    {
+      "title": "Датасет для оценки",
+      "content": "Вопросы: Реальные задачи, перефразирование и точные сущности\nДоказательства: Исходные отрывки, страницы, версии и обязательные факты\nСложные случаи: Multi-hop, конфликты, недостающие сведения, новая тема\nРазделение: Отдельные наборы для настройки и итоговой проверки\nТестовый набор должен отражать задачи пользователей",
+      "warnings": [],
+      "source_id": "b039",
+      "image_sha256": "409bd77775681a1f8fad4dbadc6d7c9e39057e1541f6447a1d97d6b46625f7bc"
+    },
+    {
+      "title": "Метрики retrieval",
+      "content": "Метрика\nRecall@k\nPrecision@k\nMRR\nnDCG@k\n\nЧто оценивает\nКакая доля всех релевантных единиц найдена в top-k\nДоля релевантных среди первых k результатов\nСреднее обратных позиций первых релевантных результатов\nКачество порядка с учётом степени релевантности\n\nДля multi-hop важна полнота набора доказательств",
+      "warnings": [],
+      "source_id": "b040",
+      "image_sha256": "d96e6ec12e14c21c05bbd17a7cee62620340628a8c9a71ff4835b788ed41eb4e"
+    },
+    {
+      "title": "Числовой пример retrieval",
+      "content": "Разметка: Три релевантных документа: A, B и C\nTop-5: Результаты: X, A, Y, B и Z\nPrecision@5: 2 / 5 = 0.40\nRecall@5 и RR: 2 / 3 ≈ 0.67, первый релевантный на позиции 2: RR = 0.50\nХорошая позиция первого результата не означает полного покрытия",
+      "warnings": [],
+      "source_id": "b041",
+      "image_sha256": "ed0b45bf08afb5009a32506680d88c1d83f892589a91aca015c06c3e39bdc829"
+    },
+    {
+      "title": "Метрики ответа",
+      "content": "Критерий\tПроверочный вопрос\nCorrectness\tВерны ли ключевые факты и вычисления?\nFaithfulness\tПоддерживает ли контекст утверждения ответа?\nAnswer relevance\tОтвечает ли текст на вопрос пользователя?\nCitation quality\tВерны ли ссылки и достаточно ли их?\nAbstention\tПравильно ли система отказывает при недостатке данных?\n\nОтвет может точно пересказывать ошибочный источник",
+      "warnings": [],
+      "source_id": "b042",
+      "image_sha256": "15bde006e4938df57a6756279ce24a0e83714c6098156a6135df2326adda2559"
+    },
+    {
+      "title": "LLM-as-a-judge: Ragas и ARES",
+      "content": "Ragas\nМетрики разных аспектов retrieval и ответа\n\nARES\nОбучаемые judges и калибровка с человеческой разметкой\n\nРиски\nBias, чувствительность к промпту и ошибочная оценка\n\nКонтроль\nСопоставляем автоматические оценки с выборкой экспертов\n\nАвтоматическая оценка ускоряет цикл, но нуждается в калибровке",
+      "warnings": [],
+      "source_id": "b043",
+      "image_sha256": "2f7de3c3d1975229c422f11d38e7f922a08ac146631615f448a8aabc957376a5"
+    }
+  ],
+  "images_read": 43,
+  "phase": "done",
+  "pipeline_version": "lecture-summary-v2",
+  "stage": "Summary лекции готов",
+  "model_digest": "84f7ed8042fa7cdbd902f7dcb7d0370e032095047cc3244179f263b77b5bc318",
+  "ollama_version": "0.40.12"
+}

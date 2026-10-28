@@ -1,0 +1,19 @@
+2026-10-28 18:55:43.200: [INFO] CurrentProfilePath: C:\ai-project-new\artifacts\ui-qa\folder-fix-profile\Default
+2026-10-28 18:55:43.200: [INFO] Profiles total count: 1
+2026-10-28 18:55:43.200: [INFO] Profile: name=Профиль 1 path=C:\ai-project-new\artifacts\ui-qa\folder-fix-profile\Default lastActive=null
+2026-10-28 18:55:43.200: [INFO] LastUsedProfileDir: C:\ai-project-new\artifacts\ui-qa\folder-fix-profile\Default
+2026-10-28 18:55:43.200: [INFO] VisibilityChanged: 0
+2026-10-28 18:55:43.232: [INFO] OnDoneLoading sync enabled: 0
+2026-10-28 18:55:43.232: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-28 18:55:43.232: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-28 18:55:43.232: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-28 18:55:43.290: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-28 18:55:45.558: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-28 18:55:45.561: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-28 18:55:45.562: [INFO] Primary account changed.
+2026-10-28 18:55:45.562: [INFO] OnPrimaryAccountChanged PrimaryAccountChangeEvent::Type::kSet
+2026-10-28 18:55:45.574: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-28 18:55:45.586: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-28 18:55:47.469: [INFO] BookmarkBarPrefChanged showBar=0 showBarNTP=1
+2026-10-28 18:55:47.671: [INFO] Sync initialization duration: 2030ms
+2026-10-28 18:56:04.943: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1

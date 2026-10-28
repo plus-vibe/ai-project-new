@@ -2,6 +2,23 @@
 const $ = id => document.getElementById(id);
 const VERSION = 'lecture-summary-v2';
 let current = null, connection = {online:false,models:[]}, timer, rendered = '', modalTrigger;
+let importReport = '';
+let libraryReady = Promise.resolve();
+const library = new LectureFiles.Library(state => {
+  const connected = ['ready','session'].includes(state.state);
+  $('library-name').textContent = state.name || 'Папка не выбрана';
+  $('sidebar-folder-name').textContent = state.name || 'Выбрать папку';
+  $('library-status').textContent = state.state === 'permission' ? 'Нужно разрешение на чтение' : state.state === 'session' ? 'Подключена на эту сессию' : connected ? 'Подключена · только чтение' : 'Выберите один раз — используйте для всех лекций';
+  $('library-card').classList.toggle('connected', connected);
+  const feedback = $('folder-feedback');
+  feedback.hidden = state.state === 'empty';
+  feedback.textContent = state.state === 'permission' ? 'Папка «'+state.name+'»: нужен доступ на чтение. Нажмите на папку в меню слева.' : connected ? 'Папка «'+state.name+'» подключена. '+(state.count === null ? 'Изображения проверим при поиске скриншотов.' : 'Изображений: '+state.count+'.')+(state.state === 'session' ? ' После закрытия браузера выберите папку снова.' : '') : '';
+  if (connected && state.count === 0) feedback.textContent += ' PNG, JPG или WebP не найдены. Выберите папку со скриншотами.';
+  if (connected && state.count !== null) $('library-status').textContent += ' · изображений: '+state.count;
+  $('connect-library').textContent = state.state === 'permission' ? 'Разрешить доступ' : connected ? 'Изменить папку' : 'Подключить папку';
+  $('forget-library').hidden = state.state === 'empty';
+  $('library-hint').textContent = connected ? 'Скриншоты найдём в папке «' + state.name + '» автоматически.' : 'Для автоматического поиска подключите папку со скриншотами.';
+});
 const states = {ready:'Лекция загружена',queued:'В очереди',running:'Обработка',done:'Summary готов',error:'Обработка прервана'};
 function node(tag, text, className) { const n=document.createElement(tag); if(text!==undefined)n.textContent=text; if(className)n.className=className; return n; }
 function error(text='') { $('error-banner').textContent=text; $('error-banner').hidden=!text; }
@@ -20,14 +37,16 @@ async function checkHealth() {
 function updateStart() { $('start').disabled=!current||!connection.online||!connection.models.length||!!current.missing_images?.length||['running','queued'].includes(current.status); }
 async function loadHistory() {
   try {
-    const jobs=await api('/api/jobs');$('history').replaceChildren();
+    const jobs=await api('/api/jobs');$('history').replaceChildren();$('history-count').textContent=jobs.length;
     if(!jobs.length)$('history').append(node('p','Загруженных лекций пока нет.','history-empty'));
-    for(const job of jobs) {const b=node('button',job.title,'history-item'+(current?.id===job.id?' active':''));b.append(node('small',states[job.status]));b.addEventListener('click',()=>openJob(job.id));$('history').append(b);}
+    for(const job of jobs) {const b=node('button',undefined,'history-item'+(current?.id===job.id?' active':''));b.append(node('span',job.title,'history-title'),node('small',states[job.status]));b.title=job.title;b.addEventListener('click',()=>openJob(job.id));$('history').append(b);}
   } catch(exc) {error(exc.message);}
 }
-function home() { clearTimeout(timer);current=null;rendered='';location.hash='';error();$('welcome').hidden=false;$('workspace').hidden=true;document.querySelector('.history-menu').open=false;loadHistory(); }
-async function openJob(id) {
-  clearTimeout(timer);error();rendered='';document.querySelector('.history-menu').open=false;
+function home() { clearTimeout(timer);current=null;rendered='';location.hash='';error();$('welcome').hidden=false;$('workspace').hidden=true;document.body.classList.remove('nav-open');$('mobile-menu').setAttribute('aria-expanded','false');loadHistory(); }
+async function openJob(id,keepReport=false) {
+  if(!keepReport)importReport='';
+  clearTimeout(timer);error();rendered='';document.body.classList.remove('nav-open');
+  $('mobile-menu').setAttribute('aria-expanded','false');
   try {current=await api('/api/jobs/'+id);location.hash=id;$('welcome').hidden=true;$('workspace').hidden=false;showTab('summary');render();loadHistory();}
   catch(exc){error(exc.message);}
 }
@@ -58,13 +77,50 @@ async function makeZip(files,imagesOnly=false) {
 }
 function selectedFiles(list){return Array.from(list).map(file=>({file,path:file.webkitRelativePath||file.name}));}
 async function upload(files,attach=false) {
+  // A screenshots-only folder is a library, regardless of the upload entry point.
+  if(!attach && files.length && files.every(e=>/\.(png|jpe?g|webp)$/i.test(e.path))) {
+    library.useFiles(files);
+    if(current?.missing_images?.length)await fillFromLibrary();
+    return;
+  }
   if(!files.length)return;error();$('upload-title').textContent='Читаем файлы…';$('dropzone').setAttribute('aria-busy','true');$('add-images').disabled=true;
   try {
+    importReport='';
+    if(!attach && !files.some(e=>/\.zip$/i.test(e.path))) {
+      const notes=files.filter(e=>/\.md$/i.test(e.path));
+      if(notes.length===1) {
+        $('upload-title').textContent='Находим связанные скриншоты…';
+        await libraryReady;
+        const note=notes[0];
+        const resolved=await library.resolve(LectureFiles.references(await note.file.text()),files,note.path);
+        files=[{file:note.file,path:note.file.name},...resolved.files];
+        importReport=resolved.files.length?'Автоматически подобрано изображений: '+resolved.files.length+'.':'';
+        if(resolved.ambiguous.length)importReport+=' Неоднозначных имён: '+resolved.ambiguous.length+'. Выберите папку ближе к нужным изображениям.';
+        if(library.state==='permission')importReport+=' Для сохранённой папки нужно нажать «Разрешить доступ».';
+      }
+    }
     const zip=files.length===1&&/\.zip$/i.test(files[0].path)&&!attach?files[0].file:await makeZip(files,attach);
     if(zip.size>30*1024*1024)throw new Error('Максимальный размер — 30 МБ.');
     const path=attach?'/api/jobs/'+current.id+'/attachments':'/api/jobs';
-    const job=await api(path,{method:'POST',headers:{'Content-Type':'application/zip'},body:zip});await openJob(job.id);
-  } catch(exc){error(exc.message);} finally{$('upload-title').textContent='Добавьте файлы лекции';$('dropzone').removeAttribute('aria-busy');$('add-images').disabled=false;for(const id of ['file-input','folder-input','attachments-input'])$(id).value='';}
+    const job=await api(path,{method:'POST',headers:{'Content-Type':'application/zip'},body:zip});await openJob(job.id,true);
+  } catch(exc){error(exc.message);} finally{$('upload-title').textContent='Перетащите сюда конспект';$('dropzone').removeAttribute('aria-busy');$('add-images').disabled=false;for(const id of ['file-input','folder-input','attachments-input'])$(id).value='';}
+}
+async function chooseLibrary() {
+  try {
+    error();
+    // Trigger fallback synchronously while the browser still has the click gesture.
+    if(!window.showDirectoryPicker) { $('library-input').value=''; $('library-input').click(); return; }
+    await library.choose();
+    if(current?.missing_images?.length && ['ready','session'].includes(library.state))await fillFromLibrary();
+  } catch(exc) { if(exc.name!=='AbortError')error('Не удалось подключить папку: '+exc.message); }
+}
+async function fillFromLibrary() {
+  if(!current?.missing_images?.length)return;
+  try {
+    const resolved=await library.resolve(current.missing_images);
+    if(resolved.files.length)await upload(resolved.files,true);
+    else error(resolved.ambiguous.length?'В папке несколько файлов с одинаковыми именами. Выберите более точную папку.':'В выбранной папке недостающие скриншоты не найдены.');
+  } catch(exc){error(exc.message);}
 }
 async function directoryFiles(entry,prefix='') {
   if(entry.isFile){const file=await new Promise((resolve,reject)=>entry.file(resolve,reject));return [{file,path:prefix+file.name}];}
@@ -89,6 +145,8 @@ function render(){
   const job=current;if(!job)return;
   const missing=job.missing_images||[],busy=['running','queued'].includes(job.status),legacy=job.pipeline_version!==VERSION,done=job.status==='done'&&!legacy;
   $('lecture-title').textContent=job.title;$('job-status').textContent=missing.length?'НЕ ХВАТАЕТ ИЗОБРАЖЕНИЙ':states[job.status];
+  $('import-report').hidden=!importReport;$('import-report').textContent=importReport;
+  $('resolve-library').hidden=!missing.length;
   $('lecture-meta').textContent='Скриншоты: '+job.image_count+' из '+(job.requested_images??job.image_count)+' доступны · '+job.blocks.length+' блоков с подписями'+(done?' · '+Math.round(job.duration_seconds)+' с':'');
   $('missing-panel').hidden=!missing.length;$('missing-title').textContent='Не хватает скриншотов: '+missing.length;
   $('missing-list').replaceChildren(...missing.map(name=>node('li',name)));
@@ -107,8 +165,8 @@ function render(){
   $('empty-summary').querySelector('h2').textContent=missing.length?'Сначала добавьте скриншоты':'Здесь будет summary всей лекции';
   $('empty-summary').querySelector('p').textContent=missing.length?'Подписи не заменяют содержимое отсутствующих изображений.':busy?'Читаем материалы. После анализа всей лекции здесь появится общий результат.':'Результат объединит содержание изображений и ваши подписи.';
   const key=job.id+':'+(done?'done':'pending')+':'+read;
-  if(rendered!==key){rendered=key;$('summary-content').replaceChildren();
-    if(done){$('summary-content').append(node('div',job.overview,'overview'));for(const section of job.sections){const article=node('section',undefined,'summary-section');article.append(node('h2',section.title),markdown(section.summary));const refs=node('div',undefined,'source-links');refs.append(node('span','Источники:'));for(const id of section.source_ids){const b=node('button',id.replace(/^b0*/,''),'source-chip');b.addEventListener('click',()=>source(id));refs.append(b);}article.append(refs);$('summary-content').append(article);}}
+  if(rendered!==key){rendered=key;$('summary-content').replaceChildren();$('toc').replaceChildren();$('toc-card').hidden=!done;
+    if(done){$('summary-content').append(node('div',job.overview,'overview'));for(const [index,section] of job.sections.entries()){const article=node('section',undefined,'summary-section');article.id='topic-'+index;article.append(node('h2',section.title),markdown(section.summary));const jump=node('button',String(index+1).padStart(2,'0')+'  '+section.title);jump.addEventListener('click',()=>{showTab('summary');article.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth',block:'start'});});$('toc').append(jump);const refs=node('div',undefined,'source-links');refs.append(node('span','Источники:'));for(const id of section.source_ids){const b=node('button',id.replace(/^b0*/,''),'source-chip');b.addEventListener('click',()=>source(id));refs.append(b);}article.append(refs);$('summary-content').append(article);}}
     $('sources-view').replaceChildren();for(const block of job.blocks){const row=node('button',undefined,'source-row');if(block.image){const image=node('img',undefined,'source-thumb');image.src='/api/jobs/'+job.id+'/images/'+block.id;image.alt='';image.loading='lazy';row.append(image);}else row.append(node('span',block.attachment_requested?'?':'¶','source-thumb source-text-icon'));const text=node('div');text.append(node('strong',block.image?.split('/').pop()||block.attachment_target||'Текст заметки'));const extraction=job.extractions?.find(e=>e.source_id===block.id);text.append(node('p',block.attachment_requested&&!block.image?'Файл не приложен':extraction?'Скриншот прочитан':'Строки '+block.line_start+'–'+block.line_end,block.attachment_requested&&!block.image?'missing-label':extraction?'read-label':''));row.append(text);row.addEventListener('click',()=>source(block.id));$('sources-view').append(row);}
   }
   updateStart();
@@ -117,8 +175,12 @@ function render(){
 function source(id){const block=current.blocks.find(b=>b.id===id);if(!block)return;modalTrigger=document.activeElement;const read=current.extractions?.find(e=>e.source_id===id);$('source-modal-title').textContent=read?.title||block.image?.split('/').pop()||block.attachment_target||'Текст лекции';$('source-lines').textContent=block.note+' · строки '+block.line_start+'–'+block.line_end;$('source-image').hidden=!block.image;if(block.image)$('source-image').src='/api/jobs/'+current.id+'/images/'+id;else $('source-image').removeAttribute('src');$('source-notes').textContent=block.text||'Подписи к этому скриншоту нет.';$('source-extraction').textContent=read?.content||(block.image?'Скриншот ещё не прочитан.':block.attachment_requested?'Файл изображения не приложен.':'Этот блок содержит только текст.');$('source-modal').hidden=false;document.body.style.overflow='hidden';$('close-modal').focus();}
 function closeModal(){$('source-modal').hidden=true;document.body.style.overflow='';modalTrigger?.focus();}
 $('close-modal').addEventListener('click',closeModal);$('source-modal').addEventListener('click',event=>{if(event.target===$('source-modal'))closeModal();});
-document.addEventListener('keydown',event=>{if(!$('source-modal').hidden){if(event.key==='Escape')closeModal();if(event.key==='Tab'){event.preventDefault();$('close-modal').focus();}}});
+document.addEventListener('keydown',event=>{if(!$('source-modal').hidden){if(event.key==='Escape')closeModal();if(event.key==='Tab'){event.preventDefault();$('close-modal').focus();}}else if(event.key==='Escape'){document.body.classList.remove('nav-open');$('mobile-menu').setAttribute('aria-expanded','false');}});
 $('new-note').addEventListener('click',home);$('health').addEventListener('click',checkHealth);
+$('nav-new').addEventListener('click',home);$('mobile-menu').addEventListener('click',()=>{const open=document.body.classList.toggle('nav-open');$('mobile-menu').setAttribute('aria-expanded',String(open));});
+$('connect-library').addEventListener('click',chooseLibrary);$('sidebar-library').addEventListener('click',chooseLibrary);$('resolve-library').addEventListener('click',chooseLibrary);
+$('forget-library').addEventListener('click',()=>library.forget());
+$('library-input').addEventListener('change',async event=>{library.useFiles(selectedFiles(event.target.files));if(current?.missing_images?.length)await fillFromLibrary();});
 $('choose-files').addEventListener('click',()=>$('file-input').click());$('choose-folder').addEventListener('click',()=>$('folder-input').click());$('add-images').addEventListener('click',()=>$('attachments-input').click());
 for(const id of ['file-input','folder-input'])$(id).addEventListener('change',event=>upload(selectedFiles(event.target.files)));
 $('attachments-input').addEventListener('change',event=>upload(selectedFiles(event.target.files),true));
@@ -130,4 +192,4 @@ $('dropzone').addEventListener('drop',async event=>{event.preventDefault();$('dr
 $('tab-summary').addEventListener('click',()=>showTab('summary'));$('tab-sources').addEventListener('click',()=>showTab('sources'));
 $('start').addEventListener('click',async()=>{if(!current)return;error();$('start').disabled=true;try{current=await api('/api/jobs/'+current.id+'/start',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:$('model-select').value,detail:$('detail').value})});render();loadHistory();}catch(exc){error(exc.message);updateStart();}});
 window.addEventListener('hashchange',()=>{const id=location.hash.slice(1);if(/^[a-f0-9]{32}$/.test(id)&&current?.id!==id)openJob(id);else if(!id&&current)home();});
-loadHistory();checkHealth();if(/^#[a-f0-9]{32}$/.test(location.hash))openJob(location.hash.slice(1));
+libraryReady=library.restore();loadHistory();checkHealth();if(/^#[a-f0-9]{32}$/.test(location.hash))openJob(location.hash.slice(1));

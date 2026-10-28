@@ -1,0 +1,31 @@
+const fs=require('node:fs/promises');
+const delay=ms=>new Promise(r=>setTimeout(r,ms));
+(async()=>{
+ const target=await(await fetch('http://127.0.0.1:9229/json/new?'+encodeURIComponent('http://127.0.0.1:8765/'),{method:'PUT'})).json();await delay(1000);
+ const ws=new WebSocket(target.webSocketDebuggerUrl);await new Promise(r=>ws.addEventListener('open',r));let seq=0;const pending=new Map(),exceptions=[];
+ ws.addEventListener('message',({data})=>{const m=JSON.parse(data);if(m.method==='Runtime.exceptionThrown')exceptions.push(m.params.exceptionDetails.text);if(m.id){const p=pending.get(m.id);pending.delete(m.id);m.error?p.reject(new Error(JSON.stringify(m.error))):p.resolve(m.result);}});
+ const send=(method,params={})=>new Promise((resolve,reject)=>{const id=++seq;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}));});
+ const ev=async expression=>{const x=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(x.exceptionDetails)throw new Error(JSON.stringify(x.exceptionDetails));return x.result.value;};
+ const assert=(ok,label)=>{if(!ok)throw new Error(label);console.log('OK:',label);};
+ await send('Runtime.enable');await send('Page.enable');
+ await ev('library.forget()');
+ const doc=await send('DOM.getDocument');
+ const pick=async selector=>{const input=await send('DOM.querySelector',{nodeId:doc.root.nodeId,selector});await send('DOM.setFileInputFiles',{nodeId:input.nodeId,files:['C:\\obsidian\\images']});};
+ await pick('#folder-input');await delay(800);
+ console.log(await ev('({name:library.name,count:library.count,feedback:$("folder-feedback").textContent})'));
+ assert(await ev('library.name==="images" && library.count===1009'),'Real screenshot folder selected through general folder input becomes a library');
+ assert(await ev('!$("folder-feedback").hidden && $("folder-feedback").textContent.includes("1009")'),'Visible confirmation includes image count');
+ assert(await ev('current===null && $("error-banner").hidden'),'Screenshot folder does not become an invalid lecture upload');
+ await ev('openJob("8c3c76bbf27b45e6aa2d58e7dc703575")');
+ await pick('#library-input');
+ for(let i=0;i<120;i++){if(await ev('current?.image_count===32'))break;await delay(250);}
+ assert(await ev('current.image_count===32 && current.missing_images.length===0'),'Real RAG lecture: all 32 missing screenshots attached automatically');
+ assert(await ev('current.total_images===32'),'Only linked screenshots uploaded, not all 1009');
+ assert(await ev('!$("folder-feedback").hidden'),'Folder feedback remains visible inside lecture');
+ const result=await ev('({job:current.id,images:current.image_count,missing:current.missing_images.length,feedback:$("folder-feedback").textContent})');console.log(result);
+ await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+ assert(await ev('document.documentElement.scrollWidth<=innerWidth'),'Feedback fits mobile width');
+ assert(exceptions.length===0,'No uncaught browser exceptions');
+ await fs.writeFile('artifacts/ui-qa/folder-fix-results.json',JSON.stringify({...result,exceptions,method:'Real Windows directory through webkitdirectory; native DirectoryHandle picker not automated'},null,2));
+ await send('Browser.close');ws.close();
+})().catch(error=>{console.error(error);process.exit(1);});

@@ -1,0 +1,5 @@
+2026/10/28-23:41:25.202 50e0 Creating DB C:\ai-project-new\artifacts\ui-qa\lecta-visual-profile\Default\EdgeCoupons/coupons_data.db since it was missing.
+2026/10/28-23:41:25.232 50e0 Reusing MANIFEST C:\ai-project-new\artifacts\ui-qa\lecta-visual-profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/10/28-23:41:55.301 9cc0 Level-0 table #5: started
+2026/10/28-23:41:55.306 9cc0 Level-0 table #5: 683284 bytes OK
+2026/10/28-23:41:55.310 9cc0 Delete type=0 #3

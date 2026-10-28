@@ -1,0 +1,8 @@
+{
+  "job": "ad6e6781272f44fcb43804609c7ee55e",
+  "images": 32,
+  "missing": 0,
+  "feedback": "Папка «images» подключена. Изображений: 1009. После закрытия браузера выберите папку снова.",
+  "exceptions": [],
+  "method": "Real Windows directory through webkitdirectory; native DirectoryHandle picker not automated"
+}
