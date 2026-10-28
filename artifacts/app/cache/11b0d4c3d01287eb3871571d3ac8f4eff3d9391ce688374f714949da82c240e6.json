@@ -1,0 +1,1 @@
+{"title": "Контейнер всегда в k8s?", "content": "• Вопрос в зал: «Контейнер — значит Kubernetes?»\n• — нет\n• Схема выбора: один сервер → docker/podman; несколько серверов → swarm/nomad/compose-на-нескольких; кластер и масштаб → k8s (свой или managed); не хочется кластера → managed-контейнеры (Cloud Run, Fargate)", "warnings": []}

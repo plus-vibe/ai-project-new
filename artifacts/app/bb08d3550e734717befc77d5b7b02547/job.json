@@ -1,0 +1,1287 @@
+{
+  "title": "Лекция 9. Где живет код в production",
+  "note": "Лекция 9. Где живет код в production.md",
+  "blocks": [
+    {
+      "id": "b001",
+      "line_start": 1,
+      "line_end": 3,
+      "text": "",
+      "image": "Pasted image 20261028191834.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028191834.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b002",
+      "line_start": 4,
+      "line_end": 5,
+      "text": "",
+      "image": "Pasted image 20261028191903.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028191903.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b003",
+      "line_start": 6,
+      "line_end": 13,
+      "text": "- на чем запускать файлы",
+      "image": "Pasted image 20261028192027.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028192027.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b004",
+      "line_start": 14,
+      "line_end": 15,
+      "text": "",
+      "image": "Pasted image 20261028192149.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028192149.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b005",
+      "line_start": 16,
+      "line_end": 18,
+      "text": "",
+      "image": "Pasted image 20261028192222.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028192222.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b006",
+      "line_start": 19,
+      "line_end": 20,
+      "text": "",
+      "image": "Pasted image 20261028192228.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028192228.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b007",
+      "line_start": 21,
+      "line_end": 24,
+      "text": "",
+      "image": "Pasted image 20261028192240.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028192240.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b008",
+      "line_start": 25,
+      "line_end": 29,
+      "text": "- TCO - total cost ownership",
+      "image": "Pasted image 20261028192625.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028192625.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b009",
+      "line_start": 30,
+      "line_end": 35,
+      "text": "- еще сервера смертны (иногда внезапно): могут сдохнуть комплектующие, это приходится обслуживать и закладывать в бюджет",
+      "image": "Pasted image 20261028192901.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028192901.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b010",
+      "line_start": 36,
+      "line_end": 38,
+      "text": "",
+      "image": "Pasted image 20261028193255.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028193255.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b011",
+      "line_start": 39,
+      "line_end": 46,
+      "text": "- еще должен быь подход FinOps: на что тратим деньги + менеджмент средств",
+      "image": "Pasted image 20261028193732.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028193732.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b012",
+      "line_start": 47,
+      "line_end": 49,
+      "text": "",
+      "image": "Pasted image 20261028194228.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028194228.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b013",
+      "line_start": 50,
+      "line_end": 51,
+      "text": "",
+      "image": "Pasted image 20261028194640.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028194640.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b014",
+      "line_start": 52,
+      "line_end": 54,
+      "text": "",
+      "image": "Pasted image 20261028195054.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028195054.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b015",
+      "line_start": 55,
+      "line_end": 57,
+      "text": "",
+      "image": "Pasted image 20261028195252.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028195252.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b016",
+      "line_start": 58,
+      "line_end": 60,
+      "text": "",
+      "image": "Pasted image 20261028195553.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028195553.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b017",
+      "line_start": 61,
+      "line_end": 63,
+      "text": "",
+      "image": "Pasted image 20261028200343.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028200343.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b018",
+      "line_start": 64,
+      "line_end": 66,
+      "text": "",
+      "image": "Pasted image 20261028200800.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028200800.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b019",
+      "line_start": 67,
+      "line_end": 69,
+      "text": "",
+      "image": "Pasted image 20261028201114.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028201114.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b020",
+      "line_start": 70,
+      "line_end": 74,
+      "text": "- отдаем в облако докер-файл или код, а платформа сама масштабирует",
+      "image": "Pasted image 20261028201415.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028201415.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b021",
+      "line_start": 75,
+      "line_end": 77,
+      "text": "",
+      "image": "Pasted image 20261028202004.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028202004.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b022",
+      "line_start": 78,
+      "line_end": 81,
+      "text": "",
+      "image": "Pasted image 20261028202121.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028202121.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b023",
+      "line_start": 82,
+      "line_end": 83,
+      "text": "",
+      "image": "Pasted image 20261028202255.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028202255.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b024",
+      "line_start": 84,
+      "line_end": 85,
+      "text": "",
+      "image": "Pasted image 20261028202748.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028202748.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b025",
+      "line_start": 86,
+      "line_end": 88,
+      "text": "",
+      "image": "Pasted image 20261028202943.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028202943.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b026",
+      "line_start": 89,
+      "line_end": 90,
+      "text": "",
+      "image": "Pasted image 20261028203118.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028203118.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b027",
+      "line_start": 91,
+      "line_end": 93,
+      "text": "",
+      "image": "Pasted image 20261028203337.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028203337.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b028",
+      "line_start": 94,
+      "line_end": 95,
+      "text": "",
+      "image": "Pasted image 20261028203510.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028203510.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b029",
+      "line_start": 96,
+      "line_end": 98,
+      "text": "",
+      "image": "Pasted image 20261028203805.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028203805.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b030",
+      "line_start": 99,
+      "line_end": 101,
+      "text": "",
+      "image": "Pasted image 20261028204027.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028204027.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b031",
+      "line_start": 102,
+      "line_end": 103,
+      "text": "",
+      "image": "Pasted image 20261028204210.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028204210.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b032",
+      "line_start": 104,
+      "line_end": 105,
+      "text": "",
+      "image": "Pasted image 20261028204254.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028204254.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b033",
+      "line_start": 106,
+      "line_end": 108,
+      "text": "",
+      "image": "Pasted image 20261028204355.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028204355.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b034",
+      "line_start": 109,
+      "line_end": 111,
+      "text": "",
+      "image": "Pasted image 20261028204508.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028204508.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b035",
+      "line_start": 112,
+      "line_end": 112,
+      "text": "",
+      "image": "Pasted image 20261028204758.png",
+      "note": "Лекция 9. Где живет код в production.md",
+      "attachment_target": "Pasted image 20261028204758.png",
+      "attachment_requested": true
+    }
+  ],
+  "image_count": 35,
+  "total_images": 35,
+  "warnings": [],
+  "missing_images": [],
+  "requested_images": 35,
+  "id": "bb08d3550e734717befc77d5b7b02547",
+  "created_at": "2026-10-28T19:05:46.909462+00:00",
+  "status": "done",
+  "progress": 35,
+  "total": 35,
+  "sections": [
+    {
+      "title": "Где живёт код в Production?",
+      "summary": "Команда «Инфраструктура для разработчиков» в Точке занимается сетевой и серверной инфраструктурой, а также разработкой инструментов, таких как Kubernetes, базы данных и очереди сообщений. Лекция фокусируется на выборе места размещения инфраструктуры — от bare metal до облака, включая гетерогенные архитектуры. Код в Production может запускаться на физических серверах, виртуальных машинах, контейнерах или через оркестраторы. Контейнеры — это изолированные единицы, построенные на основе образов, с использованием namespaces для изоляции видимости и cgroups для контроля ресурсов. Runtime-стек (например, Docker) управляет жизненным циклом контейнера: сборка, отправка, запуск. Важно понимать, что контейнеры не всегда работают в Kubernetes, и для продакшена нужны специализированные инструменты, включая общие наборы для любой ситуации. Контейнеры — это не просто «в k8s», а технология, требующая тщательного планирования ресурсов, безопасности и жизненного цикла.",
+      "source_ids": [
+        "b001",
+        "b002",
+        "b003",
+        "b004",
+        "b005"
+      ]
+    },
+    {
+      "title": "Варианты размещения инфраструктуры",
+      "summary": "Выбор места размещения кода в Production — это стратегический вопрос, определяемый нагрузкой, регуляторными требованиями, бюджетом и командными ресурсами. Свое железо подходит для стабильных, 24/7-нагруженных систем, где важен физический контроль и соблюдение нормативов — особенно при наличии строгих требований к локализации данных. Преимущества: низкая TCO при стабильной нагрузке, полный контроль, отсутствие зависимости от провайдера. Однако — высокие капитальные затраты, медленное масштабирование, операционная нагрузка на IT-команду, риск низкой эффективности ресурсов. Облако — идеален для пиковых, растущих, непредсказуемых нагрузок: быстрое масштабирование, гибкая оплата, доступ к управляемым сервисам, высокая доступность. Минусы: вендор-лок, возможная стоимость при постоянной нагрузке, ограниченный контроль, сложность интеграции. Гетерогенная инфраструктура — комбинация: регуляторные требования и базовые сервисы на железе, а пиковые и экспериментальные — в облако. Это требует сложной интеграции, но обеспечивает гибкость. Критерии выбора: стабильность нагрузки, регуляторные требования, бюджет, размер команды, скорость запуска. Свое железо — месяцы, облако — часы. Важно учитывать FinOps и управление затратами.",
+      "source_ids": [
+        "b006",
+        "b007",
+        "b008",
+        "b009",
+        "b010",
+        "b011",
+        "b012",
+        "b013"
+      ]
+    },
+    {
+      "title": "На чём можно запустить код в Production?",
+      "summary": "Код в Production может запускаться на четырёх уровнях: на bare metal, в виртуальных машинах, в контейнерах или через оркестраторы. Bare metal — это физические серверы с Linux, где код работает как обычный процесс, обеспечивая нулевой overhead и полный контроль, но требует ручного управления и медленного provisioning. Виртуальные машины (VM) обеспечивают сильную изоляцию и миграцию, но имеют высокий overhead и громоздкие образы. Контейнеры — это изолированные процессы, упакованные с зависимостями, обеспечивающие лёгкость и плотность, но требуют дисциплины: stateless, healthcheck, логи. Оркестраторы (например, Kubernetes) автоматизируют размещение, масштабирование и управление контейнерами на кластере. Serverless и managed-контейнеры (Cloud Run, Fargate) — это платформы, которые масштабируются автоматически, но ограничены лимитами времени и памяти, а также теряют контроль. Сравнение по критериям: bare metal — нулевой overhead, но медленный старт; VM — сильная изоляция, но высокий overhead; контейнеры — лёгкие, но слабая изоляция; оркестраторы — автоматизация, но требуют настройки. Контейнеры не всегда в Kubernetes — они могут работать в Docker Swarm, Nomad или даже в bare metal. Важно: контейнеры — это не просто «изолированный процесс», а процесс, упакованный с зависимостями, защищённый через namespaces и cgroups, и запускаемый через runtime-стек. В продакшене контейнеры требуют строгой дисциплины: stateless, логи, healthcheck, а также контроль безопасности и ограничений.",
+      "source_ids": [
+        "b014",
+        "b015",
+        "b016",
+        "b017",
+        "b018",
+        "b019",
+        "b020",
+        "b021"
+      ]
+    },
+    {
+      "title": "Контейнеры: как это работает",
+      "summary": "Контейнер — изолированный процесс на Linux, использующий общее ядро, но с собственным видением системы через namespaces и cgroups. Он состоит из образа (код, библиотеки, конфигурация) и runtime, стандартизированных по OCI. Образ собирается по Dockerfile, где каждая инструкция создаёт слой — верхний изменяемый, остальные — кеш. Запуск контейнера требует runtime-стека: docker CLI, podman, containerd или runC, где runC — базовый компонент, создающий процесс с изоляцией. Namespaces изолируют видимость (pid, net, mnt, uts), а cgroups — ресурсы (CPU, память, диск, сеть). Контейнеры в проде должны быть stateless, использовать volumes для данных, логи — через stdout/stderr, а не файлы. Healthcheck и restart policy обеспечивают отказоустойчивость, а graceful shutdown — дозволяет приложению завершить работу по сигналу SIGTERM. Контейнеры не требуют виртуальных машин, их можно запускать на любом железе или в облаке, при этом они не являются «всё в k8s» — они работают и вне кластеров.",
+      "source_ids": [
+        "b022",
+        "b023",
+        "b024",
+        "b025",
+        "b026",
+        "b027",
+        "b028",
+        "b029"
+      ]
+    },
+    {
+      "title": "Безопасность и ограничения контейнеров",
+      "summary": "Безопасность контейнеров строится на минимизации атак-поверхности: использование образов типа alpine, distroless или scratch, multi-stage сборка, работа от обычного пользователя, отключение лишних capability и seccomp-профилей. Сканы образов (Trivy, Grype, Snyk) в CI фиксируют уязвимости до выпуска. Секреты хранятся вне образа — через env от оркестратора или Vault. Миф о том, что контейнеры — это виртуалки — неверен: общее ядро снижает изоляцию, особенно при дырявых capability или ядерных эксплоитах. Контейнеры не подходят для stateful нагрузок, GPU, legacy систем — лучше VM или bare metal. Продакшн — это не «на ноуте работает»: там десятки сервисов, лимиты, дежурства, дисциплина. Контейнеры не обязаны быть в Kubernetes — можно использовать docker/podman на одном сервере, swarm/nomad/Compose на нескольких, а для масштаба — k8s или managed-контейнеры (Cloud Run, Fargate).",
+      "source_ids": [
+        "b030",
+        "b031",
+        "b032"
+      ]
+    },
+    {
+      "title": "Инструменты: контейнер в продакшене",
+      "summary": "Для работы в Production контейнеры требуют строгого подхода к инфраструктуре и инструментам. Образы хранятся в репозиториях — Docker Hub, GHCR, GitLab Registry или собственном Harbor. Процесс развертывания и тестирования реализуется через CI/CD-системы: GitLab CI, GitHub Actions, Jenkins, Tektton. Секреты и TLS-сертификаты должны быть извлечены из образов и Git — используются Vault, sealed-secrets, cert-manager или certbot. Наблюдаемость — логи, метрики, алерты — обеспечивается Prometheus, Grafana, Loki/ELK; без них система «слепая». Контейнер — это изолированный процесс, управляемый namespaces (изоляция видимости) и cgroups (ограничение ресурсов). В продакшене важны stateless-архитектуры, volumes для данных, stdout для логов, healthcheck и graceful shutdown. Выбор инструментов зависит от масштаба: один сервер — compose, кластер — k8s, а если не хочется кластера — managed-контейнеры. Контейнеры не обязаны жить в k8s, но в продакшене они чаще всего используются в сочетании с оркестраторами или managed-решениями. Контейнеры — это не просто изолированные процессы, а структурированные, неизменяемые артефакты, которые требуют правильной настройки и интеграции с инфраструктурой.",
+      "source_ids": [
+        "b033",
+        "b034",
+        "b035"
+      ]
+    }
+  ],
+  "base_warnings": [],
+  "model": "qwen3-vl:4b-instruct",
+  "error": null,
+  "archive_sha256": "57b780a309dc2b2b241b708ddee6dfe809f587f39f48e7f4053062f2a5a34342",
+  "events": [
+    {
+      "cached": false,
+      "duration": 5.135,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b001",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 1.453,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b002",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 1.938,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b003",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.332,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b004",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.386,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b005",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 1.786,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b006",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 1.789,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b007",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.51,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b008",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.698,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b009",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.788,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b010",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.117,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b011",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.289,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b012",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.49,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b013",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.044,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b014",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 1.802,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b015",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.877,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b016",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.412,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b017",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.779,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b018",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.369,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b019",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.97,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b020",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 5.551,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b021",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 1.868,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b022",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.056,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b023",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.552,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b024",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.235,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b025",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.009,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b026",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.043,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b027",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.585,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b028",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.93,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b029",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.385,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b030",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.885,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b031",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 2.832,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b032",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 1.95,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b033",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.112,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b034",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 3.888,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b035",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 7.648,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b001",
+        "b002",
+        "b003",
+        "b004",
+        "b005"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 4.596,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b006",
+        "b007",
+        "b008",
+        "b009",
+        "b010",
+        "b011",
+        "b012",
+        "b013"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 6.43,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b014",
+        "b015",
+        "b016",
+        "b017",
+        "b018",
+        "b019",
+        "b020",
+        "b021"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 4.349,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b022",
+        "b023",
+        "b024",
+        "b025",
+        "b026",
+        "b027",
+        "b028",
+        "b029"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 3.93,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b030",
+        "b031",
+        "b032"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 4.934,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b033",
+        "b034",
+        "b035"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 3.074,
+      "prompt_sha256": "d91ae15a818a1bca876097c8650e3ff2fba2fc6af791e783b774d0a6db72700b",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 600
+      },
+      "phase": "synthesis"
+    }
+  ],
+  "duration_seconds": 137.0,
+  "detail": "full",
+  "overview": "Лекция посвящена выбору и развертыванию инфраструктуры в Production, с акцентом на контейнеры как ключевую технологию, не ограничивающуюся Kubernetes. Обсуждаются варианты размещения — от bare metal до облака, с учетом нагрузки, регуляторов и бюджета. Подчеркивается, что контейнеры — это не просто «в k8s», а изолированные процессы, управляемые runtime-стеком, требующие дисциплины, безопасности и дисциплинированного подхода к жизненному циклу. Важно понимать, что продакшн — это не «на ноуте работает», а сложная система, где контроль, логика, инструменты и безопасность определяют стабильность.",
+  "extractions": [
+    {
+      "title": "Преподаватель",
+      "content": "- Гладких Владислав Олегович — Platform Engineer. TechLead. Точка банк\n- Команда «Инфраструктура для разработчиков»",
+      "warnings": [],
+      "source_id": "b001",
+      "image_sha256": "3b298d617b71adb95b96e6fe97365e18ededa0ab0ddc55d3bb831b745cc2688a"
+    },
+    {
+      "title": "Чем занимается наша команда (в Точке)",
+      "content": "- Сетевой инфраструктурой\n- Серверной инфраструктурой\n- Инструментами для разработчиков: k8s, DB, MQ и т.д.",
+      "warnings": [],
+      "source_id": "b002",
+      "image_sha256": "e552a86fb2eae2ed6b70b43a4106d6583be0169bc0339cc19b3e930b193a5ca4"
+    },
+    {
+      "title": "Программа курса: 3 лекции",
+      "content": "• Лекция 1. Где живёт код в Production\n• Лекция 2. Распределённая инфраструктура\n• Лекция 3. Платформизация\n\nЛекция 1 · Где живёт код в Production · слайд 4 · кадр 6/159",
+      "warnings": [],
+      "source_id": "b003",
+      "image_sha256": "f30ff603d15797fc81782326c45541c04ca9517f919a49ba584a904d20ebe0fa"
+    },
+    {
+      "title": "О чём расскажу",
+      "content": "• Где разместить инфру: своё железо, облако, гетерогенная\n• На чём запустить код в прод: bare metal, VM, контейнеры, оркестраторы\n• Контейнеры изнутри: образы, namespaces, cgroups, runtime",
+      "warnings": [],
+      "source_id": "b004",
+      "image_sha256": "128d2168a66975e53b71a0b642d817b1d43d89e812bcabce5a84ea3375400c74"
+    },
+    {
+      "title": "О чём расскажу",
+      "content": "• Где разместить инфру: своё железо, облако, гетерогенная\n• На чём запустить код в прод: bare metal, VM, контейнеры, оркестраторы\n• Контейнеры изнутри: образы, namespaces, cgroups, runtime\n• Инструменты: что нужно, чтобы запустить контейнер в продакшене",
+      "warnings": [],
+      "source_id": "b005",
+      "image_sha256": "557250333b9fd29e5ad9be8c02241cd775e978fbfa45588947375b2b98c55a54"
+    },
+    {
+      "title": "Варианты размещения инфраструктуры",
+      "content": "Лекция 1: Где живёт код в Production\nслайд 6\nкадр 12/159",
+      "warnings": [],
+      "source_id": "b006",
+      "image_sha256": "bdbb7f8cd87ef8b5adee47bdd67f4314d486bdc12a7afd04abc269ab57d17004"
+    },
+    {
+      "title": "Два мира: своё железо и облако",
+      "content": "Запуск на своём железе\nVS\nЗапуск в облаке",
+      "warnings": [],
+      "source_id": "b007",
+      "image_sha256": "5af020e5714ea98ad9f62d8745c49bd227c61c49764c68a9013e894c8d2ba96c"
+    },
+    {
+      "title": "Свое железо: плюсы",
+      "content": "• Полный контроль за инфроей\n• Дешевизна* — при высокой и стабильной нагрузке (ТСО ниже, но звёздочка обязательна!)\n• Соблюдение требований регулятора (данные физически «у нас»)\n• Отсутствие зависимости от внешнего провайдера",
+      "warnings": [],
+      "source_id": "b008",
+      "image_sha256": "6214b87b0317f017f3aa05b2ae5fc06190b036350eaff49501e2d71e1ff4fb01"
+    },
+    {
+      "title": "Свое железо: минусы и особенности",
+      "content": "- Высокие капитальные затраты и длительное внедрение новых ЦОД\n- Меньшая гибкость масштабирования; медленное увеличение мощностей\n- Большая операционная нагрузка на IT-команду (железо, сеть, СКС, пожарка, дата-центр)\n- Риск низкой эффективности использования ресурсов*",
+      "warnings": [],
+      "source_id": "b009",
+      "image_sha256": "4f1ffbfa4b8e99d13e0e08b1265c8fc71af5c57860e622d93859db874610b208"
+    },
+    {
+      "title": "Облако: плюсы",
+      "content": "• Быстрое масштабирование и развёртывание ресурсов (минуты вместо месяцев)\n• Гибкая модель оплаты (pay-as-you-go, OpEx вместо CapEx)\n• Доступ к управляемым сервисам (БД, ML, serverless) и встроенными инструментам безопасности\n• Высокая доступность и геораспределение с SLA провайдера*",
+      "warnings": [],
+      "source_id": "b010",
+      "image_sha256": "2fdcd328b98d43d4b9d7cbecc3c3a639f958925e22fbaf5406e6c7e95b73c4a4"
+    },
+    {
+      "title": "Облако: минусы и особенности",
+      "content": "• Возможный вендор-лок и зависимость от провайдера\n• Стоимость при постоянных высоких нагрузках может быть выше\n• Меньший физический контроль над данными и оборудованием\n• Миграция и интеграция существующих систем могут быть сложными",
+      "warnings": [],
+      "source_id": "b011",
+      "image_sha256": "9498c074cd4c8c0fb8e64cc3406ad229b24ae01b66e4135b77beeeeb615ad20d"
+    },
+    {
+      "title": "Гетерогенная инфраструктура: облако + железо",
+      "content": "• Комбинация: чувствительное к регулятору и базовое — на своём железе; пиковое, новое, экспериментальное — в облако\n• Особенности: два «мира» процессов и инструментов; сеть между ЦОД и облаком — отдельная задача *(это тема лекции 2)*\n• Плюс: гибкость и отказ от «всё в одну корзину»; минус: сложнее всё — деплой, мониторинг, люди",
+      "warnings": [],
+      "source_id": "b012",
+      "image_sha256": "aee554bcd066a94a7a324a4fd96192504edda6c6617980fefc20018aefbbcb8d"
+    },
+    {
+      "title": "Как выбрать: критерии",
+      "content": "Критерий\nХарактер нагрузки\nТребования регулятора\nБюджет\nКоманда\nСкорость запуска\n\nСвое железо\nСтабильная, высокая 24/7\nСтрогие (данные «дома»)\nСарЕх (закупка)\nЕсть инфраструктурные инженеры\nМесяцы\n\nОблако\nПиковая, непредсказуемая, растущая\nУмеренные / есть соответствия\nОрЕх (подписка)\nМало людей, нужен результат быстро\nЧасы",
+      "warnings": [],
+      "source_id": "b013",
+      "image_sha256": "24b431393b9989235d01df6feb7d4b99173adb08c9abdb44e30b1a11132b592b"
+    },
+    {
+      "title": "На чём можно запустить код в Production?",
+      "content": "Лекция 1 - Где живёт код в Production\nслайд 14\nкадр 43/159",
+      "warnings": [],
+      "source_id": "b014",
+      "image_sha256": "5261b979fbce37c4da7ce6f08e1b1d35f25877340c341ff6cfff192bf2dccba4"
+    },
+    {
+      "title": "Четыре уровня запуска кода",
+      "content": "• Железная железяка — код прямо на сервере\n• Гипервизор с виртуалками — код внутри VM\n• Контейнер — код в изолированном процессе\n• Оркестратор — контейнеры на кластере машин",
+      "warnings": [],
+      "source_id": "b015",
+      "image_sha256": "771645c30283c4319b1122dce6973991ea6fc40e2e6fd11569c531726d9ff8e5"
+    },
+    {
+      "title": "Bare metal: особенности",
+      "content": "• На сервере живёт OC (Linux), код — обычный процесс: systemd, скрипты, ansible\n• Плюсы: нулевой overhead, предсказуемый перформанс (весь CPU — твой), полный контроль\n• Минусы: медленный provisioning, ручные апдейты, «снеговики» — серверы, которые боятся перезагрузить\n• Когда выбирают: высокая и стабильная нагрузка, требования к железу (GPU, специфические NIC)",
+      "warnings": [],
+      "source_id": "b016",
+      "image_sha256": "75ca5c7c1e93cb13ec45a2a9d0b01d02df1536dce16d5e6b239307dd9fd53ecc"
+    },
+    {
+      "title": "Виртуальные машины",
+      "content": "• Гипервизор: type 1 прямо на железе (KVM, ESXi), type 2 поверх OC (VirtualBox); у каждой VM — своё ядро и OS\n• Плюсы: сильная изоляция («своя машина»), снапшоты и миграция, «золотые образы» VM\n• Минусы: overhead гипервизора (процессор, память «на виртуализацию»), громоздкие образы (гигабайты), минуты на старт\n• Когда выбирают: legacy-приложения, разные OS, сильная изоляция, приватное облако (OpenStack, vSphere)",
+      "warnings": [],
+      "source_id": "b017",
+      "image_sha256": "da626130e9802e0360c4482117c6152bb9e5250647b55fe636896d3e18d64a1f"
+    },
+    {
+      "title": "Контейнеры: коротко",
+      "content": "- Контейнер — изолированный процесс на хосте, упакованный вместе со всеми зависимостями\n- Плюсы: лёгкость (мегабайты, старт за секунды), воспроизводимость, плотность размещения\n- Минусы: изоляция слабее, чем у VM (общее ядро Linux); нужна дисциплина — stateless, логи, healthcheck",
+      "warnings": [],
+      "source_id": "b018",
+      "image_sha256": "05be14dbf214d31022a271153f81142eed643773b01deb472176eeddb27f8d40"
+    },
+    {
+      "title": "Оркестраторы",
+      "content": "• Контейнеры в одиночку живут плохо: нужны размещение, рестарты, масштабирование, сеть\n• Оркестратор — «мозг кластера»: планирует контейнеры по машинам и держит их живыми\n• Kubernetes — доминирующий стандарт (из Google, под эгидой CNCF); экосистема огромная\n• Альтернативы: Docker Swarm (проще, «загибается»), HashiCorp Nomad (проще, умеет VM + контейнеры), managed-сервисы (EKS/GKE/Yandex Managed Kubernetes)",
+      "warnings": [],
+      "source_id": "b019",
+      "image_sha256": "014981fbaf117c5b18c314f7d837b4c2d7c9e3fe19db11d4bc24f4868188fbf0"
+    },
+    {
+      "title": "Serverless и managed-контейнеры",
+      "content": "• Cloud Run, Yandex Serverless Containers, AWS Fargate: отдаёшь образ — платформа сама масштабирует\n• Плюсы: нулевое администрирование инфры, оплата за фактическое использование\n• Ограничения: лимиты времени выполнения и памяти, «холодный старт», меньше контроля\n• Когда выбирают: неровная нагрузка, хендлеры событий, «мало трафика, но должен жить всегда»",
+      "warnings": [],
+      "source_id": "b020",
+      "image_sha256": "b0f6366a7273c46997163ec1388459ecd7beb4f682878eacf9aa753c9a24d44e"
+    },
+    {
+      "title": "Сравнение по критериям",
+      "content": "Критерий\tBare metal\tVM\tКонтейнер\tОркестратор\nИзоляция процессов\nнет\nсильная (своё ядро)\nсредняя (общее ядро)\nсредняя + свои неймспейсы поды\nOverhead\nнулевой\nбольшой (гипервизор + ОС)\nминимальный\nминимальный + сам оркестратор\nTime to market\nнедели (закупка)\nчасы-дни (образ VM)\nминуты\nминуты, но после настройки кластера\nРаспределение нагрузки\nруками\nснапшотами и миграцией\nпересозданием\nавтоматически по нодам\nСтоимость\nСapEx, дёшево на 24/7\nOpEx за VM\nOpEx за ресурсы, плотно\nOpEx + трудозатраты на эксплуатацию\nРезервное копирование\nбэкап OS целиком\nснапшоты VM\nбэкап данных (контейнер воспроизводим из образа)\nбэкап данных + конфигов кластера\nИзоляция вычислительных ресурсов\nнет (всё общее)\nжёсткая (vCPU, RAM VM)\nмягкая (cgroups)\nмягкая + квоты неймспейсов",
+      "warnings": [],
+      "source_id": "b021",
+      "image_sha256": "9a64f4fdcdc3f760fe8641ca2c52dde36289b8a5081d0d4366a23e9c827deb56"
+    },
+    {
+      "title": "Контейнеры: как это работает",
+      "content": "Лекция 1 · Где живёт код в Production · слайд 22 · кадр 76/159",
+      "warnings": [],
+      "source_id": "b022",
+      "image_sha256": "e9d70ce98ad24f51ecf31751b08788def7e1b7ec086ac244d020164ce01a7bd5"
+    },
+    {
+      "title": "Что такое контейнер",
+      "content": "• Контейнер — изолированный процесс на Linux (не «мини-VM»!): у него свой взгляд на систему, но ядро общее со всеми\n• Две половины: образ (код + библиотеки + конфиг, статичный) + runtime (то, что умеет образ запускать и изолировать)\n• Стандарт OCI (Open Container Initiative): format образа + спецификация runtime — поэтому образы переносимы между Docker, Podman, containerd, k8s",
+      "warnings": [],
+      "source_id": "b023",
+      "image_sha256": "69be4ac3cc2879ea2717916545db00fa18a1582ee223fa8e4f1ba438550fd77c"
+    },
+    {
+      "title": "Образ и слой",
+      "content": "• Dockerfile → сборка образа: каждая инструкция (FROM, RUN, COPY) = слой в стопке\n• Слои и кеш: изменили код — пересобрался только верхний слой; основа (ОС, зависимости) — из кеша. Порядок инструкций = скорость сборки\n• Union filesystem (overlayfs): запущенный контейнер видит один «слепок» из всех слоёв; верхний слой — тонкий writable-слой на запись.\n• Registry (Docker Hub, GHCR, Harbor): хранилище образов — docker push / pull; слои общие для разных образов = экономия трафика",
+      "warnings": [],
+      "source_id": "b024",
+      "image_sha256": "3cfffbf312c455965f7fee90e15f6a7538bd08b32176690bd27b3a540f94d81e"
+    },
+    {
+      "title": "Namespaces: изоляция «что видно»",
+      "content": "• Идея: каждый контейнер видит свой кусок Linux — свои процессы, сеть, файлы; реализовано в ядре (системный вызов unshare / clone)\n• Главные namespace: pid (свой список процессов, «PID 1»), net (свой IP, порты, iptables), mnt (свой корень fs), uts (свой hostname), ipc, user\n• Следствие: два контейнера могут слушать порт 8080 одновременно — у каждого своя сеть; ps aux внутри показывает только «своих»",
+      "warnings": [],
+      "source_id": "b025",
+      "image_sha256": "b2e9ad7375cf4a4c898fa10db546c23e7106a75362527362837439f14dde509b"
+    },
+    {
+      "title": "cgroups: изоляция «сколько можно»",
+      "content": "• cgroups (control groups) — второй механизм ядра: лимиты ресурсов — CPU, память, диск I/O, сеть\n• Зачем: «сосед» не сьест всю память и не уронит хост; упёрся в лимит — контейнер убили (OOM kill) или дросселировали\n• Вместе: namespaces (что видно) + cgroups (сколько можно) = весь механизм изоляции контейнера; никакой виртуальной машины внутри нет",
+      "warnings": [],
+      "source_id": "b026",
+      "image_sha256": "22d5580d0ffdd3cd0102da2997f3c6dd07244398435675f6cdb9d3def136ee49"
+    },
+    {
+      "title": "Runtime-стек: кто что делает",
+      "content": "• docker CLI / podman — то, чем пользуется человек (build, run, push)\n• containerd (или CRI-O) — демон-посредник: скачивает образы, управляет жизненным циклом контейнеров\n• runC — тонкий низкоуровневый runtime: создаёт процесс с namespace и cgroups по спецификации OCI\n• Альтернативы: Podman — без центрального демона (rootless, «docker без docker»), CRI-O — runtime, заточенный под k8s",
+      "warnings": [],
+      "source_id": "b027",
+      "image_sha256": "c8320897c3ffb00bd987eedddf095f72165aa809829e214457b2c0a9c468fad0"
+    },
+    {
+      "title": "Build → Ship → Run",
+      "content": "• Build: docker build (или kaniko/buildah в CI) → образ с тегом версии. Мульти-стейдж сборка: в одном образе собираем, в прод уезжает только результат\n• Ship: docker push в registry → образ — это и есть «поставка»; воспроизводим: «вот образ v1.2.3, он же в prod»",
+      "warnings": [],
+      "source_id": "b028",
+      "image_sha256": "c19b2c8df3048443460dad9882396ae1e3661ba10fedabde329c654a92a5f7cc"
+    },
+    {
+      "title": "Контейнер в проде: особенности",
+      "content": "• Stateless — лучший друг контейнера: состояние выносим наружу — БД, S3, очереди; сам контейнер можно убить и пересоздать\n• Данные — в volumes: внутри контейнера диск эфемерный (умер контейнер — умерли данные); постоянное — volume / network storage\n• Логи — в stdout/stderr, не в файлах: их собирает платформа (docker logs, Loki, ELK); файлы внутри контейнера — путь в никуда\n• Healthcheck и restart policy: контейнер должен сам сообщать «я жив» (HTTP /health) и уметь переживать перезапуски\n• Graceful shutdown: при остановке приходит SIGTERM — приложение должно дослать запросы, закрыть соединения, потом уже умирать (SIGKILL придёт сам)",
+      "warnings": [],
+      "source_id": "b029",
+      "image_sha256": "efe54af8a89798596d4a1e489f1cecb68018e136d2c449068c730b35eca27bec"
+    },
+    {
+      "title": "Безопасность контейнера",
+      "content": "- Минимальный образ: alpine / distroless / scratch — меньше пакетов = меньше уязвимостей и атак-поверхность; multi-stage сборка\n- Не root: контейнер должен работать от обычного пользователя (root внутри — почти root снаружи при дырявых capabilities)\n- Сканы образов: Trivy / Grype / Snyk в CI — ловим уязвимости в зависимости до продажа\n- Ограничения снаружи: read-only filesystem, отключение лишних capabilities (drop ALL), seccomp-профили; секреты — не в образе, а снаружи (env от оркестратора / vault)",
+      "warnings": [],
+      "source_id": "b030",
+      "image_sha256": "447c728e898666e2a6b1dc2abd122f793f2805c6ec5b6d7e4da55da2d8856bc3"
+    },
+    {
+      "title": "Ограничения и мифы",
+      "content": "• «Контейнер = виртуалка» — нет: общее ядро = слабее изоляция; ядерный эксплоит или дырявый capability — и все контейнеры хоста под ударом; для враждебного мультитенантина — VM\n• Не для всего: тяжёлые stateful (большие БД), специальное железо (GPU/драйверы), legacy «на ОС целиком» — иногда проще VM или bare metal\n• «У меня на ноуте работает» ≠ прод: на ноуте один контейнер и ты — бог; в проде десятки сервисов, сеть, лимиты, секреты, дежурства. Прод — это дисциплина, а не docker run",
+      "warnings": [],
+      "source_id": "b031",
+      "image_sha256": "5f0a6140c8e870466b5d8e67f4b762728a96eeabc0d80721cde7ed421b63ccbc"
+    },
+    {
+      "title": "Контейнер всегда в k8s?",
+      "content": "• Вопрос в зал: «Контейнер — значит Kubernetes?»\n• — нет\n• Схема выбора: один сервер → docker/podman; несколько серверов → swarm/nomad/compose-на-нескольких; кластер и масштаб → k8s (свой или managed); не хочется кластера → managed-контейнеры (Cloud Run, Fargate)",
+      "warnings": [],
+      "source_id": "b032",
+      "image_sha256": "e3b4c8c7f536a1aae5a3f2293f59c3932c4fb1ad1a9e98ffc39305fba433f68b"
+    },
+    {
+      "title": "Инструменты: контейнер в продакшене",
+      "content": "Лекция 1 - Где живёт код в Production\nслайд 33\nкадр 112/159",
+      "warnings": [],
+      "source_id": "b033",
+      "image_sha256": "8c5ef76f655816ab1767a340265ff38ed902c5f10e61386f29972cbccb9a336e"
+    },
+    {
+      "title": "Общий набор на любой случай",
+      "content": "• Registry — куда складывать образы: Docker Hub, GHCR, GitLab Registry, свой Harbor\n• CI/CD — сборка, тесты, сканы, выкатка: GitLab CI, GitHub Actions, Jenkins, Tektton\n• Секреты и TLS — пароли и ключи не в образе и не в git: Vault, SOPs, sealed-secrets; сертификаты — cert-manager / certbot\n• Наблюдаемость — логи, метрики, алерты: Prometheus, Grafana, Loki/ELK — без них прод «слепой»",
+      "warnings": [],
+      "source_id": "b034",
+      "image_sha256": "c31bace4717a591189cefbf792c12d09cc67cc3081ea62d1a605761566c0336f"
+    },
+    {
+      "title": "Итоги: 5 тезисов",
+      "content": "1. Код в проде живёт на: своём железе, в облаке или в гибридe — выбор зависит от нагрузки, регулятора, бюджета и команды\n2. Уровень запуска четыре: bare metal, VM, контейнеры, оркестраторы (+ managed/serverless над ними)\n3. Контейнер — это изолированный процесс: namespaces (что видно) + cgroups (сколько можно), образ — неизменяемый артефакт\n4. В проде важны stateless, volumes для данных, логи в stdout, healthcheck и graceful shutdown\n5. Инструменты подбираются под масштаб: один сервер → compose; кластер → k8s; не хочется кластера → managed-контейнеры",
+      "warnings": [],
+      "source_id": "b035",
+      "image_sha256": "950da975bdc00964e26b5edfa2edce32118b440cfcbd441a985412e0f68768f4"
+    }
+  ],
+  "images_read": 35,
+  "phase": "done",
+  "pipeline_version": "lecture-summary-v2",
+  "stage": "Summary лекции готов",
+  "model_digest": "84f7ed8042fa7cdbd902f7dcb7d0370e032095047cc3244179f263b77b5bc318",
+  "ollama_version": "0.40.12"
+}

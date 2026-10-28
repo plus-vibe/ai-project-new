@@ -1,0 +1,1 @@
+{"title": "Build → Ship → Run", "content": "• Build: docker build (или kaniko/buildah в CI) → образ с тегом версии. Мульти-стейдж сборка: в одном образе собираем, в прод уезжает только результат\n• Ship: docker push в registry → образ — это и есть «поставка»; воспроизводим: «вот образ v1.2.3, он же в prod»", "warnings": []}
