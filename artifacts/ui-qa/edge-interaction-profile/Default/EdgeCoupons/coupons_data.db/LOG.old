@@ -1,0 +1,5 @@
+2026/10/28-22:33:16.267 8d18 Creating DB C:\ai-project-new\artifacts\ui-qa\edge-interaction-profile\Default\EdgeCoupons/coupons_data.db since it was missing.
+2026/10/28-22:33:16.317 8d18 Reusing MANIFEST C:\ai-project-new\artifacts\ui-qa\edge-interaction-profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/10/28-22:33:52.593 88ac Level-0 table #5: started
+2026/10/28-22:33:52.597 88ac Level-0 table #5: 683284 bytes OK
+2026/10/28-22:33:52.601 88ac Delete type=0 #3

@@ -1,0 +1,6 @@
+2026/10/28-23:02:59.012 8838 Reusing MANIFEST C:\ai-project-new\artifacts\ui-qa\edge-interaction-profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/10/28-23:02:59.049 8838 Recovering log #4
+2026/10/28-23:02:59.050 8838 Reusing old log C:\ai-project-new\artifacts\ui-qa\edge-interaction-profile\Default\EdgeCoupons/coupons_data.db/000004.log 
+2026/10/28-23:07:10.056 8a4c Level-0 table #8: started
+2026/10/28-23:07:10.059 8a4c Level-0 table #8: 683444 bytes OK
+2026/10/28-23:07:10.064 8a4c Delete type=0 #4

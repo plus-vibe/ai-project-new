@@ -2,7 +2,7 @@
 
 ## Контекст
 
-Прочитай README.md, docs/rules.md и текущую задачу docs/roadmap.md. Это учебный проект локального конспектирования Obsidian. Различай реализованные функции и планы. Сейчас доступны только harness-check и inspect.
+Прочитай README.md, docs/rules.md и текущую задачу docs/roadmap.md. Это учебный проект локального конспектирования Obsidian. Различай реализованные функции и планы. Работает локальный веб-MVP «Summary лекции» (serve.py): чтение скриншотов → анализ с подписями → общий summary. Отсутствующие изображения блокируют запуск. Есть harness-check, inspect и отдельный эксперимент run_extraction; автоматического оценщика нет.
 
 ## Порядок работы
 
@@ -24,8 +24,12 @@
 
 ## Tools
 
+`python3 -X utf8 tools/serve.py` — локальный веб-MVP на http://127.0.0.1:8765; на Windows также start.cmd. Загрузки, кэш и результаты только в artifacts/app/ вне Git.
+
 `python3 tools/check_harness.py` — целостность каркаса, не тест приложения.
 `python3 tools/inspect_zip.py PATH` — аудит архива без извлечения, не полноценный Markdown-парсер.
+`python3 -X utf8 tools/run_extraction.py PATH --save-responses` — live-извлечение выбранных слайдов через локальную Ollama, не оценка качества; ответы остаются вне Git.
+`python3 -X utf8 -m unittest discover -s tests -p 'test_*.py'` — тесты эксперимента и MVP с подставной моделью, синтетическими ZIP и локальным HTTP, без внешней сети/GPU.
 Команды тестирования/оценки добавлять вместе с реализацией и документировать в README.
 
 ## Повторяемые процедуры

@@ -1,0 +1,1 @@
+{"title": "Naive, Advanced и Modular RAG", "content": "Семейство\n\nNaive RAG\n\nAdvanced RAG\n\nModular RAG\n\nГлавная идея\n\nОдин поиск top-k и один вызов генератора\n\nУлучшаем индекс, запрос, отбор и контекст\n\nКомбинируем модули, маршруты и циклы\n\nЭто удобная классификация, её границы условны", "warnings": []}

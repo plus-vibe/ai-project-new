@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Summary лекции</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<header class="app-header"><div class="header-inner"><a class="brand" href="/">▤ <strong>Summary лекции</strong></a><div class="header-actions"><button id="health" class="health" title="Проверить локальную модель"><span class="dot"></span><span id="health-text">Проверяем Ollama</span></button><details class="history-menu"><summary>Мои лекции</summary><nav id="history" aria-label="История лекций"></nav></details></div></div></header>
+<main>
+  <div id="error-banner" class="error-banner" role="alert" hidden></div>
+  <section id="welcome">
+    <div class="intro"><h1>Вся лекция — в одном summary</h1><p>Загрузите Markdown и скриншоты. Приложение прочитает изображения,<br class="desktop-break"> учтёт подписи и соберёт связный конспект по темам.</p></div>
+    <div id="dropzone" class="upload-panel" tabindex="0" role="button" aria-label="Выбрать Markdown и изображения"><span class="upload-icon" aria-hidden="true">↑</span><h2 id="upload-title">Добавьте файлы лекции</h2><p>Перетащите сюда .md вместе с изображениями<br>или выберите папку одной лекции.</p><div class="upload-buttons"><button id="choose-files" class="button primary">Выбрать файлы</button><button id="choose-folder" class="button secondary">Выбрать папку</button></div><small>Можно также загрузить ZIP · до 30 МБ · всё обрабатывается локально</small></div>
+    <input id="file-input" type="file" multiple accept=".md,.png,.jpg,.jpeg,.webp,.zip" hidden><input id="folder-input" type="file" webkitdirectory multiple hidden>
+    <div class="explainer"><div><span>1</span><p><strong>Читаем скриншоты</strong>Извлекаем текст, таблицы, формулы и связи.</p></div><div><span>2</span><p><strong>Учитываем ваши заметки</strong>Связываем слайды с подписями к ним.</p></div><div><span>3</span><p><strong>Собираем общий смысл</strong>Один summary, без пересказа каждого слайда.</p></div></div>
+  </section>
+  <section id="workspace" hidden>
+    <button id="new-note" class="back-link">← Другая лекция</button>
+    <div class="lecture-header"><div><span class="overline" id="job-status">ЛЕКЦИЯ ЗАГРУЖЕНА</span><h1 id="lecture-title"></h1><p id="lecture-meta"></p></div><a id="download" class="button primary" hidden>Скачать .md ↓</a></div>
+    <section id="missing-panel" class="missing-panel" hidden><h2 id="missing-title"></h2><p>В Markdown есть ссылки на эти изображения, но самих файлов нет. Полный summary пока создать нельзя.</p><details><summary>Какие файлы нужно добавить</summary><ul id="missing-list"></ul></details><button id="add-images" class="button primary">Добавить скриншоты</button></section><input id="attachments-input" type="file" multiple accept=".png,.jpg,.jpeg,.webp" hidden>
+    <div id="legacy-message" class="notice" hidden>Этот результат создан прежним способом — по отдельным блокам. Пересоберите его, чтобы получить summary всей лекции.</div>
+    <div id="setup" class="setup-panel"><div><label for="detail">Объём summary</label><select id="detail"><option value="brief">Кратко — главное по темам</option><option value="full">Подробнее — с пояснениями</option></select></div><div><label for="model-select">Локальная модель</label><select id="model-select"><option value="">Модель не найдена</option></select></div><button id="start" class="button primary">Создать summary</button></div>
+    <section id="progress-card" class="progress-panel" hidden aria-live="polite"><div class="progress-heading"><span class="spinner"></span><strong id="progress-title">Читаем скриншоты</strong><span id="progress-count"></span></div><div class="progress-track"><div id="progress-fill"></div></div><p id="progress-help">Сначала прочитаем изображения, затем напишем общий summary.</p></section>
+    <div class="result-panel"><div class="result-toolbar"><div class="tabs" role="group" aria-label="Результат и материалы"><button id="tab-summary" class="active">Summary</button><button id="tab-sources">Скриншоты и подписи <span id="source-count"></span></button></div><span id="read-count"></span></div><div id="summary-view"><div id="empty-summary" class="empty-summary"><h2>Здесь будет summary всей лекции</h2><p>Сначала приложение прочитает каждый скриншот.<br>Результат объединит содержание изображений и ваши подписи.</p></div><div id="summary-content" class="summary-content"></div></div><div id="sources-view" class="sources-view" hidden></div></div>
+    <details id="warnings-card" class="warnings" hidden><summary id="warnings-title">Замечания к материалам</summary><ul id="warnings"></ul></details>
+  </section>
+  <footer><span>Материалы остаются на вашем компьютере.</span><span>Важные числа и формулы проверяйте по оригиналу.</span></footer>
+</main>
+<div id="source-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="source-modal-title"><div class="modal-panel"><header><h2 id="source-modal-title"></h2><button id="close-modal" aria-label="Закрыть">✕</button></header><p id="source-lines" class="source-lines"></p><img id="source-image" alt="Оригинальный скриншот лекции" hidden><div class="source-columns"><section><h3>Подпись в Markdown</h3><pre id="source-notes"></pre></section><section><h3>Что прочитано со скриншота</h3><pre id="source-extraction"></pre></section></div></div></div>
+</body></html>

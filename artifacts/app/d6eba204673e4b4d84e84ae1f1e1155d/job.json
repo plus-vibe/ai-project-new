@@ -1,0 +1,33 @@
+{
+  "title": "note",
+  "note": "note.md",
+  "blocks": [
+    {
+      "id": "b001",
+      "line_start": 1,
+      "line_end": 2,
+      "text": "Caption-only test. Table details are in the screenshot.",
+      "image": "slide.png",
+      "note": "note.md",
+      "attachment_target": "slide.png",
+      "attachment_requested": true
+    }
+  ],
+  "image_count": 1,
+  "total_images": 1,
+  "warnings": [],
+  "missing_images": [],
+  "requested_images": 1,
+  "id": "d6eba204673e4b4d84e84ae1f1e1155d",
+  "created_at": "2026-10-28T18:07:53.857055+00:00",
+  "status": "ready",
+  "progress": 0,
+  "total": 1,
+  "sections": [],
+  "base_warnings": [],
+  "model": null,
+  "error": null,
+  "archive_sha256": "e00f0901ed7e8ba3b6c82bb4a4003db419c545025de2852e035f7fd1c0358685",
+  "events": [],
+  "duration_seconds": null
+}

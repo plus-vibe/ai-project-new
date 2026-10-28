@@ -1,0 +1,48 @@
+const fs = require('node:fs/promises');
+const delay = ms => new Promise(r => setTimeout(r, ms));
+(async () => {
+  const targets = await (await fetch('http://127.0.0.1:9229/json/list')).json();
+  const target = targets.find(t => t.type === 'page');
+  const ws = new WebSocket(target.webSocketDebuggerUrl);
+  await new Promise((resolve, reject) => { ws.addEventListener('open', resolve); ws.addEventListener('error', reject); });
+  let id = 0; const pending = new Map(), errors = [];
+  ws.addEventListener('message', ({data}) => { const msg = JSON.parse(data); if (msg.method === 'Runtime.exceptionThrown') errors.push(msg.params.exceptionDetails.text); if (msg.id) { const p = pending.get(msg.id); if (!p) return; pending.delete(msg.id); if (msg.error) p.reject(new Error(JSON.stringify(msg.error))); else p.resolve(msg.result); } });
+  const send = (method, params = {}) => new Promise((resolve, reject) => { const request = ++id; pending.set(request, {resolve, reject}); ws.send(JSON.stringify({id:request, method, params})); });
+  const evaluate = async expression => { const result = await send('Runtime.evaluate', {expression, returnByValue:true, awaitPromise:true}); if (result.exceptionDetails) throw new Error(JSON.stringify(result.exceptionDetails)); return result.result.value; };
+  const assert = (condition, text) => { if (!condition) throw new Error(text); console.log('OK:', text); };
+  const screenshot = async name => { const shot = await send('Page.captureScreenshot', {format:'png',captureBeyondViewport:false}); await fs.writeFile('artifacts/ui-qa/' + name + '.png', Buffer.from(shot.data, 'base64')); };
+  await send('Runtime.enable'); await send('Page.enable');
+  await send('Emulation.setDeviceMetricsOverride', {width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+  await send('Page.navigate', {url:'http://127.0.0.1:8765/'}); await delay(1800);
+  assert(await evaluate('document.title.includes("Лист") && !document.getElementById("welcome").hidden'), 'Home loads');
+  assert(await evaluate('document.getElementById("model-select").options.length > 0'), 'Installed model is visible');
+  // Exercise a real file-input upload through the browser, not a prefilled mock UI.
+  const documentNode = await send('DOM.getDocument');
+  const input = await send('DOM.querySelector', {nodeId:documentNode.root.nodeId, selector:'#file-input'});
+  await send('DOM.setFileInputFiles', {nodeId:input.nodeId, files:['C:\\ai-project-new\\data\\private\\test_note.zip']});
+  for (let n=0; n<60; n++) { if (await evaluate('!document.getElementById("workspace").hidden')) break; await delay(500); }
+  assert(await evaluate('!document.getElementById("workspace").hidden && document.getElementById("block-count").textContent === "32"'), 'ZIP upload displays 32 blocks');
+  assert(await evaluate('!document.getElementById("start").disabled'), 'Generate button is enabled');
+  await evaluate('document.getElementById("tab-sources").click()');
+  assert(await evaluate('!document.getElementById("sources-view").hidden && document.querySelectorAll(".source-row").length === 32'), 'Sources tab opens');
+  await evaluate('document.querySelector(".source-row").click()');
+  await delay(400);
+  assert(await evaluate('!document.getElementById("source-modal").hidden && document.getElementById("source-image").complete'), 'Original slide opens');
+  await send('Input.dispatchKeyEvent', {type:'keyDown',key:'Escape',code:'Escape'});
+  assert(await evaluate('document.getElementById("source-modal").hidden'), 'Escape closes source');
+  await send('Emulation.setDeviceMetricsOverride', {width:390,height:844,deviceScaleFactor:1,mobile:true});
+  await delay(400);
+  assert(await evaluate('document.documentElement.scrollWidth <= window.innerWidth'), 'Mobile workspace has no horizontal overflow');
+  await screenshot('mobile-workspace');
+  await evaluate('document.getElementById("new-note").click()'); await delay(300); await screenshot('mobile-home');
+  assert(await evaluate('document.documentElement.scrollWidth <= window.innerWidth'), 'Mobile home has no horizontal overflow');
+  await send('Emulation.setDeviceMetricsOverride', {width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+  await evaluate('openJob("2c98490b341f4017a00e2ff7c9934261")'); await delay(700);
+  await screenshot('desktop-workspace');
+  assert(await evaluate('document.querySelectorAll(".summary-section").length > 0'), 'Live generated sections render');
+  assert(await evaluate('(()=>{const e=document.createElement("div"); e.append(markdown("<img src=x onerror=alert(1)>\\n<script>alert(1)</script>"));return !e.querySelector("img,script")})()'), 'Model HTML stays plain text');
+  console.log('Browser exceptions:', errors.length);
+  assert(errors.length === 0, 'No JavaScript runtime exceptions');
+  await fs.writeFile('artifacts/ui-qa/browser-results.json', JSON.stringify({status:'passed',exceptions:errors},null,2));
+  ws.close();
+})().catch(error => { console.error(error); process.exitCode = 1; });

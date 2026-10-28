@@ -1,0 +1,66 @@
+{
+  "version": "0.2-rag-draft",
+  "status": "unreviewed",
+  "cases": [
+    {
+      "id": "rag-components",
+      "split": "development",
+      "source_image": "Pasted image 20261010121840.png",
+      "scenario": "Связать комментарий с четырьмя компонентами на слайде",
+      "reviewed": false,
+      "required_facts": [],
+      "exact_fragments": [],
+      "forbidden_errors": []
+    },
+    {
+      "id": "rag-slide-only",
+      "split": "development",
+      "source_image": "Pasted image 20261010122123.png",
+      "scenario": "Сохранить заголовок раздела со слайда без комментария",
+      "reviewed": false,
+      "required_facts": [],
+      "exact_fragments": [],
+      "forbidden_errors": []
+    },
+    {
+      "id": "rag-tables",
+      "split": "development",
+      "source_image": "Pasted image 20261010122829.png",
+      "scenario": "Извлечь строки таблицы, инструменты и ограничения без смешения столбцов",
+      "reviewed": false,
+      "required_facts": [],
+      "exact_fragments": [],
+      "forbidden_errors": []
+    },
+    {
+      "id": "rag-sentence-window",
+      "split": "development",
+      "source_image": "Pasted image 20261010124526.png",
+      "scenario": "Различить содержание слайда и числовое уточнение в комментарии",
+      "reviewed": false,
+      "required_facts": [],
+      "exact_fragments": [],
+      "forbidden_errors": []
+    },
+    {
+      "id": "rag-rank-fusion",
+      "split": "development",
+      "source_image": "Pasted image 20261010131852.png",
+      "scenario": "Точно извлечь формулу, индексы и условия объединения рангов",
+      "reviewed": false,
+      "required_facts": [],
+      "exact_fragments": [],
+      "forbidden_errors": []
+    },
+    {
+      "id": "rag-orphan-attachment",
+      "split": "development",
+      "source_image": "Pasted image 20261010121650.png",
+      "scenario": "Предупредить о файле без ссылки, не включать в повествование",
+      "reviewed": false,
+      "required_facts": [],
+      "exact_fragments": [],
+      "forbidden_errors": []
+    }
+  ]
+}
