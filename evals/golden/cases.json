@@ -1,0 +1,66 @@
+{
+  "version": "0.1-draft",
+  "status": "unreviewed",
+  "cases": [
+    {
+      "id": "uv-notes",
+      "split": "development",
+      "source_image": "Pasted image 20260930193843.png",
+      "scenario": "Связать комментарии со слайдом uv",
+      "reviewed": false,
+      "required_facts": [],
+      "exact_fragments": [],
+      "forbidden_errors": []
+    },
+    {
+      "id": "comparison-table",
+      "split": "development",
+      "source_image": "Pasted image 20260930193947.png",
+      "scenario": "Извлечь сравнительную таблицу без заметок",
+      "reviewed": false,
+      "required_facts": [],
+      "exact_fragments": [],
+      "forbidden_errors": []
+    },
+    {
+      "id": "branching-diagram",
+      "split": "development",
+      "source_image": "Pasted image 20260930194756.png",
+      "scenario": "Сохранить связи на схеме и смысл feature flags",
+      "reviewed": false,
+      "required_facts": [],
+      "exact_fragments": [],
+      "forbidden_errors": []
+    },
+    {
+      "id": "commands",
+      "split": "development",
+      "source_image": "Pasted image 20260930192729.png",
+      "scenario": "Точно извлечь команды и имена файлов",
+      "reviewed": false,
+      "required_facts": [],
+      "exact_fragments": [],
+      "forbidden_errors": []
+    },
+    {
+      "id": "section-heading",
+      "split": "development",
+      "source_image": "Pasted image 20260930194509.png",
+      "scenario": "Восстановить границу раздела Ветвление",
+      "reviewed": false,
+      "required_facts": [],
+      "exact_fragments": [],
+      "forbidden_errors": []
+    },
+    {
+      "id": "orphan-attachment",
+      "split": "development",
+      "source_image": "Pasted image 20260930194042.png",
+      "scenario": "Предупредить о файле без ссылки, не включать в повествование",
+      "reviewed": false,
+      "required_facts": [],
+      "exact_fragments": [],
+      "forbidden_errors": []
+    }
+  ]
+}
