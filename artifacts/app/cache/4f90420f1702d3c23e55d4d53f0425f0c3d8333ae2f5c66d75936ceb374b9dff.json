@@ -1,0 +1,1 @@
+{"title": "INNER JOIN", "content": "только совпадения\n\nA\nB\n\nПоказывает только те строки, для которых нашлась пара в обеих таблицах.\n\nSELECT ...\nFROM A\nINNER JOIN B\nON A.id = B.id", "warnings": []}

@@ -1,0 +1,1 @@
+{"title": "LEFT JOIN", "content": "все строки слева\n\nA\nB\n\nСохраняет все строки из левой таблицы (A) и совпадения из правой (B). Если пары нет — значения из B будут NULL.\n\nSELECT ...\nFROM A\nLEFT JOIN B\nON A.id = B.id", "warnings": []}

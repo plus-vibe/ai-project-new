@@ -1,0 +1,597 @@
+{
+  "title": "Лекция 7. SQL. Соединение таблиц (JOIN)",
+  "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md",
+  "blocks": [
+    {
+      "id": "b001",
+      "line_start": 1,
+      "line_end": 2,
+      "text": "Как собрать данные из разных таблиц в один запрос?",
+      "image": null,
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md"
+    },
+    {
+      "id": "b002",
+      "line_start": 3,
+      "line_end": 6,
+      "text": "# Связь между таблицами \n\n`JOIN` работает благодаря связям между таблицами",
+      "image": null,
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md"
+    },
+    {
+      "id": "b003",
+      "line_start": 7,
+      "line_end": 21,
+      "text": "Все данные в одной таблице не лежат, поэтому, чтобы сделать выборку, обращаются к разным таблицам и объединяют их по ключам:\n- ***Primary Key (PK)*** - Уникальный идентификатор записи в таблице\n- ***Foreign Key (FK)*** - Ссылка на первичный ключ в другой таблице. Создает связь\n\n**Как это работает?** \n`JOIN` сопоставляет значение внешнего ключа (FK) с первичным ключом (PK) и связывает строки:\n\n```PostgreSQL\nON tickets.book_ref = bookings.book_ref\n```\n\nМы можем посмотреть структуру данных в виде диаграммы - ***Entity Relationship Diagram (ER Diagram)***",
+      "image": "Pasted image 20260723104559.png",
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md",
+      "attachment_target": "Pasted image 20260723104559.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b004",
+      "line_start": 22,
+      "line_end": 26,
+      "text": "Видим выше, что одна запись из таблицы `boarding_passes` равна одной записи `ticket_flights` - ***связь \"один к одному\"***",
+      "image": "Pasted image 20260723110705.png",
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md",
+      "attachment_target": "Pasted image 20260723110705.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b005",
+      "line_start": 27,
+      "line_end": 33,
+      "text": "А вот в данном случае выше - ***связь один ко многим***. Условно: человек выбрал 3 билета в левой таблице в одном заказе и нажал \"оплатить\". В правую таблицу попадет только одна запись (один заказ ко многим билетам) -> ***связь один ко многим***\n\n_когда мы заджойним, мы увидим, что у левой таблицы будут правые значения_",
+      "image": "Pasted image 20260723110842.png",
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md",
+      "attachment_target": "Pasted image 20260723110842.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b006",
+      "line_start": 34,
+      "line_end": 35,
+      "text": "# Практика `JOIN` (он же `INNER JOIN` - по умолчанию)",
+      "image": null,
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md"
+    },
+    {
+      "id": "b007",
+      "line_start": 36,
+      "line_end": 160,
+      "text": "Создадим 2 запроса:\n```PostgreSQL\nselect\n    ticket_no,\n    book_ref,\n    passenger_name\nfrom \n\tbookings.tickets\n;\n```\n\n| Ticket no     | Book ref | Passenger name       |\n| :------------ | :------- | :------------------- |\n| 0005432363212 | 3E0D45   | ELENA BOGDANOVA      |\n| 0005432363213 | 533753   | ELIZAVETA KUZNECOVA  |\n| 0005432363214 | 1EBC9C   | IVAN SERGEEV         |\n\n\n```PostgreSQL\nselect\n    book_ref,\n    book_date,\n    total_amount\nfrom bookings.bookings\n```\n\n| Book ref | Book date              | Total amount |\n| :------- | :--------------------- | :----------- |\n| 00000F   | 2017-07-05 00:12:00+00 | 265700       |\n| 000012   | 2017-07-14 06:02:00+00 | 37900        |\n| 00002D   | 2017-05-20 15:45:00+00 | 114700       |\n\nТеперь, допустим, мы хотим посмотреть, когда определенный человек сделал заказ и на какую сумму:\n- `FROM bookings.tickets AS t` мы задаем алиас (альтернативное короткое имя), к которому мы будем обращаться, чтобы не засорять запрос длинными словами \n\n\n1. `JOIN` с выводом всех колонок:\n```PostgreSQL\nSELECT\n    *\nFROM bookings.tickets AS t\n    JOIN bookings.bookings AS b\n        ON t.book_ref = b.book_ref\n```\n\n| Ticket no     | Book ref | Passenger id | Passenger name  | Contact data                                                               | Book date              | Total amount |\n| :------------ | :------- | :----------- | :-------------- | :------------------------------------------------------------------------- | :--------------------- | :----------- |\n| 0005432847832 | 9430F9   | 0964 061842  | DMITRIY NIKITIN | {\"email\":\"nikitin_dmitriy-061968@postgrespro.ru\",\"phone\":\"+70800675056\"}   | 2017-06-15 00:00:00+00 | 37800        |\n| 0005432847833 | 9430F9   | 4588 216915  | NIKITA OSIPOV   | {\"email\":\"nosipov_111970@postgrespro.ru\",\"phone\":\"+70458819273\"}           | 2017-06-15 00:00:00+00 | 37800        |\n| 0005432847834 | 9430F9   | 0647 075114  | GULNARA IVANOVA | {\"email\":\"gulnara-ivanova-02091977@postgrespro.ru\",\"phone\":\"+70978470376\"} | 2017-06-15 00:00:00+00 | 37800        |\n\n2. Теперь попытаемся выбрать определенные колонки:\n```PostgreSQL\nSELECT\n    ticket_no,\n    book_ref,\n    passenger_name,\n    total_amount\nFROM bookings.tickets AS t\n    JOIN bookings.bookings AS b\n        ON t.book_ref = b.book_ref\n```\nВидим ошибку: `column reference \"book_ref\" is ambiguous`. \n\nЭто значит, что ***система не понимает, из какой таблицы мы хотим достать колонку*** `book_ref`, так как она есть в обеих таблицах. Поэтому правильным будет всегда указывать алиасы, из какой таблицы мы выводим\n\n3. Теперь делаем всё по-уму. ***Писать алиасы, даже если всё понятно - правило хорошего тона!***. \n```PostgreSQL\nSELECT\n    t.ticket_no,\n    b.book_ref,\n    t.passenger_name,\n    b.total_amount\nFROM bookings.tickets AS t\n    JOIN bookings.bookings AS b\n        ON t.book_ref = b.book_ref\n```\n\n| Ticket no     | Book ref | Passenger name     | Total amount  |\n| :------------ | :------- | :----------------- | :------------ |\n| 0005433497014 | FFF109   | ARTEM ALEKSANDROV  | 24000         |\n| 0005433497015 | FFF109   | BORIS SERGEEV      | 24000         |\n| 0005433497016 | FFF109   | MAKSIM KUZMIN      | 24000         |\n\n- Видим, что `book_ref` одинаковый, а имена разные. Вот как раз-таки и означает, что 3 человека (друзья или родственники) сделали 1 заказ но на 3 человек. \n- То же самое и с колонкой`total_amount` из таблицы `bookings.bookings` - тут сумма всего заказа\n\n4. Теперь проверим в каждой из таблиц по-отдельности. Всё сходится\n\n**Таблица `bookings.tickets`:**\n```PostgreSQL\nselect\n    ticket_no,\n    book_ref,\n    passenger_name\nfrom bookings.tickets\nwhere book_ref = 'FFF109'\n```\n\n| Ticket no     | Book ref | Passenger name    |\n| :------------ | :------- | :---------------- |\n| 0005433497014 | FFF109   | ARTEM ALEKSANDROV |\n| 0005433497015 | FFF109   | BORIS SERGEEV     |\n| 0005433497016 | FFF109   | MAKSIM KUZMIN     |\n\n**Таблица `bookings.bookings`:**\n\n```PostgreSQL\nselect\n    book_ref,\n    book_date,\n    total_amount\nfrom bookings.bookings\nwhere book_ref = 'FFF109'\n```\n\n| Book ref | Book date              | Total amount |\n| :------- | :--------------------- | :----------- |\n| FFF109   | 2017-07-25 01:56:00+00 | 24000        |\n\nВ одной таблице - 3 строчки, в другой - 1 строчка, мы соединили по ключу между собой и получилось, что 3 строчкам мы дописали одну (продублировали)",
+      "image": "Pasted image 20260723200637.png",
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md",
+      "attachment_target": "Pasted image 20260723200637.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b008",
+      "line_start": 161,
+      "line_end": 166,
+      "text": "## Суть `INNER JOIN`\n\n***Строки из двух страниц сравниваются по ключу, и, если ключ совпадает, строки склеиваются в одну длинную***\n\n***Результат не поменяется, если поменять названия таблиц местами в `JOIN`, ведь сравнивается по общему ключу***",
+      "image": null,
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md"
+    },
+    {
+      "id": "b009",
+      "line_start": 167,
+      "line_end": 168,
+      "text": "# `LEFT JOIN`",
+      "image": null,
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md"
+    },
+    {
+      "id": "b010",
+      "line_start": 169,
+      "line_end": 176,
+      "text": "- Берутся ***все*** строки из таблицы `A`\n- Совмещаются со строками таблицы `B`\n- Где есть совпадения, информация записывается строками из `B`\n- Где нет совпадений, дописывается `NULL`\n- Минимальное количество строк в выводе - количество строк в таблице `A`",
+      "image": "Pasted image 20260723201504.png",
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md",
+      "attachment_target": "Pasted image 20260723201504.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b011",
+      "line_start": 177,
+      "line_end": 237,
+      "text": "- Есть у нас таблица `flights`, в ней колонка `flight_id` \n- Она соединяется с таблицей `tickets_flights` также по колонке  `flight_id`\n- Она же, в свою очередь, соединяется с таблицей `boarding_passes` через колонки `ticket_no`\n- Но так как у `boarding_passes` и `tickets_flights` связь \"один к одному\" -> таблицы `boarding_passes` и `flights` можно связать по `flight_id`, даже если они не соединены напрямую\n\n\nЕсли мы напишем такой запрос:\n```PostgreSQL\nSELECT\n    f.flight_id,\n    f.flight_no,\n    f.status,\n    bp.ticket_no\nFROM bookings.flights AS f\n    INNER JOIN bookings.boarding_passes AS bp\n        ON f.flight_id = bp.flight_id\n```\n\n| Flight id | Flight no  | Status   | Ticket no     | Seat no  |\n| :-------- | :--------- | :------- | :------------ | :------- |\n| 544       | PG0222     | Arrived  | 0005434719897 | 5A       |\n| 544       | PG0222     | Arrived  | 0005433766420 | 5H       |\n| 544       | PG0222     | Arrived  | 0005434302258 | 5C       |\n- Есть какой-то ***ОДИН*** `flight_id` у таблицы `flights`\n- Есть ***МНОГО***  `flight_id` у таблицы `boarding_passes`, потому что в одном самолете очень много мест и посадочных ->в каждом билету всегда написан номер рейса\n- Мы выводим пересечения, когда в билете в таблице `boarding_passes` указан номер рейса такой же, как и в таблице `flights`\n- ***То есть, сюда не попали ситуации, когда был рейс, а билеты не были куплены (хз, по какой причине: это бизнес-джет, кукурузник, военный и т.д.)***\n\n\nА как найти, в каких рейсах билетов не покупали?\n```PostgreSQL\nSELECT\n    f.flight_id,\n    f.flight_no,\n    f.status,\n    bp.ticket_no,\n    bp.seat_no\nFROM bookings.flights AS f\n    LEFT JOIN bookings.boarding_passes AS bp\n        ON f.flight_id = bp.flight_id\nWHERE\n    seat_no IS NULL\n```\n\n| Flight id | Flight no | Status    | Ticket no | Seat no |\n| :-------- | :-------- | :-------- | :-------- | :------ |\n| 2026      | PG0335    | Scheduled | null      | null    |\n| 59315     | PG0385    | Scheduled | null      | null    |\n| 56414     | PG0431    | Arrived   | null      | null    |\n\n- Выводим все рейсы в принципе, ***даже те, в которых нет билетов***. Просто все строки `flights`\n- Выводим билеты, в них написан номер рейса \n- Их соединяем -> получаем рейс-билет\n- Если находится рейс, ***который не указан ни в одном из билетов*** -> вместо билета ставится `NULL`\n- Отфильтровываем нашу выборку по отсутствию билетов\n\n***То есть, в случае с`INNER JOIN` мы выводили лишь те строки, рейсы которых есть и в той таблице, и в другой. В случае с `LEFT JOIN ` мы железно выводим первую таблицу: там, где есть пересечения со второй - выводим значения, но если во второй таблице нечем поделиться, то заполняем `NULL`-ами***",
+      "image": "Pasted image 20260723202308.png",
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md",
+      "attachment_target": "Pasted image 20260723202308.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b012",
+      "line_start": 238,
+      "line_end": 239,
+      "text": "# `RIGHT JOIN`",
+      "image": null,
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md"
+    },
+    {
+      "id": "b013",
+      "line_start": 240,
+      "line_end": 263,
+      "text": "По факту:\n```PostgreSQL\nSELECT \n\t*\nFROM A\n\tRIGHT JOIN B\n\t\tON A.id = B.id\n```\nэто то же самое, что и:\n\n```PostgreSQL\nSELECT \n\t*\nFROM B\n\tLEFT JOIN A\n\t\tON A.id = B.id\n```\n\nНужен, в основном, для удобства: чтобы не переписывать структуру запроса, а просто поменять `LEFT` на `RIGHT`\n\nВ основном, используется `LEFT JOIN`",
+      "image": "Pasted image 20260723211949.png",
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md",
+      "attachment_target": "Pasted image 20260723211949.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b014",
+      "line_start": 264,
+      "line_end": 320,
+      "text": "# `ON` и `WHERE` - это разные конструкции!!!\n\n```PostgreSQL\nSELECT\n    f.flight_id,\n    f.flight_no,\n    f.status,\n    bp.ticket_no,\n    bp.seat_no\nFROM\n    bookings.flights AS f\n    LEFT JOIN bookings.boarding_passes as bp\n        ON f.flight_id = bp.flight_id\n            AND bp.seat_no = '10A'\n```\n\n| Flight id | Flight no | Status  | Ticket no     | Seat no |\n| :-------- | :-------- | :------ | :------------ | :------ |\n| 14        | PG0403    | Arrived | null          | null    |\n| 15        | PG0404    | Arrived | 0005432918772 | 10A     |\n| 16        | PG0405    | Arrived | 0005432259908 | 10A     |\n\nПояснение, что тут вообще происходит (а-а-а, жесть!):\n- Берем таблицу `flights`, ***выводим все строки железно***\n- Берем таблицу `boarding_passes` и как бы говорим: \"Соединяй строки только тогда, когда ***одновременно есть совпадение по ключам и по условию*** `seat_no = '10A'`, а всё остальное, где нет пересечений, покрой нулями\" - это некое ***условие соединения*** (при каких условиях выполняется `LEFT JOIN`)\n\nЭти условия нужны, например, чтобы посчитать процентное соотношение по count-ам и т.д.\n\n\n\nЕсли бы мы писали данное условие в `WHERE`:\n\n```PostgreSQL\nSELECT\n    f.flight_id,\n    f.flight_no,\n    f.status,\n    bp.ticket_no,\n    bp.seat_no\nFROM\n    bookings.flights AS f\n    LEFT JOIN bookings.boarding_passes as bp\n        ON f.flight_id = bp.flight_id\nWHERE bp.seat_no = '10A'\n```\n\n| Flight id | Flight no | Status  | Ticket no     | Seat no |\n| :-------- | :-------- | :------ | :------------ | :------ |\n| 22265     | PG0378    | Arrived | 0005434573131 | 10A     |\n| 41497     | PG0379    | Arrived | 0005435319456 | 10A     |\n| 5732      | PG0384    | Arrived | 0005432880472 | 10A     |\n\n- Тут сначала выполняется `LEFT JOIN`: выводится железно все строки из `flights`, \n- Затем объединяются строки только тогда, когда есть пересечение по ключам\n- Где нет пересечений, заполняется `null`-ами\n- Потом отрабатывается фильтрация и выводятся строки только с условием",
+      "image": null,
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md"
+    },
+    {
+      "id": "b015",
+      "line_start": 321,
+      "line_end": 356,
+      "text": "# Как `JOIN`-ы работают с `NULL`-ами\n\n1. `INNER JOIN`\n\n```PostgreSQL\nSELECT \n\t*\nFROM (VALUES (1), (2), (null), (3)) AS t_1(id1)\n    JOIN (VALUES (2), (3)) AS t_2(id2)\n        ON t_1.id1 = t_2.id2\n```\n\n| Id    | Id    |\n| :---- | :---- |\n| 2     | 2     |\n| 3     | 3     |\nСклеились общие значения\n\n2. `LEFT JOIN`\n```PostgreSQL\nSELECT \n\t*\nFROM (VALUES (1), (2), (null), (3)) AS t_1(id1)\n    LEFT JOIN (VALUES (2), (3)) AS t_2(id2)\n        ON t_1.id1 = t_2.id2\n```\n\n| Id1   | Id2   |\n| :---- | :---- |\n| 1     | null  |\n| 2     | 2     |\n| null  | null  |\n| 3     | 3     |\n\nСклеились только строки с совпадающими значениями",
+      "image": null,
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md"
+    },
+    {
+      "id": "b016",
+      "line_start": 357,
+      "line_end": 358,
+      "text": "# `FULL OUTER JOIN`",
+      "image": null,
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md"
+    },
+    {
+      "id": "b017",
+      "line_start": 359,
+      "line_end": 383,
+      "text": "Можно писать просто - `FULL JOIN`, без `OUTER`\n\n```PostgreSQL\nSELECT *\nFROM (VALUES (1), (2), (null), (3)) AS t_1(id1)\n    FULL OUTER JOIN (VALUES (2), (3), (4)) AS t_2(id2)\n        ON t_1.id1 = t_2.id2\n```\n\n| Id1   | Id2   |\n| :---- | :---- |\n| 1     | null  |\n| 2     | 2     |\n| null  | null  |\n| 3     | 3     |\n| null  | 4     |\nСоединение выведет:\n- ***Все значения*** из левой таблицы\n- ***Все значения*** из правой таблицы\n- Пересечения (причем, дубликатов не будет)\n- Если в одной из таблиц нет совпадений, заменится на `(null)`",
+      "image": "Pasted image 20260803132813.png",
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md",
+      "attachment_target": "Pasted image 20260803132813.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b018",
+      "line_start": 384,
+      "line_end": 385,
+      "text": "# `CROSS JOIN`",
+      "image": null,
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md"
+    },
+    {
+      "id": "b019",
+      "line_start": 386,
+      "line_end": 425,
+      "text": "- Это ***декартово произведение*** \n- ***Не нужно писать ключ соединения***\n- Количество строк = количество строк A x количество строк B\n\n```PostgreSQL\nSELECT *\nFROM (VALUES (1), (2), (null), (3)) AS t_1(id1)\n    CROSS JOIN (VALUES (2), (3), (4)) AS t_2(id2)\n```\n\n| Id1   | Id2   |\n| :---- | :---- |\n| 1     | 2     |\n| 1     | 3     |\n| 1     | 4     |\n| 2     | 2     |\n| 2     | 3     |\n| 2     | 4     |\n| null  | 2     |\n| null  | 3     |\n| null  | 4     |\n| 3     | 2     |\n| 3     | 3     |\n| 3     | 4     |\nЭто нужно, например, когда мы взяли в доставке хлеб (1) и масло (2), а нам предлагают еще и молоко (3) докупить: \"О! Ты купил хлеб и молоко, купи еще и масло\". Но чтобы избавиться от 1-1 или 1-2 -> 2-1, можно сделать так:\n```PostgreSQL\nSELECT *\nFROM (VALUES (1), (2), (3)) AS t_1(id1)\n    CROSS JOIN (VALUES (1), (2), (3)) AS t_2(id2)\nWHERE t_1.id1 < t_2.id2 -- убирает все дубли и повторяющиеся значения\n```\n\n| Id1   | Id2   |\n| :---- | :---- |\n| 1     | 2     |\n| 1     | 3     |\n| 2     | 3     |",
+      "image": "Pasted image 20260803140615.png",
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md",
+      "attachment_target": "Pasted image 20260803140615.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b020",
+      "line_start": 426,
+      "line_end": 427,
+      "text": "# Несколько `JOIN` в запросе",
+      "image": null,
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md"
+    },
+    {
+      "id": "b021",
+      "line_start": 428,
+      "line_end": 448,
+      "text": "Соединим 3 (или больше) таблиц:\n\n```PostgreSQL\nSELECT *\nFROM bookings.tickets AS t\n    INNER JOIN bookings.ticket_flights as tf\n        ON t.ticket_no = tf.ticket_no\n    INNER JOIN bookings.flights AS f\n        ON f.flight_id = tf.flight_id\n    INNER JOIN bookings.boarding_passes as bp\n       ON bp.ticket_no = tf.ticket_no AND bp.flight_id = tf.flight_id\n    RIGHT JOIN bookings.aircrafts_data AS ad\n        ON ad.aircraft_code = f.aircraft_code\n    RIGHT JOIN bookings.seats as s\n        ON s.aircraft_code = ad.aircraft_code\nWHERE t.ticket_no IS NULL\n```\n\n- `JOIN`-ы выполняются последовательно",
+      "image": "Pasted image 20260805085013.png",
+      "note": "Лекция 7. SQL. Соединение таблиц (JOIN).md",
+      "attachment_target": "Pasted image 20260805085013.png",
+      "attachment_requested": true
+    }
+  ],
+  "image_count": 10,
+  "total_images": 10,
+  "warnings": [],
+  "missing_images": [],
+  "requested_images": 10,
+  "id": "de3810298420462dbbcd8d7c9cd4de27",
+  "created_at": "2026-10-29T03:37:40.392605+00:00",
+  "status": "done",
+  "progress": 10,
+  "total": 21,
+  "sections": [
+    {
+      "title": "Соединение таблиц с помощью JOIN",
+      "summary": "JOIN-ы объединяют данные из нескольких таблиц по ключам, основываясь на связях: Primary Key (PK) и Foreign Key (FK). PK — уникальный идентификатор записи, FK — ссылка на PK другой таблицы, создающая связь. Например, `tickets.book_ref` ссылается на `bookings.book_ref`, что позволяет соединить заказы с билетами. Связи могут быть «один к одному» (например, `boarding_passes` и `ticket_flights`), или «один ко многим» (например, один заказ — несколько билетов). Важно понимать, что `JOIN` — это не просто объединение, а сопоставление строк по ключам. При этом `INNER JOIN` возвращает только строки, где ключи совпадают, а `LEFT JOIN` включает все строки левой таблицы, даже если правая — пуста. Связи между таблицами визуализируются в ER-диаграмме, а `ON` определяет условие соединения, в отличие от `WHERE`, который фильтрует результат. Также существуют `FULL OUTER JOIN` и `CROSS JOIN`, но в данном контексте используются только `INNER` и `LEFT`.",
+      "source_ids": [
+        "b001",
+        "b002",
+        "b003",
+        "b004",
+        "b005"
+      ]
+    },
+    {
+      "title": "INNER JOIN: суть, практика и ограничения",
+      "summary": "INNER JOIN объединяет строки из двух таблиц, если у них совпадает ключевое поле. Суть — сравнение по ключу, при совпадении строки «склеиваются» в одну запись. Важно указывать алиасы для колонок, чтобы избежать неоднозначности — например, `t.ticket_no`, `b.total_amount`. Пример: при соединении `tickets` и `bookings` по `book_ref` три пассажира (в `tickets`) получают одну запись о заказе (в `bookings`). Результат — не изменяется, если поменять порядок таблиц в JOIN, так как сравнение происходит по общему ключу. Практика показывает, что без алиасов возникает ошибка «ambiguous column reference», а с ними — корректная работа. Важно: INNER JOIN возвращает только строки, имеющие пару в обеих таблицах — отсутствующие записи в одной таблице не включаются в результат.",
+      "source_ids": [
+        "b006",
+        "b007",
+        "b008"
+      ]
+    },
+    {
+      "title": "LEFT JOIN и его применение в связанных таблицах",
+      "summary": "LEFT JOIN сохраняет все строки из левой таблицы, а при наличии совпадений — добавляет соответствующие данные из правой. Если совпадений нет, столбцы правой таблицы заполняются NULL. Пример: при соединении flights с boarding_passes по flight_id, LEFT JOIN выведет все рейсы, даже если билеты на них не были куплены. В результате фильтрации по NULL в seat_no можно выявить рейсы без билетов. Важно: LEFT JOIN не фильтрует левую таблицу, в отличие от INNER JOIN, который возвращает только строки с совпадениями. Связь между таблицами осуществляется через ключи, например flight_id, ticket_no. Важно понимать, что LEFT JOIN — это не просто «все из левой», а «все из левой с возможными данными из правой». В случае отсутствия связи — NULL. Это позволяет анализировать «неполные» данные, например, рейсы без билетов, что полезно для бизнес-аналитики.",
+      "source_ids": [
+        "b009",
+        "b010",
+        "b011"
+      ]
+    },
+    {
+      "title": "Соединение таблиц с помощью JOIN",
+      "summary": "JOIN-ы позволяют объединять данные из нескольких таблиц по общим ключам. `INNER JOIN` возвращает только строки, где есть совпадения по ключу. `LEFT JOIN` сохраняет все строки из левой таблицы, а строки из правой — только в случае совпадений. `RIGHT JOIN` аналогичен `LEFT JOIN`, но сменяет роли таблиц. `ON` определяет условия соединения, а `WHERE` фильтрует результат после соединения. Пример: `LEFT JOIN` между `flights` и `boarding_passes` по `flight_id` с условием `seat_no = '10A'` сохраняет все рейсы, а в столбцах `boarding_passes` — `NULL`, если билетов нет. Если условие поместить в `WHERE`, фильтрация применяется после соединения, и исчезают строки без соответствующих билетов. `FULL OUTER JOIN` и `CROSS JOIN` — редко используемые, но позволяют объединить все возможные комбинации или все пары. Важно: `ON` и `WHERE` — разные конструкции: первое определяет, какие строки соединяются, второе — какие строки остаются в результате.",
+      "source_ids": [
+        "b012",
+        "b013",
+        "b014"
+      ]
+    },
+    {
+      "title": "Соединение таблиц с помощью JOIN",
+      "summary": "JOIN-ы позволяют объединять данные из нескольких таблиц по общим ключам. INNER JOIN возвращает только строки, где ключи совпадают — например, при соединении (1,2) и (2,3) получаем только (2,2) и (3,3). LEFT JOIN сохраняет все строки левой таблицы, даже если правая не имеет совпадений — например, (1,null) и (null,null) добавляются. FULL OUTER JOIN возвращает все строки из обеих таблиц, даже если они не соединяются — например, (1,null), (null,null), (3,3), (null,4). Важно: ON определяет условие соединения, а WHERE фильтрует результат. В PostgreSQL можно писать FULL JOIN вместо FULL OUTER JOIN. Важно: NULL-ы не удаляются, а сохраняются как значения, если они не совпадают. В примерах с VALUES-таблицами — это наглядно показывает, как работает каждое соединение без лишних строк или дубликатов.",
+      "source_ids": [
+        "b015",
+        "b016",
+        "b017"
+      ]
+    },
+    {
+      "title": "Соединение таблиц в SQL",
+      "summary": "CROSS JOIN создает декартово произведение двух таблиц — каждая строка первой таблицы соединяется со всеми строками второй. Количество результатов равно произведению строк в обоих наборах. Пример: `SELECT * FROM (VALUES (1), (2), (null), (3)) AS t_1(id1) CROSS JOIN (VALUES (2), (3), (4)) AS t_2(id2)` генерирует 12 строк. Для устранения дублей можно добавить условие, например `WHERE t_1.id1 < t_2.id2`. При соединении трех и более таблиц (например, `tickets`, `ticket_flights`, `flights`, `boarding_passes`, `aircrafts_data`, `seats`) используются последовательные `INNER JOIN` и `RIGHT JOIN`, где ключи соединения указаны явно. Важно: `ON` определяет условия соединения, а `WHERE` фильтрует результаты после соединения. Важно не путать `JOIN` и `WHERE` — первый определяет, какие строки соединяются, второй — какие строки остаются. В запросе `WHERE t.ticket_no IS NULL` фильтруется строка, где билет отсутствует, что может быть полезно для анализа отсутствующих записей.",
+      "source_ids": [
+        "b018",
+        "b019",
+        "b020",
+        "b021"
+      ]
+    }
+  ],
+  "base_warnings": [],
+  "model": "qwen3-vl:4b-instruct",
+  "error": null,
+  "archive_sha256": "a32feb87c2b2959782ba04a9f8355f5e3b00dbcb2a63e01a9011bef5d1e96da3",
+  "events": [
+    {
+      "cached": false,
+      "duration": 39.092,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b003",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 19.269,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b004",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 16.681,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b005",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 15.983,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b007",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 17.479,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b010",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 25.154,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b011",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 17.643,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b013",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 16.431,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b017",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 16.207,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b019",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 26.047,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b021",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 44.777,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b001",
+        "b002",
+        "b003",
+        "b004",
+        "b005"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 32.208,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b006",
+        "b007",
+        "b008"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 27.297,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b009",
+        "b010",
+        "b011"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 26.204,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b012",
+        "b013",
+        "b014"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 20.493,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b015",
+        "b016",
+        "b017"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 27.613,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b018",
+        "b019",
+        "b020",
+        "b021"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 23.741,
+      "prompt_sha256": "d91ae15a818a1bca876097c8650e3ff2fba2fc6af791e783b774d0a6db72700b",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 600
+      },
+      "phase": "synthesis"
+    }
+  ],
+  "duration_seconds": 412.5,
+  "detail": "full",
+  "overview": "Лекция посвящена принципам и практическому применению JOIN-ов для объединения данных из нескольких таблиц по ключам, с акцентом на INNER JOIN, LEFT JOIN и их различиях. Каждый тип соединения имеет свои цели: INNER — только совпадающие записи, LEFT — сохранение всех из левой таблицы, даже без соответствия. Важно понимать, что ON определяет условия соединения, а WHERE фильтрует результат после него, и что алиасы необходимы для корректной работы с колонками. Также рассматриваются случаи с несколькими таблицами, CROSS JOIN и FULL OUTER JOIN, но с акцентом на наиболее распространённые типы.",
+  "extractions": [
+    {
+      "title": "",
+      "content": "bookings\nbook_ref\ntotal_amount\nABC123\n12 500\nDEF456\n8 900\nGHI789\n15 700\nXYZ999\n7 800\n...\n...\ntickets\nticket_no\npassenger_name\nbook_ref\n0001\nИван Иванов\nABC123\n0002\nАнна Петрова\nDEF456\n0003\nПетр Сидоров\nABC123\n0004\nОльга Смирнова\nGHI789\n...\n...\nPrimary Key (PK)\nУникальный\nидентификатор\nзаписи в таблице.\nForeign Key (FK)\nСсылка на ключ\nв другой таблице.\nСоздает связь.",
+      "warnings": [],
+      "source_id": "b003",
+      "image_sha256": "5a0713d1c6cf074ef94d1dde8c820bccb6ddf15481591d7a239bb8789fcc0f03"
+    },
+    {
+      "title": "boarding_passes",
+      "content": "boarding_passes\nabc ticket_no bpcchar(13), not null\n# flight_id int4, not null\n# boarding_no int4, not null\nabc seat_no varchar(4), not null\n\nticket_flights\nabc ticket_no bpcchar(13), not null\n# flight_id int4, not null\nabc fare_conditions varchar(10), not null\n# amount numeric(10,2), not null",
+      "warnings": [],
+      "source_id": "b004",
+      "image_sha256": "50bca4ed3116b8f8ead92715b34e5f15ca95f28e090bb91848ddc5991c9f8d48"
+    },
+    {
+      "title": "tickets",
+      "content": "tickets\nabc ticket_no bpcchar(13), not null\nabc book_ref bpcchar(6), not null\nabc passenger_id varchar(20), not null\nabc passenger_name text, not null\n{} contact_data jsonb, null",
+      "warnings": [],
+      "source_id": "b005",
+      "image_sha256": "195e4061c41773cd8505652c350c9c93f3fc3e59327c346f6132515c49b9cb2a"
+    },
+    {
+      "title": "INNER JOIN",
+      "content": "только совпадения\n\nA\nB\n\nПоказывает только те строки, для которых нашлась пара в обеих таблицах.\n\nSELECT ...\nFROM A\nINNER JOIN B\nON A.id = B.id",
+      "warnings": [],
+      "source_id": "b007",
+      "image_sha256": "4995489f3e2c0b49a538f0466c3c03da860edbc6461d6ceceae7c8516ab542ab"
+    },
+    {
+      "title": "LEFT JOIN",
+      "content": "все строки слева\n\nA\nB\n\nСохраняет все строки из левой таблицы (A) и совпадения из правой (B). Если пары нет — значения из B будут NULL.\n\nSELECT ...\nFROM A\nLEFT JOIN B\nON A.id = B.id",
+      "warnings": [],
+      "source_id": "b010",
+      "image_sha256": "5666486963c35c538ab61c36cff89fb43ef48333a62c8632867b0716d1df738f"
+    },
+    {
+      "title": "",
+      "content": "boarding_passes\nabc ticket_no bpcchar(13), not null\n# flight_id int4, not null\n# boarding_no int4, not null\nabc seat_no varchar(4), not null\n\n ticket_flights\nabc ticket_no bpcchar(13), not null\n# flight_id int4, not null\nabc fare_conditions varchar(10), not null\n# amount numeric(10,2), not null\n\n flights\n# flight_id int4, not null\nabc flight_no bpcchar(6), not null\n# scheduled_departure timestampz(6), not null\n# scheduled_arrival timestampz(6), not null\nabc departure_airport bpcchar(3), not null\nabc arrival_airport bpcchar(3), not null\nabc status varchar(20), not null\nabc aircraft_code bpcchar(3), not null\n# actual_departure timestampz(6), null\n# actual_arrival timestampz(6), null",
+      "warnings": [],
+      "source_id": "b011",
+      "image_sha256": "6d59fdae6c5439dc4f2bb8f55396fdc56014c7c185002b1e33f0a556a5a56f6e"
+    },
+    {
+      "title": "RIGHT JOIN",
+      "content": "все строки справа\n\nA\nB\n\nСохраняет все строки из правой таблицы (B) и совпадения из левой (A). Если пары нет — значения из A будут NULL.\n\nSELECT ...\nFROM A\nRIGHT JOIN B\nON A.id = B.id",
+      "warnings": [],
+      "source_id": "b013",
+      "image_sha256": "6d75b252af5a5b940953d0c03dcd8c3c54c1f35607b2214c125e98f613f97f53"
+    },
+    {
+      "title": "FULL OUTER JOIN",
+      "content": "все строки\n\nA\nB\n\nСохраняет все строки из обеих таблиц.\nЕсли пары нет — значения из другой таблицы будут NULL.\n\nSELECT ...\nFROM A\nFULL OUTER JOIN B\nON A.id = B.id",
+      "warnings": [],
+      "source_id": "b017",
+      "image_sha256": "57f3ffbe9bc4a72fd280ac750d64eb1ee2b781f447194bd68aea93a54ee33dec"
+    },
+    {
+      "title": "CROSS JOIN",
+      "content": "все комбинации\n\nКаждая строка из A соединяется с каждой строкой из B.\nБудьте осторожны: может быть очень много строк!\n\nSELECT ...\nFROM A\nCROSS JOIN B",
+      "warnings": [],
+      "source_id": "b019",
+      "image_sha256": "805b80dc36dc98e835d2b7e0a123d0f6a7a6cd50441dc3cd5f6cae9cc3af8bfe"
+    },
+    {
+      "title": "",
+      "content": "ticket_flights\nabc ticket_no bpcar(13), not null\n# flight_id int4, not null\n# fare_conditions varchar(10), not null\n# amount numeric(10,2), not null\n\ntickets\nabc ticket_no bpcar(13), not null\nabc book_ref bpcar(6), not null\nabc passenger_id varchar(20), not null\nabc passenger_name text, not null\n{} contact_data jsonb, null\n\nflights\n# flight_id int4, not null\nabc flight_no bpcar(6), not null\n# scheduled_departure timestampz(6), not null\n# scheduled_arrival timestampz(6), not null\nabc departure_airport bpcar(3), not null\nabc arrival_airport bpcar(3), not null\nabc status varchar(20), not null\nabc aircraft_code bpcar(3), not null\n# actual_departure timestampz(6), null\n# actual_arrival timestampz(6), null",
+      "warnings": [],
+      "source_id": "b021",
+      "image_sha256": "dc6bf8b84afd7eb366be240abdbd359ac703eb6b290f0c8edd552d685f91dcb0"
+    }
+  ],
+  "images_read": 10,
+  "phase": "done",
+  "pipeline_version": "lecture-summary-v2",
+  "stage": "Summary лекции готов",
+  "model_digest": "84f7ed8042fa7cdbd902f7dcb7d0370e032095047cc3244179f263b77b5bc318",
+  "ollama_version": "0.40.12"
+}

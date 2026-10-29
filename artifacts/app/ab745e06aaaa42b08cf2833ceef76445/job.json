@@ -1,0 +1,1033 @@
+{
+  "title": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры",
+  "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+  "blocks": [
+    {
+      "id": "b001",
+      "line_start": 3,
+      "line_end": 5,
+      "text": "",
+      "image": "Pasted image 20260930192443.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930192443.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b002",
+      "line_start": 6,
+      "line_end": 12,
+      "text": "- он удобно доставляет пакеты в наш `env`\n- каждый обладает + и -",
+      "image": "Pasted image 20260930192615.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930192615.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b003",
+      "line_start": 13,
+      "line_end": 24,
+      "text": "- идет вместе с питоном\n- сложности при фиксации зависимостей (если явно не указаны подзависимости, то будут разные зависмости в целом)\n- если хотим убрать `matplotlib` и все его дочерние, то удалится только `matplotlib`\n- `pip install numpy` и потом `pip install pandas`, то у них подзависимости разные и может быть конфликт -> лучше скачивать одной строчкой\n- `pip freeze` - вывод всех зависимостей \n- `lock` нужен",
+      "image": "Pasted image 20260930192729.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930192729.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b004",
+      "line_start": 25,
+      "line_end": 31,
+      "text": "- тоже пакетный менеджер\n- весь функционал идентичен\n- не ***питоновский менеджер,*** а просто менеджер, можно ставить дрова для nvidia, например",
+      "image": "Pasted image 20260930193310.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930193310.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b005",
+      "line_start": 32,
+      "line_end": 40,
+      "text": "- развитие после `pip` и `conda`\n- авторы декларируют, что улучшили разрешение конфликтов\n- первый пакетный менеджер, в котором появился `lock`\n- чтобы собрать окружение, зависимости \"прибиваются гвоздями\"\n- особенность - `lock` - это законченная версия окружения",
+      "image": "Pasted image 20260930193501.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930193501.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b006",
+      "line_start": 41,
+      "line_end": 47,
+      "text": "- самая современная вещь\n- объединяет плюсы `pip` и `poetry`\n- работает очень быстро и похож на индустриальный стандарт",
+      "image": "Pasted image 20260930193843.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930193843.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b007",
+      "line_start": 48,
+      "line_end": 52,
+      "text": "",
+      "image": "Pasted image 20260930193947.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930193947.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b008",
+      "line_start": 53,
+      "line_end": 58,
+      "text": "- когда есть проекты, нужно следить за безопасностью\n- злоумышленники могут создать подставную зависимость\n- перед обновлением зависимости нужно следить, чтобы не лёг прод",
+      "image": "Pasted image 20260930194100.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930194100.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b009",
+      "line_start": 59,
+      "line_end": 68,
+      "text": "- нужно следить за `.env` и чувствительными данными\n- в репу льём `.env.example` с шаблоном кредов\n- в аутпуте блокнота тоже может быть\n- чтобы не оставить данные в ноутбуке, нужно пользоваться переменными окружения через `os`",
+      "image": "Pasted image 20260930194243.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930194243.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b010",
+      "line_start": 69,
+      "line_end": 72,
+      "text": "",
+      "image": "Pasted image 20260930194509.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930194509.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b011",
+      "line_start": 73,
+      "line_end": 79,
+      "text": "- нужен для зрелых проектов, где есть итерации\n- проблема в том, что набору фич тяжело интегрироваться в прод из-за шанса бага",
+      "image": "Pasted image 20260930194542.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930194542.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b012",
+      "line_start": 80,
+      "line_end": 93,
+      "text": "- подход, в котором есть одна ветка\n- она должна быть готова к раскатке без промежуточных подходов \n- сразу мержим в `main` чтобы быстро релизить и откатывать назад при багах\n- `feature flag` \n\t- хотим запланировать выход фичи в понедельник в 9\n\t- хотим сделать всё это заранее и если баг, то резко откатить \n\t- это некоторый формат написания кода, когда функциональность включается по желанию при условиях\n\t- по сути тот же вариант написания нового функционала под \"большим `if`\"\n\t- нужен для A/B-тестов\n\t- нужно закладывать, что их нужно будет убирать",
+      "image": "Pasted image 20260930194756.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930194756.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b013",
+      "line_start": 94,
+      "line_end": 99,
+      "text": "- лучше делать маленькие MR-ы",
+      "image": "Pasted image 20260930195345.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930195345.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b014",
+      "line_start": 100,
+      "line_end": 103,
+      "text": "",
+      "image": "Pasted image 20260930195430.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930195430.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b015",
+      "line_start": 104,
+      "line_end": 105,
+      "text": "# Работа с данными",
+      "image": null,
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md"
+    },
+    {
+      "id": "b016",
+      "line_start": 106,
+      "line_end": 108,
+      "text": "",
+      "image": "Pasted image 20260930195550.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930195550.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b017",
+      "line_start": 109,
+      "line_end": 116,
+      "text": "- если взять текущие датасеты, то есть ошибки \n- это аргумент к тому, что данные не бывают идеальными\n- очевидно, что качество разметки 90%, то получить модель с точностью больше 90% невозможно\n- над разметкой нужно думать",
+      "image": "Pasted image 20260930195718.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930195718.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b018",
+      "line_start": 117,
+      "line_end": 121,
+      "text": "- с большим проникновением ML появляется мультимодальность - голосовые модели начинают работать с текстом и изображениями и т.д.",
+      "image": "Pasted image 20260930195833.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930195833.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b019",
+      "line_start": 122,
+      "line_end": 126,
+      "text": "- нужно разграничивать данные",
+      "image": "Pasted image 20260930200044.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930200044.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b020",
+      "line_start": 127,
+      "line_end": 131,
+      "text": "- векторные нужны для быстрого поиска",
+      "image": "Pasted image 20260930200128.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930200128.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b021",
+      "line_start": 132,
+      "line_end": 139,
+      "text": "- табличные данные. чтобы хранить используют три варианта: CSV, Parquet, Arrow / Feather\n- CSV практичный и умеет работать с `pandas`\n- Parquet удобен, потому что легковеснее и компактно упаковывает данные, хранит по столбцам, в оперативке не нужно реализовывать всю базу",
+      "image": "Pasted image 20260930200524.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930200524.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b022",
+      "line_start": 140,
+      "line_end": 145,
+      "text": "- у JSON есть особенность: если хотим хранить список словарей -> нужно распарсить весь файл \n- JSONL каждый элемент пишет в отдельную строку и построчно можем нужную найти",
+      "image": "Pasted image 20260930201009.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930201009.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b023",
+      "line_start": 146,
+      "line_end": 153,
+      "text": "- основная степень свободы в картинках - формат изображения (расширение)\n- в jpg будут пиксели с погрешностями\n- в зависимости от структуры кодирования нужен разный подход\n- человек не различает небольшие изменения цвета -> jpg может пренебрегать чувствительностью и можно сжимать. Есть шкала сжатия jpg (хорошо для пейзажей и ярких пикч)",
+      "image": "Pasted image 20260930201244.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930201244.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b024",
+      "line_start": 154,
+      "line_end": 156,
+      "text": "",
+      "image": "Pasted image 20260930201829.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930201829.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b025",
+      "line_start": 157,
+      "line_end": 161,
+      "text": "- тут приведено, как лучше хранить данные",
+      "image": "Pasted image 20260930201907.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930201907.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b026",
+      "line_start": 162,
+      "line_end": 166,
+      "text": "- про работу с разметкой\n- тестовая выборка неидеальна",
+      "image": "Pasted image 20260930202025.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930202025.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b027",
+      "line_start": 167,
+      "line_end": 174,
+      "text": "- степени свободы, влияющие на качество разметки:\n\t- чем больше тратим денег на разметку, тем качественнее получится. можем собрать много плохих или мало идеальных -> всё зависит от бюджета. для серьезных проектов нужен специалист, который разметит\n\t- вопрос: что мы хотим разметить также влияет на стоимость",
+      "image": "Pasted image 20260930202135.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930202135.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b028",
+      "line_start": 175,
+      "line_end": 180,
+      "text": "- нужно ответить на вопрос: сколько нам нужно примеров \n- хотим получить доверительный интервал -> нужно больше примеров",
+      "image": "Pasted image 20260930202455.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930202455.png",
+      "attachment_requested": true
+    },
+    {
+      "id": "b029",
+      "line_start": 181,
+      "line_end": 185,
+      "text": "- варианты удешевления разметки много\n- они используются с различной частотой\n-",
+      "image": "Pasted image 20260930202656.png",
+      "note": "Лекция 5. Codestyle (Часть 2) Пакетные менеджеры.md",
+      "attachment_target": "Pasted image 20260930202656.png",
+      "attachment_requested": true
+    }
+  ],
+  "image_count": 28,
+  "total_images": 28,
+  "warnings": [],
+  "missing_images": [],
+  "requested_images": 28,
+  "id": "ab745e06aaaa42b08cf2833ceef76445",
+  "created_at": "2026-10-29T04:58:43.159339+00:00",
+  "status": "done",
+  "progress": 28,
+  "total": 29,
+  "sections": [
+    {
+      "title": "Пакетные менеджеры: функции, сравнение и риски",
+      "summary": "Пакетные менеджеры — инструменты для управления окружением, зависимостями и версиями. Pip — базовый, но требует ручной фиксации зависимостей через pip-tools; venv — для изоляции, но не управляет Python-версиями. Conda — универсальный, поддерживает CUDA и компиляторы, но зависит от лицензии defaults. Poetry — первый «всё в одном» с детерминированным lock и группами зависимостей, но медленнее. UV — новый стандарт, объединяет плюсы pip и poetry, работает быстро, поддерживает Python-версии и lock-файлы. Сравнение: UV лидирует по скорости и универсальности, Poetry — по зрелости, pip — по инерции. Стандарты pyproject.toml и PEP 751 обеспечивают совместимость. Риск — галлюцинации LLM, создающие фальшивые пакеты, и несогласованность зависимостей при ручном управлении. Важно: не доверять автоматическим установкам, особенно от агентов, и всегда проверять лицензии и источники.",
+      "source_ids": [
+        "b001",
+        "b002",
+        "b003",
+        "b004",
+        "b005",
+        "b006",
+        "b007",
+        "b008"
+      ]
+    },
+    {
+      "title": "Ветвление и ревью в ML-проектах",
+      "summary": "Ветвление в ML-проектах требует выбора подхода: Gitflow для зрелых продуктов с несколькими версиями, где фичи интегрируются через долгие ветки, но рискует создавать конфликты; Trunk-based — для быстрых итераций, где main всегда готов к выкатке, а эксперименты ведутся через feature flags и трекеры. Ключевая особенность — данные и веса не хранятся в Git, а используются DVC, хранилища или реестры моделей. Ревью — не скорость, а качество: маленькие PRы позволяют фокусировать внимание на логике, архитектуре, тестах и безопасности. Важно учитывать, что секреты, логика разметки и сплиты — предмет человеческого ревью, а CI — проверки формата, стиля и типов. Утечки секретов — частая проблема: 28,65 млн новых в 2025, 64% действующих из 2022 года всё ещё работают. Ротация ключей — обязательна, иначе инциденты неизбежны. Важно: не оставлять данные в ноутбуках, использовать `.env.example`, переменные окружения через `os`, а также удалять историю через `git filter-merge`.",
+      "source_ids": [
+        "b009",
+        "b010",
+        "b011",
+        "b012",
+        "b013"
+      ]
+    },
+    {
+      "title": "Работа с данными в ML-продукте",
+      "summary": "Данные — главный актив, а не расходник: даже 3,3% ошибок в разметке могут повлиять на качество модели. Хранение данных требует строгой структуры: по модальности (таблицы, текст, изображения, видео, графы, мультимодальные) и по структуре (структурированные, полуструктурированные, неструктурированные). Три уровня хранения — формат, таблица, хранилище — решают разные задачи: формат определяет, как данные читаются, таблица — как они организованы, хранилище — где они лежат. Для ML предпочтительны объектные хранилища (S3 и аналоги), а не локальные диски. Табличные данные хранятся в CSV (для людей), Parquet (по умолчанию — компактно, быстро, по столбцам) и Arrow/Feather (быстрый обмен между инструментами). Важно: сырые данные неизменяемы, метки — отдельно, с версией, а персональные данные помечаются на входе. Векторные БД (Qdrant, pgvector) хранят эмбеддинги, а аналитические хранилища (ClickHouse, BigQuery) — признаки. Продуктовые БД (Postgres, MongoDB) не читаются напрямую — данные выгружаются в хранилище с историей. Ошибки в разметке — не просто «шум», а критический фактор, определяющий, насколько модель будет успешна.",
+      "source_ids": [
+        "b014",
+        "b015",
+        "b016",
+        "b017",
+        "b018",
+        "b019",
+        "b020",
+        "b021"
+      ]
+    },
+    {
+      "title": "Работа с данными: форматы, разметка и источники",
+      "summary": "Данные для ML классифицируются по модальности: текст, изображения, аудио, видео и мультимодальные. Текст для LLM хранится в JSONL — с разделёнными полями `messages`, `chosen`, `rejected`, а также в Parquet для предобучения. Изображения — JPEG/PNG с метаданными (размер, лицензия, хеш), а эмбеддинги пересобираются из оригинала; кропы и ресайзы — артефакты, но важны для обучения. Аудио — FLAC/WAV с транскрипциями, видео — MP4 с индексами клипов и таймкодами. Модальность определяет хранение: таблицы (Parquet, Arrow) для текста, WebDataset/Lance для изображений, аудио — шарды с транскрипцией. Разметка — ключевой фактор качества модели: метки должны быть верны, согласованы, покрывать все случаи. Стоимость разметки зависит от задачи: классификация — дешево, сегментация — дорого, а свободный текст — самое дорогое. Форматы: COCO JSON, YOLO, Pascal VOC, BIO, JSONL, RTTM, SRT. Источники меток: ручные, LLM-разметчики, программные, активное обучение, неявные метки, синтетика. Команды комбинируют эти подходы для оптимизации бюджета и качества.",
+      "source_ids": [
+        "b022",
+        "b023",
+        "b024",
+        "b025",
+        "b026",
+        "b027",
+        "b028",
+        "b029"
+      ]
+    }
+  ],
+  "base_warnings": [],
+  "model": "qwen3-vl:4b-instruct",
+  "error": null,
+  "archive_sha256": "d0f43ec764cc9d086ea0378de024125d76cdc734345133ff5f3803985fd0bc10",
+  "events": [
+    {
+      "cached": false,
+      "duration": 52.602,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b001",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 35.148,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b002",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 33.614,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b003",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 33.192,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b004",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 36.473,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b005",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 33.009,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b006",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 36.186,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b007",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 43.716,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b008",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 39.093,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b009",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 25.146,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b010",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 32.984,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b011",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 35.547,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b012",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 33.507,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b013",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 23.999,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b014",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 27.165,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b016",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 31.496,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b017",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 35.093,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b018",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 38.82,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b019",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 39.591,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b020",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 40.376,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b021",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 39.152,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b022",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 35.606,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b023",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 36.85,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b024",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 42.676,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b025",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 32.158,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b026",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 41.78,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b027",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 38.831,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b028",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 38.338,
+      "prompt_sha256": "4cf1e5d441d75ffd850c44337bb11c86944a62eb73de382eb84a78830bf65adb",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "source_id": "b029",
+      "phase": "reading"
+    },
+    {
+      "cached": false,
+      "duration": 65.793,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b001",
+        "b002",
+        "b003",
+        "b004",
+        "b005",
+        "b006",
+        "b007",
+        "b008"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 36.492,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b009",
+        "b010",
+        "b011",
+        "b012",
+        "b013"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 44.816,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b014",
+        "b015",
+        "b016",
+        "b017",
+        "b018",
+        "b019",
+        "b020",
+        "b021"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 54.158,
+      "prompt_sha256": "cf05fc2910bdc4fd7478d5ccd6d205e00017ec5cc8e18c0c6123bba183222076",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 2500
+      },
+      "phase": "topic",
+      "source_ids": [
+        "b022",
+        "b023",
+        "b024",
+        "b025",
+        "b026",
+        "b027",
+        "b028",
+        "b029"
+      ]
+    },
+    {
+      "cached": false,
+      "duration": 23.797,
+      "prompt_sha256": "d91ae15a818a1bca876097c8650e3ff2fba2fc6af791e783b774d0a6db72700b",
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 16384,
+        "num_predict": 600
+      },
+      "phase": "synthesis"
+    }
+  ],
+  "duration_seconds": 1237.6,
+  "detail": "full",
+  "overview": "Лекция посвящена основам управления окружением и зависимостями в ML-проектах, методам работы с данными и их разметкой, а также практикам ветвления и ревью. Темы связаны логически: от инструментов (пакетные менеджеры) до данных (форматы, источники, разметка), затем — процессы (ветвление, ревью), где важна структура, качество и безопасность. Главное — понимать, что данные — ключевой актив, требует строгой структуры и контроля, а управление зависимостями и ветвлениями — это не просто инструменты, а практики, влияющие на качество, безопасность и масштабируемость проекта.",
+  "extractions": [
+    {
+      "title": "Пакетные менеджеры",
+      "content": "ЧАСТЬ 02 • ОКРУЖЕНИЕ\n\n02\n\nПакетные менеджеры\n\nЧем собираем окружение: pip, conda, Poetry, uv — плюс стандарты, безопасность зависимостей и секреты.\n\nУПРАВЛЕНИЕ ML-ПРОДУКТОМ • ЛЕКЦИЯ 4\n\n12",
+      "warnings": [],
+      "source_id": "b001",
+      "image_sha256": "e1e59fe15131b189fa99b866c16d04c7872bff2c0fedbc375da68145b0d370e7"
+    },
+    {
+      "title": "Что вообще делает пакетный менеджер",
+      "content": "02 ОКРУЖЕНИЕ · ОСНОВЫ\n\n01 Установка\nраньше: pip\n\n02 Разрешение зависимостей\nраньше: pip\n\n03 Изоляция\nраньше: venv\n\n04 Фиксация (lock)\nраньше: pip-tools\n\n05 Версии Python\nраньше: ruenv\n\nPYTHON DEVELOPERS SURVEY 2024 · ДОЛЯ ИСПОЛЬЗУЮЩИХ\npip\n~75%\nPoetry\n~20%\nConda\n~20%\nuv\n~12%\n\nТренд — консолидация\nОдин инструмент на все пять задач. Отсюда быстрый рост uv: ~12% в первый же год в опросе. Но pip — всё ещё фон для большинства.\n\nУПРАВЛЕНИЕ ML-ПРОДУКТОМ · ЛЕКЦИЯ 4\n13",
+      "warnings": [],
+      "source_id": "b002",
+      "image_sha256": "f93044f94ba05acb7cfcb8095aa58bf556a088fbcab8d914bd894c8580997697"
+    },
+    {
+      "title": "pip + venv + requirements.txt",
+      "content": "02 ОКРУЖЕНИЕ · PIP\n\nТИПИЧНАЯ СВЯЗКА\n\npython -m venv .venv\nsource .venv/bin/activate\npip install -r requirements.txt\npip freeze > requirements.txt\n# ↑ снимок окружения, а не lock\n\n# pip-tools: настоящий lock\npip-compile requirements.in\n\n# pip ≥ 25.1, экспериментально\npip lock  # → pylock.toml\n\nПлюсы\nЕсть везде, идёт с Python\nВсе его знают\nМинимум движущихся частей\n\nМинусы\nОкружения — это venv\nLock — только через pip-tools\nНе управляет версиями Python\nrequirements.txt никогда не был стандартом\n\nПодходит: скрипты, минимальные контейнеры, среды без сторонних инструментов.\nНе подходит: командный проект с десятками зависимостей и требованием воспроизводимости.",
+      "warnings": [],
+      "source_id": "b003",
+      "image_sha256": "b63c80913f2378531050be47dadef81560ecc7d7fbf838ce30401c4b20ea31e4"
+    },
+    {
+      "title": "conda: когда зависимости — не только Python",
+      "content": "02 ОКРУЖЕНИЕ · CONDA\nAnacconda ≠ conda\n\nconda\nинструмент, лицензия BSD\nбесплатно\n\nconda-forge\nканал сообщества\nбесплатно для всех\n\ndefaults\nканал Anaconda — по умолчанию в Anaconda и Miniconda\nплатно для организаций 200+\n\nСила: ставит не только Python — CUDA, компиляторы, MKL, GDAL.\nВыход: Miniforge или Pixi — conda-forge по умолчанию. Miniconda меняет установщик, но не канал.\nУрок: лицензия инструмента может измениться после того, как вы на нём построили.\n\nУПРАВЛЕНИЕ ML-ПРОДУКТОМ · ЛЕКЦИЯ 4\n15",
+      "warnings": [],
+      "source_id": "b004",
+      "image_sha256": "884fc891cfe42370f627b2151d2ad0b29f4aa218982e051769007181ba3f979f"
+    },
+    {
+      "title": "Poetry: первый «всё в одном»",
+      "content": "02 ОКРУЖЕНИЕ • POETRY\n\npyproject.toml + poetry.lock\n\nПлюсы\n- Первый массовый «всё в одном»\n- Нормальный резолвер и детерминированный lock\n- Группы зависимостей: dev, test\n\nМинусы\n- До 2.0 — свой формат [tool.poetry];\n  с 2.0 — стандартный [project]\n- Заметно медленнее uv\n\nХОЛОДНАЯ УСТАНОВКА ИЗ LOCK • SENTRY\n- uv • ~3 c\n- Poetry • ~11 c\n- pip-tools • ~33 c\n\nPoetry 2.3 (2026) жив и поддерживается, но по загрузкам с PyPI uv его обогнал.\n\nМигрировать ради моды — плохая причина. Медленный CI или разнобой версий Python — хорошая.\n\nУПРАВЛЕНИЕ ML-ПРОДУКТОМ • ЛЕКЦИЯ 4",
+      "warnings": [],
+      "source_id": "b005",
+      "image_sha256": "104f2ca974e19790e0744d8c583103bd5555a5ea33993c2d58fc6e364192f770"
+    },
+    {
+      "title": "uv: новый дефолт",
+      "content": "ЗАМЕНЯЕТ\npip\npip-tools\nvirtualenv\npyenv\npipx\n↓\n\nuv\n\nПОКАЗАТЬ ЖИВЬЁМ\nuv init\nuv add pandas\nuv sync\nuv run train.py\nuv python pin 3.12\n# PEP 723: зависимости в самом скрипте\nuv run script.py\n\nИз README исчезает раздел «как настроить окружение»: uv sync — и всё.\n\n74%\nсамая «обожаемая», Stack Overflow 2025\n\n126 млн\nзагрузок за февраль 2026\n\n10% → 30%\nтоп-100к репо GitHub → новые репо 2026\n\nМарт 2026: OpenAI объявила о соглашении купить Astral — авторов uv, Ruff и ту. Лицензия MIT.",
+      "warnings": [],
+      "source_id": "b006",
+      "image_sha256": "a773617bfd33ad4be67c12ba81870c30aabf1a86a2264b641c9c8865b579508d"
+    },
+    {
+      "title": "Как выбрать: сравнительная таблица",
+      "content": "02 ОКРУЖЕНИЕ · ВЫБОР\n\n| | pip + pip-tools | conda / Pixi | Poetry | uv |\n|---|---|---|---|---|\n| Не-Python пакеты (CUDA) | нет | да | нет | нет |\n| Lock-файл | через pip-tools | да | да | да, универсальный |\n| Версии Python | нет | да | нет | да |\n| Скорость | низкая | средняя, Pixi выше | средняя | очень высокая |\n| Стандартный рурoproject | частично | Pixi — да | с 2.0 | да |\n| Зрелость / инерция | максимальная | высокая в науке | высокая | быстро растёт |\n| Главный риск | ручная дисциплина | лицензия defaults | уходит из дефолтов | молодость, новый владелец |\n\nНовый чисто-Python проект в 2026 — uv. Один проект — один менеджер.\n\nУПРАВЛЕНИЕ ML-ПРОДУКТОМ · ЛЕКЦИЯ 4",
+      "warnings": [],
+      "source_id": "b007",
+      "image_sha256": "6df99ab79fa6c266ab84fb95434db9d7f45be57ab679ccdc29e0f75686a659f8"
+    },
+    {
+      "title": "Стандарты и безопасность зависимостей",
+      "content": "STANDARTS\npyproject.toml · [project]\nPEP 621: единое описание проекта, которое понимают все современные инструменты.\n\npyLock.toml\nPEP 751: первый стандартный lock-файл. Пока сосуществует с uv.lock и poetry.lock.\n\nСтандарты — страховка от ухода\nинструмента: смена менеджера за день, а не за квартал.\n\nНе выполнять pip install из ответа модели не глядя — особенно если это делает агент.\n\nSLOPSQUATTING\nLLM выдумывает имя пакета — злоумышленник регистрирует именно его.\n\n≈20%\nиз 576 тыс. сгенерированных примеров кода — с несуществующим пакетом\n\n43%\nгаллюцинаций повторяются во всех 10 повторных запросах\n\n30 000+\nзагрузок пустышки huggingface-cli за три месяца\n\n2026: у свежих моделей — 4,6–6,1%, но 100+ имён все пять моделей выдумывают одинаково.",
+      "warnings": [],
+      "source_id": "b008",
+      "image_sha256": "42d5fd07469bd9fdbe15958f24efab4f3e9b4ded830b5b7311f9f39de42a5df7"
+    },
+    {
+      "title": "Секреты в репозитории",
+      "content": "GITGUARDIAN • 2026\n\n28,65 млн\nновых секретов в публичных коммитах за 2025; +34%\n\n+81%\nутечек ключей AI-сервисов — больше 1,27 млн\n\n64%\nсекретов, валидных в 2022, всё ещё работали в январе 2026\n\nГДЕ УТЕКАЕТ В ML\n\nНоутбуки\nключ живёт в сохранённом выводе ячейки\n\nКонфиги и трекер\nтокен уезжает в MLflow или W&B\n\nDocker-образы\nENV и ARG остаются в слоях\n\nДатасеты\n221 тыс. действующих ключей на Hugging Face\n\nАгенты и MCP\n24 тыс.+ секретов в конфигах\n\nЕСЛИ УТЁК — ПО ПОРЯДКУ\n\n1 Отозвать\nсразу: боты сканируют GitHub постоянно\n\n2 Проверить логи\nуспели ли ключом воспользоваться\n\n3 Почистить историю\ngit filter-merge; новый коммит не помогает\n\nРотацию надо уметь делать до инцидента — иначе её не сделают.",
+      "warnings": [],
+      "source_id": "b009",
+      "image_sha256": "547321862eacea0d4ef7cc9a5569a1529c9da6962caeba0d6ac8391d359f33e2"
+    },
+    {
+      "title": "Ветвление",
+      "content": "ЧАСТЬ 03 · ВЕТКИ\n\nВетвление\n\nКак команда складывает изменения в общий код: gitflow, trunk-based и маленькие PR.\n\nУПРАВЛЕНИЕ ML-ПРОДУКТОМ · ЛЕКЦИЯ 4\n\n21",
+      "warnings": [],
+      "source_id": "b010",
+      "image_sha256": "24b044d3c6a8229af68baa7c3ac9c3a33a1eb700388a4a6c6720ec7d41f4207b"
+    },
+    {
+      "title": "Gitflow: две постоянные ветки и три временных",
+      "content": "03 ВЕТКИ • GITFLOW\n\nmain\nhotfix/*\nrelease/*\ndevelop\nfeature/*\n\nv1.0\nv1.1\nv1.1.1\n\nГде хороша\nВерсионируемый софт: библиотеки, мобильные приложения, несколько поддерживаемых версий.\n\nЦена\nДолгие ветки расходятся, слияния большие и конфликтные, ревью недельной ветки — формальность.\n\n2020, сам автор\nДля веб-приложений с непрерывной доставкой Дриссен советует что-то проще — GitHub Flow.\n\nУПРАВЛЕНИЕ ML-ПРОДУКТОМ • ЛЕКЦИЯ 4\n22",
+      "warnings": [],
+      "source_id": "b011",
+      "image_sha256": "c9d5c8aa41995cbd31c85716f3630ca34666082a1005414af10be6d8156d8b8f"
+    },
+    {
+      "title": "Trunk-based development и ML",
+      "content": "03 ВЕТКИ • TRUNK-BASED\n\nкороткие ветки: часы, а не спринты\n\nmain — всегда готов к выкатке\n\nFeature flags\nКод уже в main, но выключена: deploy и release — разные действия.\n\nML - СПЕЦИФИКА\nЭксперименты — не фичи. Результат — в трекер с SHA коммита.\n\nПредусловия\nБыстрый CI, тесты, флаги, маленькие изменения. Иначе — «все ломают main».\n\nДанные и веса — не в git. DVC, хранилище, реестр моделей.\n\nDORA\nКоманды, выкатывающие по несколько раз в день, почти не используют gitflow.\n\nВыкатка модели ≠ выкатка кода. Shadow, canary, маршрутизация.\n\nУПРАВЛЕНИЕ ML-ПРОДУКТОМ • ЛЕКЦИЯ 4\n23",
+      "warnings": [],
+      "source_id": "b012",
+      "image_sha256": "2b618769d4a669a56b19d2490dda2ffef5b2d4e0f1e08cfdfa8aa5eb7318bb63"
+    },
+    {
+      "title": "Маленькие PR и культура ревью",
+      "content": "03 ВЕТКИ • РЕВЬЮ\n\nДОЛЯ НАЙДЕННЫХ ДЕФЕКТОВ • SMARTBEAR / CISCO\n\nМашина — в CI\nстиль • формат • типы • секреты • lock-файл\n\nЧеловек — на ревью\nлогика и архитектура\nтесты и безопасность\nданные: утечки в признаках, сплит\nпрепроцессинг: train = serve\n\nLock-файлы и сгенерированный код в размер PR не считаются.\n\nPR ограничен вниманием ревьюера, а не скоростью автора — человека или агента.\n\nУПРАВЛЕНИЕ ML-ПРОДУКТОМ • ЛЕКЦИЯ 4\n\n24",
+      "warnings": [],
+      "source_id": "b013",
+      "image_sha256": "6250e6899e44c13903a39396c41dea6204f99ccc144fb735081ab3dd8f72177a"
+    },
+    {
+      "title": "Что забрать с собой",
+      "content": "Стиль — договорённость, проверки — страховка. Пакетный менеджер — выбор риска. Модель ветвления следует из того, как вы выпускаете продукт.",
+      "warnings": [],
+      "source_id": "b014",
+      "image_sha256": "f3a9f6ae83053b21c53559e049105c453da53e8bbca6c520c09900d6566148ee"
+    },
+    {
+      "title": "Работа с данными",
+      "content": "ЛЕКЦИЯ 05 · УПРАВЛЕНИЕ ML-ПРОДУКТОМ\n\nВиды данных, форматы хранения, способы разметки\n\nЧасть 1\nВ чём хранить данные, чтобы с ними можно было работать и обучаться\n\nЧасть 2\nКаким способом получать метки и чем каждый способ платит за дешевизну",
+      "warnings": [],
+      "source_id": "b016",
+      "image_sha256": "b1f5bfdfd3eb5748d3d4e7c97161719f2febf682e6e2500a990146d1c962e6a7"
+    },
+    {
+      "title": "ПОЧЕМУ ДАННЫЕ – ГЛАВНЫЙ АКТИВ, А НЕ РАСХОДНИК",
+      "content": "≥3,3% \nошибок разметки в тестовых наборах 10 самых используемых бенчмарков\n\n≥6% \nошибок в валидационной части ImageNet\n\nResNet-18 обгоняет ResNet-50\nна исправленных метках — если доля изначально ошибочных примеров в тесте вырастет всего на 6%\n\nВыбор «лучшей» модели может определяться шумом в разметке, а не качеством модели.\n\nNorthcutt, Athalye, Mueller • NeurIPS 2021",
+      "warnings": [],
+      "source_id": "b017",
+      "image_sha256": "3ee4ceb9c3468d9d6459dc25e309fa65d02eab90eeb4512a457212084e563fd3"
+    },
+    {
+      "title": "Карта видов данных: две оси",
+      "content": "ЧАСТЬ 1 - ВИДЫ ДАННЫХ И ХРАНЕНИЕ\n\nОсь 1\nПо структуре\nСтруктурированные\nтаблицы с фиксированной схемой: транзакции, профили, признаки\n\nПолуструктурированные\nJSON, логи, события: схема есть, но гибкая и вложенная\n\nНеструктурированные\nтекст, изображения, аудио, видео — большая часть данных компаний\n\nОсь 2\nПо модальности\nТаблицы, временные ряды\nТекст\nИзображения\nАудио, видео\n3D и облака точек\nГрафы\n\nМультимодальные\nкартинка + подпись, видео + субтитры, скриншот + действие агента\n\nУправление ML-продуктом · Лекция 5 · Работа с данными\n03 / 21",
+      "warnings": [],
+      "source_id": "b018",
+      "image_sha256": "9cb48aebc643eb6cf0776f825a10b3581905b58a253fb10583bc6e297a81e7a1"
+    },
+    {
+      "title": "Три уровня хранения — три разных вопроса",
+      "content": "ЧАСТЬ 1 · ВИДЫ ДАННЫХ И ХРАНЕНИЕ\n\n03 В каком формате каждый файл?\nCSV · Parquet · JSONL · JPEG · FLAC · tar-шард\n\n02 Как файлы складываются в таблицу?\nIceberg · Delta Lake · Hudi: транзакции, эволюция схемы, путешествия во времени\n\n01 Где лежат байты?\nОбъектное хранилище (S3 и совместимые), распределённая ФС, локальный диск. Для ML — почти всегда объектное\n\nПЯТЬ ПРИНЦИПОВ\n1 Сырые данные неизменяемы. Остальное — производное\n2 Тяжёлое отдельно от лёгкого. Файлы в хранилище, в таблице — URI\n3 Метки отдельно от данных — с версией гайдлайна\n4 Формат хранения ≠ формат обучения\n5 Персональные данные помечаются на входе\n\nУправление ML-продуктом · Лекция 5 · Работа с данными\n04 / 21",
+      "warnings": [],
+      "source_id": "b019",
+      "image_sha256": "48cd9eaefe5b699bf9ed6e700e6e565e449cfb809721a8dff5bfadfeff8fa6a8"
+    },
+    {
+      "title": "Где живут данные компании",
+      "content": "ЧАСТЬ 1 · ВИДЫ ДАННЫХ И ХРАНЕНИЕ\n\n01\nПродуктовые БД\nPostgres · MySQL\n· MongoDB\nТекущее состояние: заказы, профили, карточки\nДля ML: не читать напрямую — выгружать снапшотами или CDC\n\n02\nАналитическое хранилище\nClickHouse · BigQuery · Greenplum\nСобытия и логи с историей\nДля ML: признаки и неявные метки через SQL-выборки\n\n03\nОбъектное хранилище\nS3 и совместимые\nФайлы: оригиналы, Parquet-таблицы, шарды\nДля ML: основное место — дёшево, доступно с любого кластера\n\n04\nВекторные БД, feature store\nQdrant · pgvector · Feast\nПроизводные: эмбеддинги, готовые признаки\nДля ML: сервис и поиск; пересобираются из хранилища\n\nПродуктовая БД знает только «сейчас». Чтобы восстановить, что видела модель, данные сначала выгружают в хранилище с историей.\n\nУправление ML-продуктом · Лекция 5 · Работа с данными\n05 / 21",
+      "warnings": [],
+      "source_id": "b020",
+      "image_sha256": "fe467abd14566d652fa9aa1c72303430dede72a3b8187cc58b7c09b811303f8c"
+    },
+    {
+      "title": "Табличные данные: CSV, Parquet, Arrow / Feather",
+      "content": "ЧАСТЬ 1 · ФОРМАТЫ ПО МОДАЛЬНОСТЯМ\n\nТаблицы:\n\n| | CSV | Parquet | Arrow / Feather |\n|---|---|---|---|\n| Тип | текст, построчный | бинарный, колоночный | бинарный, колоночный |\n| Схема и типы | нет | есть | есть |\n| Сжатие | нет, только внешнее | сильное | умеренное |\n| Чтение отдельных колонок | нет | да | да |\n| Лучше всего для | обмена с людьми | хранения и аналитики | быстрого обмена между инструментами |\n\nВзять 3 колонки из 12\n\nCSV\nParquet\nCSV читает весь файл, Parquet — только нужные колонки\n\nОдна таблица: размер · запись\n\nCSV\n320 МБ · 10,8 с\nParquet\n121 МБ · 2,3 с\nFeather\n138 МБ · 2,3 с\n\nParquet — по умолчанию. CSV — для людей. Pickle — никогда.\n\nБенчмарк: github.com/vineetkukreti/data-format-comparison\n06 / 21",
+      "warnings": [],
+      "source_id": "b021",
+      "image_sha256": "ae8000a830b578d2258c231de352a1d3b172649483b12669e0c9cab50756fd36"
+    },
+    {
+      "title": "Текст и данные для LLM: JSONL",
+      "content": "ЧАСТЬ 1 · ФОРМАТЫ ПО МОДАЛЬНОСТЯМ\n\nСырой текст · предобучение\n{\"text\": \"Сырой документ для предобучения...\"}\n\nДиалог messages · SFT\n{\"messages\": [\n  {\"role\": \"user\", \"content\": \"...\"},\n  {\"role\": \"assistant\", \"content\": \"...\"}\n]}\n\nПара предпочтений · DPO\n{\"prompt\": [{\"role\": \"user\", \"content\": \"...\"}],\n\"chosen\": [{\"role\": \"assistant\", \"content\": \"...\"}],\n\"rejected\": [{\"role\": \"assistant\", \"content\": \"...\"}]}\n\nЛовушка — шаблон чата\nХраните роли и тексты в структурном виде, шаблон модели применяйте в момент обучения\n\nПри масштабе\nКорпуса — в Parquet, предобучение — в предтокенизированных бинарных шардах\n\nФормат данных = формат разметки\nchosen / rejected — метка предпочтения, messages — метка-демонстрация\n\nУправление ML-продуктом · Лекция 5 · Работа с данными\n07 / 21",
+      "warnings": [],
+      "source_id": "b022",
+      "image_sha256": "ae2eb6fab620f9826e6758472f6b11b40b777ecc61f95dcbdc0915e51919a2b6"
+    },
+    {
+      "title": "Изображения: оригинал и производные",
+      "content": "ЧАСТЬ 1 · ФОРМАТЫ ПО МОДАЛЬНОСТЯМ\n\nНеизменяем\nОригинал\nJPEG — фото, PNG — графика и скриншоты, WebP — компромисс. Не пережимаем.\n\nРесайзы\nпод разрешение обучения\n\nКропы\nартефакт с версией\n\nЭмбеддинги\nпересобираются из оригинала\n\nТаблица метаданных\nразмеры · источник · лицензия · EXIF без геолокации · хеш для дедупликации · URI файла\n\nАнтипаттерн: картинка в base64 внутри CSV\n\nУЗКОЕ МЕСТО\nДекодирование JPEG на CPU\nдо 20x\nускорение декодирования на аппаратном JPEG-декодере A100 против только CPU (данные NVIDIA)\n\nПрофилируйте загрузчик данных, а не модель\n\nУправление ML-продуктом · Лекция 5 · Работа с данными\n08 / 21",
+      "warnings": [],
+      "source_id": "b023",
+      "image_sha256": "73f1bb7bf57d4d143e741c3def3637a89d8ba1faf27a151bc4760a9784a56e30"
+    },
+    {
+      "title": "Аудио и видео",
+      "content": "ЧАСТЬ 1 · ФОРМАТЫ ПО МОДАЛЬНОСТЯМ\n\nАудио lossless, одна частота\nФормат: FLAC или WAV. MP3 — артефакты кодека\nЧастота: 16 кГц для распознавания речи, 24–48 кГц для синтеза и музыки\nПравило: Единая частота и число каналов во всём датасете\nМетки: Транскрипции отдельно, с таймкодами\n\nВидео не перекодировать, нарезать\nФормат: MP4, MKV с H.264 / H.265 — архив как есть\nПроблема: Кадры как картинки — объём в десятки раз больше; целый ролик — медленно\nКомпромисс: Клипы + индекс кадров и таймкодов + предвычисленные эмбеддинги\nРиск: Рассинхрон видео, звука, субтитров и сенсоров\n\nУправление ML-продуктом · Лекция 5 · Работа с данными\n09 / 21",
+      "warnings": [],
+      "source_id": "b024",
+      "image_sha256": "6b39b837111a0abdc2ceac3ebd4a227fda8d0cf8d067d29b3bb8d185129bbd8b"
+    },
+    {
+      "title": "Модальность → хранение → обучение",
+      "content": "ЧАСТЬ 1 • СВОДКА\n\nМодальность\nСырьё храним в\nДля обучения собираем в\nМетки храним в\n\nТаблицы\nParquet в Iceberg / Delta\nParquet / Arrow\nколонки или отдельная таблица\n\nТекст, LLM\nJSONL / Parquet\nParquet, токенизированные шарды\nJSONL: messages, chosen/rejected\n\nИзображения\nJPEG/PNG + таблица метаданных\nWebDataset / MDS / Lance\nCOCO JSON, YOLO, маски\n\nАудио\nFLAC / WAV + таблица\nшарды: аудио + транскрипция\nJSON с таймкодами\n\nВидео\nMP4 + индекс клипов\nклипы, кадры, эмбеддинги\nтреки, таймкоды\n\nМультимодальное\nфайлы + таблица связей\nобщие шарды с параметрами\nв таблице связей\n\nСырьё храним, чтобы сохранить и найти. Обучающие данные — чтобы быстро прочитать.\n\nМежду ними — воспроизводимый скрипт сборки. Потеряли таблицу связей — потеряли датасет, даже если все файлы на месте.\n\nУправление ML-продуктом • Лекция 5 • Работа с данными\n10 / 21",
+      "warnings": [],
+      "source_id": "b025",
+      "image_sha256": "d2657cd3db4967e19ba0b3e4f385dcf08ce96f01e8eb6e809a4d78cbe29f5930"
+    },
+    {
+      "title": "Что такое метка и почему она определяет потолок",
+      "content": "ЧАСТЬ 2 • РАЗМЕТКА\n\nкачество модели ≤ качество меток\n\n01\nКачество\nнасколько метка верна и согласована между разметчиками\n\n02\nСтоимость\nденьги и время за единицу\n\n03\nПокрытие\nкакую долю данных и каких случаев удаётся разметить, включая редкие\n\nМетки для обучения\nможно позволить шум — модели часто устойчивы к умеренному шуму\n\nМетки для оценки\nмаксимально чистые: 3–6% ошибок в тесте переворачивают выбор модели\n\nУправление ML-продуктом • Лекция 5 • Работа с данными\n11 / 21",
+      "warnings": [],
+      "source_id": "b026",
+      "image_sha256": "360a10dfa8df4318275b1e0f299b80f52ef985b564cde02bca0fe79a78bf3b63"
+    },
+    {
+      "title": "Виды разметки по задаче и их стоимость",
+      "content": "ЧАСТЬ 2 · РАЗМЕТКА\n\nCOCO · секунд на объект\nКатегории на изображении: 29 с\nОтметить объект точкой: 14 с\nРамка, крайние точки: +7 с\nПолигональная маска: 79 с\n\nCityscapes · на изображение\nСцена попиксельно, грубо: ~7 мин\nСцена попиксельно, точно: ~1,5 ч\nШкала логарифмическая\n\nДругие задачи\nКлассификация — самый дешёвый вид\nШкалы 1–5 — дешево, но субъективно\nПопарные предпочтения — основа выравнивания LLM\nСпаны текста — сущности, отношения, схема BIO\nТочки, треки, 3D-кубовиды — ещё дороже, нужны специалисту\nАудио — транскрипция, диаризация, таймкоды\nСвободный текст — самое дорогое: разметчик пишет, а не выбирает\n\nМежду классификацией и сегментацией — разница в сотни раз. Сначала минимальный вид метки, потом бюджет.\n\nCOCO: Cheng et al., CVPR 2022 · Cityscapes: Cordts et al., CVPR 2016",
+      "warnings": [],
+      "source_id": "b027",
+      "image_sha256": "0bda45de75e2bb5b18349a4377078a6f7f339d0eb7829872797df8277dbadf62"
+    },
+    {
+      "title": "Форматы разметки",
+      "content": "ЧАСТЬ 2 · РАЗМЕТКА\n\nЗадача\tФорматы\nДетекция, сегментация\tCOCO JSON, YOLO (txt на изображение), Pascal VOC (XML), маски PNG / RLE\nРазметка текста\tBIO / IOB (CoNLL), JSON со смещениями символов\nДообучение LLM\tJSONL: messages, prompt / chosen / rejected, оценки по рубрике\nАудио\tJSON с таймкодами, RTTM для диаризации, SRT / VTT для субтитров\n\nКонвертация теряет информацию\nCOCO → YOLO → COCO = маски потеряны\nYOLO хранит нормированные рамки и не хранит полигоны. Храните самый полный формат из инструмента, обучающие — собирайте из него\n\nС каждой меткой храним\nкто разметил: человек или модель\tкогда\nпо какой версии гайдлайна была ли проверка\tсколько времени заняло\n\nУправление ML-продуктом · Лекция 5 · Работа с данными\n13 / 21",
+      "warnings": [],
+      "source_id": "b028",
+      "image_sha256": "ffd564b4aefd304aa77e8b7fa557766b13e31c9097b3e4bbaa8b7a27b9ef4df5"
+    },
+    {
+      "title": "Кто производит метки: шесть семейств",
+      "content": "ЧАСТЬ 2 • РАЗМЕТКА ПО ИСТОЧНИКУ\n\nДорого и точно ————————————————————————→— Дёшево и шумно\n\n1\nРучная\nсвоя команда,\nкraud, эксперты,\nвендоры\n\n2\nС участием\nмодели\nпредразметка,\nLLM-разметчик\n\n3\nПрограммная\nправила и\nэвристики +\nмодель меток\n\n4\nУмный выбор\nактивное, полу- и\nсамообучение\n\n5\nНеявные\nметки и\nнаграды\nповедение\nпользователей,\nавтопроверка\n\n6\nСинтетика\nданные и метки\nот модели\n\nЗрелые команды комбинируют: модель размечает массу, люди — сложное и тест, правила — очевидное, продукт — неявные метки.\n\nУправление ML-продуктом • Лекция 5 • Работа с данными\n14 / 21",
+      "warnings": [],
+      "source_id": "b029",
+      "image_sha256": "de08f4ea7c6f774abb46e60cdf3c1ba7988f23b3dffef9ab1e2548374d614cd4"
+    }
+  ],
+  "images_read": 28,
+  "phase": "done",
+  "pipeline_version": "lecture-summary-v2",
+  "stage": "Summary лекции готов",
+  "model_digest": "84f7ed8042fa7cdbd902f7dcb7d0370e032095047cc3244179f263b77b5bc318",
+  "ollama_version": "0.40.12"
+}

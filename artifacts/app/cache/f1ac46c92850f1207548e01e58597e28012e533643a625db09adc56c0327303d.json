@@ -1,0 +1,1 @@
+{"title": "tickets", "content": "tickets\nabc ticket_no bpcchar(13), not null\nabc book_ref bpcchar(6), not null\nabc passenger_id varchar(20), not null\nabc passenger_name text, not null\n{} contact_data jsonb, null", "warnings": []}

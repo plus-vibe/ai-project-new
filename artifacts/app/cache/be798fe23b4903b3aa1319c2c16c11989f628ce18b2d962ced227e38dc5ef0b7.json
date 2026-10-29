@@ -1,0 +1,1 @@
+{"title": "boarding_passes", "content": "boarding_passes\nabc ticket_no bpcchar(13), not null\n# flight_id int4, not null\n# boarding_no int4, not null\nabc seat_no varchar(4), not null\n\nticket_flights\nabc ticket_no bpcchar(13), not null\n# flight_id int4, not null\nabc fare_conditions varchar(10), not null\n# amount numeric(10,2), not null", "warnings": []}

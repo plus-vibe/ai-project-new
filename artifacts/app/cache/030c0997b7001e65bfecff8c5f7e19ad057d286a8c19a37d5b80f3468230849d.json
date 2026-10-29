@@ -1,0 +1,1 @@
+{"title": "FULL OUTER JOIN", "content": "все строки\n\nA\nB\n\nСохраняет все строки из обеих таблиц.\nЕсли пары нет — значения из другой таблицы будут NULL.\n\nSELECT ...\nFROM A\nFULL OUTER JOIN B\nON A.id = B.id", "warnings": []}
